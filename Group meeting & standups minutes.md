@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.292 seconds.
+Conversion time: 0.664 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 10 2022 08:52:34 GMT-0800 (PST)
+* Wed Jan 12 2022 08:42:56 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -38,11 +38,11 @@ Brainstorm ideas for application
 
 
 
-* Scope
-    * Platform: desktop
-* [Requirements](https://student.cs.uwaterloo.ca/~cs398/01-syllabus/private/project-specification/)
+* Platform
+    * Desktop
+* [Requirements](https://student.cs.uwaterloo.ca/~cs398/01-syllabus/3-project-specification/)
     * Target users: university students who want to take notes but have an irrational hate for existing note taking applications
-* Idea
+* Ideas
     * Possibility of attaching dates as reminders / alerts to notes
     * Will import something supporting italicization, bold, etc.
         * Text color changing
@@ -68,3 +68,62 @@ Brainstorm ideas for application
 * Exporting to PDF?
 * Order according to feasibility
 * Do we overkill the development process?
+* Go over remaining course content and dive into specifics next meeting
+
+**Date: January 12th Team: 110**
+
+**Present:**
+
+Ivan, Yixin, Yichuan
+
+**Absent:**
+
+Logan (COVID shot)
+
+**Agenda:**
+
+Review specifications, plan out “interview schedule”
+
+**Notes:**
+
+
+
+* Who are my users?
+    * Students taking notes of course content
+* What is important to them?
+    * Ability to emulate organization & highlighting & commenting of physical notes
+        * How would you like to comment on your notes? Things like highlighting, color coding, drawing arrows, etc.
+    * Potential integration of scheduling functions into notes
+        * How would you feel about integrating reminders or alerts into notes? (Our idea is to be able to set dates and times for reminders on specific lines)
+    * Easy insertion of, say, screenshots of textbooks into notes
+        * Self explanatory
+    * Ability to export notes
+        * What export formats would you prefer?
+    * Ability to navigate notes
+        * (DIFFICULT) potentially link to specific locations in textbooks (pdf?)
+        * How would you like to be able to navigate notes?
+    * Ability to format notes
+        * Is a note one long continuous page or multiple pages that can be managed independently?
+        * Consider dragging and dropping pages to reorder
+        * What formatting options would you like to have on your notes?
+    * Ability to organize notes (file management basically)
+        * How would you like to organize your notes? (Tree? List?)
+* What are they trying to accomplish?
+    * Take notes
+    * Not fail
+* How do they relate to the problem that I’m trying to solve?
+    * Help students trying to take notes, and not fail
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Go and individually interview people with questions outlined above
+* Record responses, aggregate on Friday
+* Plan out feature space on Friday (affinity diagrams?)
