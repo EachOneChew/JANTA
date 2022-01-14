@@ -139,7 +139,7 @@ Ivan, Logan, Yixin, Yichuan
 
 **Absent:**
 
-**Agenda: 	**
+**Agenda:**
 
 Go through interview responses, digest information, possibly plan more detailed questions if we need more specifics
 
