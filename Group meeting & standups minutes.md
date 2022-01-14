@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.664 seconds.
+Conversion time: 0.423 seconds.
 
 
 Using this Markdown file:
@@ -17,12 +17,13 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Wed Jan 12 2022 08:42:56 GMT-0800 (PST)
+* Fri Jan 14 2022 08:58:37 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
 
-**Date: January 10th Team: 110**
+
+# Date: January 10th Team: 110
 
 **Present:**
 
@@ -70,7 +71,8 @@ Brainstorm ideas for application
 * Do we overkill the development process?
 * Go over remaining course content and dive into specifics next meeting
 
-**Date: January 12th Team: 110**
+
+# Date: January 12th Team: 110
 
 **Present:**
 
@@ -91,8 +93,8 @@ Review specifications, plan out “interview schedule”
 * Who are my users?
     * Students taking notes of course content
 * What is important to them?
-    * Ability to emulate organization & highlighting & commenting of physical notes
-        * How would you like to comment on your notes? Things like highlighting, color coding, drawing arrows, etc.
+    * Ability to emulate structuring & highlighting & annotating of physical notes
+        * How would you like to do the above things? Things like highlighting, color coding, drawing arrows, etc.
     * Potential integration of scheduling functions into notes
         * How would you feel about integrating reminders or alerts into notes? (Our idea is to be able to set dates and times for reminders on specific lines)
     * Easy insertion of, say, screenshots of textbooks into notes
@@ -127,3 +129,35 @@ Review specifications, plan out “interview schedule”
 * Go and individually interview people with questions outlined above
 * Record responses, aggregate on Friday
 * Plan out feature space on Friday (affinity diagrams?)
+
+
+# Date: January 14th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda: 	**
+
+Go through interview responses, digest information, possibly plan more detailed questions if we need more specifics
+
+**Notes:**
+
+
+
+* We looked at many things in the requirements doc
+
+**Decisions:**
+
+
+
+* Start affinity diagram during Monday’s meeting
+
+**TODO:**
+
+
+
+* Go through the features that people want in our own interview responses, and add them as a huge list [here](https://docs.google.com/document/d/1QCpA4ot4rNN8ra6r7WKMMXa0KZKzT9SoKGZrU45sOfM/edit?usp=sharing)
+* Install IntelliJ
