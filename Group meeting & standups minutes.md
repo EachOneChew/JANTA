@@ -168,7 +168,7 @@ Go through interview responses, digest information, possibly plan more detailed 
 
 Ivan, Logan, Yixin, Yichuan
 
-**Absent: **
+**Absent:**
 
 **Agenda:**
 
