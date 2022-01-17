@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.504 seconds.
+Conversion time: 0.454 seconds.
 
 
 Using this Markdown file:
@@ -17,90 +17,177 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 17 2022 08:21:16 GMT-0800 (PST)
-* Source doc: All requested features
+* Mon Jan 17 2022 08:21:35 GMT-0800 (PST)
+* Source doc: Group meeting & standups minutes
 ----->
 
 
 
-# **Yichuan Ivan**
+# Date: January 10th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+Brainstorm ideas for application
+
+**Notes:**
 
 
-# **Features:**
+
+* Platform
+    * Desktop
+* [Requirements](https://student.cs.uwaterloo.ca/~cs398/01-syllabus/3-project-specification/)
+    * Target users: university students who want to take notes but have an irrational hate for existing note taking applications
+* Ideas
+    * Possibility of attaching dates as reminders / alerts to notes
+    * Will import something supporting italicization, bold, etc.
+        * Text color changing
+        * Convenient highlighting of text
+        * Comments over highlighted texts
+        * Color coding by indentation
+    * Should support insertion of images
+    * Finite set of shortcuts that are re-assignable
+    * ‘Dark’ Mode
+    * File / note organization system
+        * Divide by subjects? TBD
+
+**Decisions:**
 
 
 
-* High level target characteristics
-    * Performance
-        * Fast response time (maybe opens in background on start up?)
-    * Useability
-        * Less keystrokes and mouse movement to accomplish tasks
-    * …
-* Navigation
-    * Standard navigation (sidebar, scrolling, etc.)
-        * Scrolling
-            * Scrollbar on side
-            * User mouses over and drags to move page
-    * Search for text both in a note and in all notes (hotkey ctrl-f)
-    * Designate certain things as definitions - select theorem, label as definition, and somewhere there’s a glossary for list of theorems
-    * Link to sections in notes - let users manually give certain sections a label, and the label can be accessed from other locations?
-    * Tree-structure (mindmap)
-* Fast formatting
-    * Standard rich text formatting
-    * Markings on notes
-        * Draw arrows
-        * Circling
-        * Highlighting
-    * Color coding (maybe auto on indents)
-    * Add, insert, reorder, delete pages
-    * Change page color
-        * Background color change
-    * Customizable default format across all notes
-    * Build-in template (import and export)
-    * Faster hotkeys for formatting (auto select line?)
-* Scheduling
-    * Alerts are toggleable
-    * Aggregate all scheduled reminders in one location for easy viewing
-    * Calendar integration
-        * Countdown
-        * Notification of events
-    * Desktop pop-ups
-* Insertion
-    * Annotations, tooltip style & arrow pointing to it on side
-    * Pictures
-        * Jpeg
-        * Png
-        * Pdf(?)
-        * Pop up the image that was just download (or you just took a picture)
-    * PowerPoint
-        * Converted into Images, or pages
-    * Linking to pdf / website locations for definitions or theorems
-* Export
-    * Word
-        * Have to decide on implementation
-    * Pdf
-    * Pdf (with whitespace on the side and lines for additional writing)
-    * Image
-* Toggle option between single and continuous page
-    * If single: drag and drop pages
-        * Resizable pages
-    * If continuous: drag and drop subsection of notes
-* File structure
-    * Normal tree (folder and files) structure
-    * Able to sort by date, name
-        * Last edited notes
-    * Custom ordering on folders
-* **Saving**
-    * Autosave
-        * Manual save “resets timer” for autosave
-    * Historical records, and recover
-* Shortcuts
-    * Most important: Cut, copy, paste, sub-script, super-script, bold, italics, 
-        * add comments
-    * Potentially need good shortcuts for our own custom formatting
-* Built-in flashcards (labeling?)
-    * Review helper
-* Custom themes
-* Ability to transcribe (speech to text)
-* Record speech
-* Multi-editing, sharing link
+* Ivan must learn a musical instrument within 1 month or be ejected from group
+
+**TODO:**
+
+
+
+* Exporting to PDF?
+* Order according to feasibility
+* Do we overkill the development process?
+* Go over remaining course content and dive into specifics next meeting
+
+
+# Date: January 12th Team: 110
+
+**Present:**
+
+Ivan, Yixin, Yichuan
+
+**Absent:**
+
+Logan (COVID shot)
+
+**Agenda:**
+
+Review specifications, plan out “interview schedule”
+
+**Notes:**
+
+
+
+* Who are my users?
+    * Students taking notes of course content
+* What is important to them?
+    * Ability to emulate structuring & highlighting & annotating of physical notes
+        * How would you like to do the above things? Things like highlighting, color coding, drawing arrows, etc.
+    * Potential integration of scheduling functions into notes
+        * How would you feel about integrating reminders or alerts into notes? (Our idea is to be able to set dates and times for reminders on specific lines)
+    * Easy insertion of, say, screenshots of textbooks into notes
+        * Self explanatory
+    * Ability to export notes
+        * What export formats would you prefer?
+    * Ability to navigate notes
+        * (DIFFICULT) potentially link to specific locations in textbooks (pdf?)
+        * How would you like to be able to navigate notes?
+    * Ability to format notes
+        * Is a note one long continuous page or multiple pages that can be managed independently?
+        * Consider dragging and dropping pages to reorder
+        * What formatting options would you like to have on your notes?
+    * Ability to organize notes (file management basically)
+        * How would you like to organize your notes? (Tree? List?)
+* What are they trying to accomplish?
+    * Take notes
+    * Not fail
+* How do they relate to the problem that I’m trying to solve?
+    * Help students trying to take notes, and not fail
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Go and individually interview people with questions outlined above
+* Record responses, aggregate on Friday
+* Plan out feature space on Friday (affinity diagrams?)
+
+
+# Date: January 14th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+Go through interview responses, digest information, possibly plan more detailed questions if we need more specifics
+
+**Notes:**
+
+
+
+* We looked at many things in the requirements doc
+
+**Decisions:**
+
+
+
+* Start affinity diagram during Monday’s meeting
+
+**TODO:**
+
+
+
+* Go through the features that people want in our own interview responses, and add them as a huge list [here](https://docs.google.com/document/d/1QCpA4ot4rNN8ra6r7WKMMXa0KZKzT9SoKGZrU45sOfM/edit?usp=sharing)
+* Install IntelliJ
+
+**Date: January 17th Team: 110**
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent: **
+
+**Agenda:**
+
+Go through next friday’s design review template or whatever it was called, finalize requirements list
+
+**Notes:**
+
+
+
+* Went through all requested features, ordered by priority
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Go through features individually, and list specifics of how that feature should work
