@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.454 seconds.
+Conversion time: 0.464 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 17 2022 08:21:35 GMT-0800 (PST)
+* Wed Jan 19 2022 08:30:30 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -191,3 +191,36 @@ Go through next friday’s design review template or whatever it was called, fin
 
 
 * Go through features individually, and list specifics of how that feature should work
+
+**Date: January 19th Team: 110**
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+Discuss architecture, start moving issues into Gitlab.
+
+**Notes:**
+
+
+
+* Monolithic architecture
+* Presentation, business, database layer
+* Will probably need a database of some kind
+    * For sure*
+
+**Decisions:**
+
+
+
+* Fill out Gitlab issues on Friday meeting, whatever not finished then, schedule another meeting on weekend
+
+**TODO:**
+
+
+
+* Learn how to build app with Kotlin in general
