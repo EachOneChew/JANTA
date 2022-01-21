@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.464 seconds.
+Conversion time: 0.724 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Wed Jan 19 2022 08:30:30 GMT-0800 (PST)
+* Fri Jan 21 2022 09:34:35 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -33,7 +33,9 @@ Ivan, Logan, Yixin, Yichuan
 
 **Agenda:**
 
-Brainstorm ideas for application
+
+
+* Brainstorm ideas for application
 
 **Notes:**
 
@@ -84,7 +86,10 @@ Logan (COVID shot)
 
 **Agenda:**
 
-Review specifications, plan out “interview schedule”
+
+
+* Review specifications
+* Plan out “interview schedule”
 
 **Notes:**
 
@@ -118,10 +123,6 @@ Review specifications, plan out “interview schedule”
 
 **Decisions:**
 
-
-
-* ???
-
 **TODO:**
 
 
@@ -141,7 +142,9 @@ Ivan, Logan, Yixin, Yichuan
 
 **Agenda:**
 
-Go through interview responses, digest information, possibly plan more detailed questions if we need more specifics
+
+
+* Go through interview responses, digest information, possibly plan more detailed questions if we need more specifics
 
 **Notes:**
 
@@ -162,7 +165,8 @@ Go through interview responses, digest information, possibly plan more detailed 
 * Go through the features that people want in our own interview responses, and add them as a huge list [here](https://docs.google.com/document/d/1QCpA4ot4rNN8ra6r7WKMMXa0KZKzT9SoKGZrU45sOfM/edit?usp=sharing)
 * Install IntelliJ
 
-**Date: January 17th Team: 110**
+
+# Date: January 17th Team: 110
 
 **Present:**
 
@@ -218,9 +222,56 @@ Discuss architecture, start moving issues into Gitlab.
 
 
 * Fill out Gitlab issues on Friday meeting, whatever not finished then, schedule another meeting on weekend
+* Delve deeper into non functional requirements
+    * These can be tasks too - NFR of “performance” can be a task where someone tests for lag
 
 **TODO:**
 
 
 
 * Learn how to build app with Kotlin in general
+
+
+
+
+# Date: January 21th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Fill in Gitlab issues
+* Technical impact
+* Architectural style
+* System diagram
+
+**Notes:**
+
+
+
+* Diagram subject to change
+* Added Gitlab issues
+* Architectural style
+    * Monolithic
+    * Technical partitioning by layers
+
+**Decisions:**
+
+
+
+* Probably no need to meet
+
+**TODO:**
+
+
+
+* Add tasks from diagrams to Gitlab
+    * E.g. create class structure, UI skeleton, etc.
+* QUIZ!!!!!!!!
+* Technical impact
