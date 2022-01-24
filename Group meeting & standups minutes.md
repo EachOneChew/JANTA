@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.724 seconds.
+Conversion time: 0.901 seconds.
 
 
 Using this Markdown file:
@@ -17,8 +17,9 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Fri Jan 21 2022 09:34:35 GMT-0800 (PST)
+* Mon Jan 24 2022 08:48:05 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
+* This is a partial selection. Check to make sure intra-doc links work.
 ----->
 
 
@@ -275,3 +276,39 @@ Ivan, Logan, Yixin, Yichuan
     * E.g. create class structure, UI skeleton, etc.
 * QUIZ!!!!!!!!
 * Technical impact
+
+
+# Date: January 24th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Draft out UI
+* Technical impact
+* Review what to present on Friday
+
+**Notes:**
+
+
+
+* Drafted out UI on Figma
+
+**Decisions:**
+
+
+
+* Code out stuff that doesn’t depend on exact UI layout first, UI subject to change
+
+**TODO:**
+
+
+
+* Technical impact
+* Finish project plan
