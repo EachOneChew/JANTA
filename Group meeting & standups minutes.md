@@ -198,7 +198,7 @@ Go through next friday’s design review template or whatever it was called, fin
 
 
 
-**Date: January 19th Team: 110**
+# Date: January 19th Team: 110
 
 **Present:**
 
