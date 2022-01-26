@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.901 seconds.
+Conversion time: 1.039 seconds.
 
 
 Using this Markdown file:
@@ -17,9 +17,8 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 24 2022 08:48:05 GMT-0800 (PST)
+* Wed Jan 26 2022 08:33:01 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
-* This is a partial selection. Check to make sure intra-doc links work.
 ----->
 
 
@@ -197,6 +196,8 @@ Go through next friday’s design review template or whatever it was called, fin
 
 * Go through features individually, and list specifics of how that feature should work
 
+
+
 **Date: January 19th Team: 110**
 
 **Present:**
@@ -278,6 +279,9 @@ Ivan, Logan, Yixin, Yichuan
 * Technical impact
 
 
+# 
+
+
 # Date: January 24th Team: 110
 
 **Present:**
@@ -299,6 +303,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Drafted out UI on Figma
+* Reviewed Friday presentation
 
 **Decisions:**
 
@@ -312,3 +317,43 @@ Ivan, Logan, Yixin, Yichuan
 
 * Technical impact
 * Finish project plan
+
+
+# 
+
+
+# Date: January 26th Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Presentation
+* Design patterns
+* Project plan
+
+**Notes:**
+
+
+
+* Finished a project plan
+* Did design review presentation
+* Identified design patterns
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Present on Friday
