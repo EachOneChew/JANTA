@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 1.039 seconds.
+Conversion time: 0.852 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Wed Jan 26 2022 08:33:01 GMT-0800 (PST)
+* Mon Jan 31 2022 08:23:03 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -198,6 +198,7 @@ Go through next friday’s design review template or whatever it was called, fin
 
 
 
+
 # Date: January 19th Team: 110
 
 **Present:**
@@ -236,7 +237,7 @@ Discuss architecture, start moving issues into Gitlab.
 
 
 
-# Date: January 21th Team: 110
+# Date: January 21 Team: 110
 
 **Present:**
 
@@ -357,3 +358,39 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Present on Friday
+
+
+# Date: January 31 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Git setup
+* Install Intellij
+* “git clone” to everyone’s machine
+* Set up milestones and corresponding tasks in each sprint
+
+**Notes:**
+
+
+
+* Setup .gitignore file when we start putting things into it
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Stay ahead in other courses so we have time for 398
