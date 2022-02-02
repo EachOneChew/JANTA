@@ -1,2 +1,0 @@
-# cs398-project
-
