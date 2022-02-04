@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.852 seconds.
+Conversion time: 0.864 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 31 2022 08:23:03 GMT-0800 (PST)
+* Fri Feb 04 2022 09:05:24 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -394,3 +394,72 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Stay ahead in other courses so we have time for 398
+
+
+# Date: February 2  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Setup the project and upload to gitlab
+* Setup .gitignore
+
+**Notes:**
+
+
+
+* Get to know kotlin application
+* How to use gradle build application
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Pull the project and build it locally
+
+
+# Date: February 4  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Assign issues
+* Get application to run
+
+**Notes:**
+
+
+
+* Did stuff we said we were doing
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Work at individual tasks
