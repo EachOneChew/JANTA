@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.864 seconds.
+Conversion time: 1.228 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Fri Feb 04 2022 09:05:24 GMT-0800 (PST)
+* Tue Feb 08 2022 12:13:18 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -445,6 +445,39 @@ Ivan, Logan, Yixin, Yichuan
 
 * Assign issues
 * Get application to run
+
+**Notes:**
+
+
+
+* Did stuff we said we were doing
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Work at individual tasks
+
+
+# Date: February 7  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Further discussion on implementation
 
 **Notes:**
 
