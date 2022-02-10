@@ -278,9 +278,6 @@ Ivan, Logan, Yixin, Yichuan
 * Technical impact
 
 
-# 
-
-
 # Date: January 24th Team: 110
 
 **Present:**
@@ -316,9 +313,6 @@ Ivan, Logan, Yixin, Yichuan
 
 * Technical impact
 * Finish project plan
-
-
-# 
 
 
 # Date: January 26th Team: 110
