@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.791 seconds.
+Conversion time: 1.149 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Wed Feb 09 2022 16:52:40 GMT-0800 (PST)
+* Wed Feb 09 2022 16:54:00 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -195,8 +195,6 @@ Go through next friday’s design review template or whatever it was called, fin
 
 
 * Go through features individually, and list specifics of how that feature should work
-
-
 
 
 # Date: January 19th Team: 110
@@ -496,9 +494,6 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Work at individual tasks
-
-
-# 
 
 
 # Date: February 9  Team: 110
