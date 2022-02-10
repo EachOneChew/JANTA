@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 1.228 seconds.
+Conversion time: 0.791 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Tue Feb 08 2022 12:13:18 GMT-0800 (PST)
+* Wed Feb 09 2022 16:52:40 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -496,3 +496,86 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Work at individual tasks
+
+
+# 
+
+
+# Date: February 9  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin
+
+**Absent: **Yichuan (Interview)
+
+**Agenda:**
+
+
+
+* Stand up 1 for spring 1
+* Keep working on the thing we are supposed to do
+
+**_Ivan:_**
+
+**What I did recently:**
+
+
+
+* Json Parser, entity for text, and example Json file for text format
+
+**What I am doing today:**
+
+
+
+* Leave it for tomorrow on the parser
+
+**Issues**
+
+
+
+* Lib import, structure on saving the text data
+* I have a data entity created for text, but I am not sure whether or not we should use it.
+
+**_Yixin:_**
+
+**What I did recently:**
+
+
+
+* Making the UI skeleton
+
+**What I am doing today:**
+
+
+
+* Fixed the text area and toolbar display: resize with window
+* Researched on styling the top bar (StageStyle)
+
+**Issues**
+
+
+
+* Disable Horizontal scrollbar for self-wrapping 
+* Need to research on the frontend text display, which class (Text, TextField, TextArea etc) is better
+* Need to update on the frontend file structure, currently putting everything in one file as a start
+
+**_Logan:_**
+
+**What I did recently:**
+
+
+
+* Research on the skeleton
+
+**What I am doing today:**
+
+
+
+* Solve the issue
+
+**Issues:**
+
+
+
+* Not sure whether or not stuff are needed
