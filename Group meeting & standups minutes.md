@@ -521,8 +521,6 @@ Ivan, Logan, Yixin
 
 **Issues**
 
-
-
 * Lib import, structure on saving the text data
 * I have a data entity created for text, but I am not sure whether or not we should use it.
 
@@ -530,20 +528,14 @@ Ivan, Logan, Yixin
 
 **What I did recently:**
 
-
-
 * Making the UI skeleton
 
 **What I am doing today:**
-
-
 
 * Fixed the text area and toolbar display: resize with window
 * Researched on styling the top bar (StageStyle)
 
 **Issues**
-
-
 
 * Disable Horizontal scrollbar for self-wrapping 
 * Need to research on the frontend text display, which class (Text, TextField, TextArea etc) is better
@@ -553,18 +545,82 @@ Ivan, Logan, Yixin
 
 **What I did recently:**
 
-
-
 * Research on the skeleton
 
 **What I am doing today:**
-
-
 
 * Solve the issue
 
 **Issues:**
 
-
-
 * Not sure whether or not stuff are needed
+
+# Date: February 11  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent: **
+
+**Agenda:**
+
+* Stand up 2 for sprint 1
+* Keep working on the thing we are supposed to do
+* Have Yichuan catch up
+
+**_Ivan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
+
+**_Yixin:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
+
+**_Logan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues:**
+
+* ---
+
+**_Yichuan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
