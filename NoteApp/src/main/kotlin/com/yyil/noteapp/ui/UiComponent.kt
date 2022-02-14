@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
+
+import com.yyil.noteapp.settings.FontSettings
 import javafx.scene.text.Font
 
 class UiComponent {
@@ -18,7 +20,6 @@ class UiComponent {
     val button1 = Button("Button1")
     val button2 = Button("Button2")
     val button3 = Button("Button3")
-    //var buttonList = mutableListOf<Button>()
 
     val textArea = TextArea()
     val textScroll = ScrollPane()
@@ -27,10 +28,8 @@ class UiComponent {
     val listScroll = ScrollPane()
     val showListButton = Button("<")
 
-    val defaultFont = "Helvetica"
-    val defaultFontSize = 12.0
-
-    constructor()
+    val defaultFont = FontSettings.style
+    val defaultFontSize = FontSettings.size
 
     private fun initToolBar(){
         toolBar.items.add(button1)
@@ -43,8 +42,8 @@ class UiComponent {
         textScroll.content = textArea
     }
 
-    private fun  initLeftList(){
-        var leftListItems = FXCollections.observableArrayList (
+    private fun initLeftList(){
+        val leftListItems = FXCollections.observableArrayList (
             "Note1", "Note2", "Note3", "Note4")
         leftList.items = leftListItems
 
