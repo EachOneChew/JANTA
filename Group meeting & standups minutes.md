@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 0.852 seconds.
+Conversion time: 1.149 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Mon Jan 31 2022 08:23:03 GMT-0800 (PST)
+* Wed Feb 09 2022 16:54:00 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -197,8 +197,6 @@ Go through next friday’s design review template or whatever it was called, fin
 * Go through features individually, and list specifics of how that feature should work
 
 
-
-
 # Date: January 19th Team: 110
 
 **Present:**
@@ -280,9 +278,6 @@ Ivan, Logan, Yixin, Yichuan
 * Technical impact
 
 
-# 
-
-
 # Date: January 24th Team: 110
 
 **Present:**
@@ -318,9 +313,6 @@ Ivan, Logan, Yixin, Yichuan
 
 * Technical impact
 * Finish project plan
-
-
-# 
 
 
 # Date: January 26th Team: 110
@@ -394,3 +386,241 @@ Ivan, Logan, Yixin, Yichuan
 
 
 * Stay ahead in other courses so we have time for 398
+
+
+# Date: February 2  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Setup the project and upload to gitlab
+* Setup .gitignore
+
+**Notes:**
+
+
+
+* Get to know kotlin application
+* How to use gradle build application
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Pull the project and build it locally
+
+
+# Date: February 4  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Assign issues
+* Get application to run
+
+**Notes:**
+
+
+
+* Did stuff we said we were doing
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Work at individual tasks
+
+
+# Date: February 7  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Further discussion on implementation
+
+**Notes:**
+
+
+
+* Did stuff we said we were doing
+
+**Decisions:**
+
+
+
+* ???
+
+**TODO:**
+
+
+
+* Work at individual tasks
+
+
+# Date: February 9  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin
+
+**Absent: **Yichuan (Interview)
+
+**Agenda:**
+
+
+
+* Stand up 1 for spring 1
+* Keep working on the thing we are supposed to do
+
+**_Ivan:_**
+
+**What I did recently:**
+
+
+
+* Json Parser, entity for text, and example Json file for text format
+
+**What I am doing today:**
+
+
+
+* Leave it for tomorrow on the parser
+
+**Issues**
+
+* Lib import, structure on saving the text data
+* I have a data entity created for text, but I am not sure whether or not we should use it.
+
+**_Yixin:_**
+
+**What I did recently:**
+
+* Making the UI skeleton
+
+**What I am doing today:**
+
+* Fixed the text area and toolbar display: resize with window
+* Researched on styling the top bar (StageStyle)
+
+**Issues**
+
+* Disable Horizontal scrollbar for self-wrapping 
+* Need to research on the frontend text display, which class (Text, TextField, TextArea etc) is better
+* Need to update on the frontend file structure, currently putting everything in one file as a start
+
+**_Logan:_**
+
+**What I did recently:**
+
+* Research on the skeleton
+
+**What I am doing today:**
+
+* Solve the issue
+
+**Issues:**
+
+* Not sure whether or not stuff are needed
+
+# Date: February 11  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent: **
+
+**Agenda:**
+
+* Stand up 2 for sprint 1
+* Keep working on the thing we are supposed to do
+* Have Yichuan catch up
+
+**_Ivan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
+
+**_Yixin:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
+
+**_Logan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues:**
+
+* ---
+
+**_Yichuan:_**
+
+**What I did recently:**
+
+* ---
+
+**What I am doing today:**
+
+* ---
+
+**Issues**
+
+* ---
