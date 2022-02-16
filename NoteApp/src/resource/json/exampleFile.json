@@ -72,6 +72,7 @@
                 "bold": "true"
               },
               {
+                "type": "link",
                 "link": "this is a link",
                 "url": "https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-6-sprint-1-kickoff",
                 "children": [

@@ -1,8 +1,10 @@
 package com.yyil.noteapp.entity
 
+import kotlinx.serialization.*
+
 @Serializable
-abstract class Template (
-    val name: String? = null,
-    val indent: Long? = null,
-    val children: List<TemplateEntity>? = null
-)
+class Template (
+    var templateEntityList: List<TemplateEntity>? = ArrayList()
+) {
+    val type: String = "template"
+}

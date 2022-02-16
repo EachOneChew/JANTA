@@ -4,6 +4,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.31'
     id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'org.beryx.jlink' version '2.24.1'
+
+    // Json
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.10'
 }
 
@@ -12,10 +14,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-
-    // Json
-    maven { url 'https://kotlin.bintray.com/kotlinx' }
-    maven { url 'https://dl.bintray.com/kotlin/ktor' }
 }
 
 ext {
@@ -59,8 +57,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
     // Json
-//    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
 }
 
 test {
