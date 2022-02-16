@@ -10,15 +10,14 @@ import javafx.scene.layout.VBox
 import javafx.scene.text.Font
 
 class UiComponent {
-    val leftMenu = HBox()
-    val noteArea = VBox()
     val base = HBox()
+    val noteArea = VBox()
+    val leftMenu = HBox()
 
     val toolBar = ToolBar()
-    val button1 = Button("Button1")
-    val button2 = Button("Button2")
-    val button3 = Button("Button3")
-    //var buttonList = mutableListOf<Button>()
+    val toolBarButton = ToolBarButton()
+    val toolBarLeft = HBox()
+    val toolBarRight = HBox()
 
     val textArea = TextArea()
     val textScroll = ScrollPane()
@@ -33,13 +32,18 @@ class UiComponent {
     constructor()
 
     private fun initToolBar(){
-        toolBar.items.add(button1)
-        toolBar.items.add(button2)
-        toolBar.items.add(button3)
+        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
+        HBox.setHgrow(toolBarRight, Priority.ALWAYS)
+
+        toolBar.items.add(toolBarLeft)
+        toolBarButton.addToToolBar(toolBar)
+        toolBar.items.add(toolBarRight)
     }
 
     private fun initTextArea(){
         textArea.font = Font(defaultFont, defaultFontSize)
+        textArea.wrapTextProperty().set(true)
+
         textScroll.content = textArea
     }
 
@@ -76,7 +80,6 @@ class UiComponent {
         noteArea.children.add(textArea)
         VBox.setVgrow(textArea, Priority.ALWAYS)
         noteArea.fillWidthProperty().set(true)
-        noteArea.widthProperty().addListener { observable, oldValue, newValue ->  }
 
         base.children.add(leftMenu)
         base.children.add(noteArea)
