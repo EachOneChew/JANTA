@@ -1,0 +1,102 @@
+[
+  {
+    "type": "file_info",
+    "id": "1233456890",
+    "created_by": "Ivan",
+    "created_time": "2021-12-12 12:12:12",
+    "edited_by": "Ivan",
+    "edited_time": "2022-1-1 12:12:12",
+    "indent_type": "tab"
+  },
+  {
+    "type": "template",
+    "id": "1233456890",
+    "children": [
+      {
+        "name": "h1",
+        "bold": "true",
+        "font_size": 4,
+        "font": "Arial"
+      },
+      {
+        "name": "h2",
+        "bold": "true",
+        "font_size": 6,
+        "font": "Arial"
+      },
+      {
+        "name": "normal text",
+        "font_size": 11,
+        "font": "Arial"
+      },
+      {
+        "name": "paragraph",
+        "based_on": "normal text",
+        "indent": 1
+      }
+    ]
+  },
+  {
+    "type": "content",
+    "children": [
+      {
+        "type": "h1",
+        "align": "centre",
+        "children": [
+          {
+            "text": "This is the biggest title"
+          }
+        ]
+      },
+
+      {
+        "type": "h2",
+        "align": "centre",
+        "children": [
+          {
+            "text": "This is the second title"
+          }
+        ]
+      },
+
+      {
+        "type": "normal text",
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "this is the first line of the paragraph."
+              },
+              {"text":  "this is a bold sentence.",
+                "bold": "true"
+              },
+              {
+                "link": "this is a link",
+                "url": "https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-6-sprint-1-kickoff",
+                "children": [
+                  {
+                    "text": "link to the"
+                  },
+                  {
+                    "text": "cs398",
+                    "bold": "true"
+                  },
+                  {
+                    "text": "website"
+                  }
+                ]
+              },
+              {
+                "type": "image",
+                "src": "desktop/cs398/example.jpg",
+                "option": "this is the substituted line for the image"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+

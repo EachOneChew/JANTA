@@ -1,6 +1,6 @@
 package com.yyil.noteapp.ui
 
-import javafx.collections.FXCollections
+import  javafx.collections.FXCollections
 import javafx.event.EventHandler
 import javafx.scene.control.*
 import javafx.scene.input.MouseEvent
