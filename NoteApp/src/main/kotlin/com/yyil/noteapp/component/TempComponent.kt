@@ -1,20 +1,22 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.component
 
-import  javafx.collections.FXCollections
+import javafx.beans.InvalidationListener
+import javafx.collections.FXCollections
 import javafx.event.EventHandler
-import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
-import javafx.scene.layout.StackPane
-
-import javafx.scene.web.WebView
+import javafx.scene.layout.VBox
+import javafx.scene.text.Text
 import javafx.scene.web.WebEngine
+import javafx.scene.web.WebEvent
+import javafx.scene.web.WebView
 
-class UiComponent {
+
+class TempComponent {
     val base = HBox()
-    val noteArea = StackPane()
+    val noteArea = VBox()
     val leftMenu = HBox()
 
 //    val toolBar = ToolBar()
@@ -24,12 +26,13 @@ class UiComponent {
 
     val textArea = WebView()
     val webEngine: WebEngine = textArea.engine
-    val url: String = javaClass.classLoader.getResource("editor.html").toExternalForm()
+    val url: String = javaClass.classLoader.getResource("editor.html")?.toExternalForm() ?: "N/A"
 
     val leftList = ListView<String>()
     val listScroll = ScrollPane()
     val showListButton = Button("<")
 
+    var testTextSync = Text("init")
 
 //    private fun initToolBar(){
 //        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
@@ -42,6 +45,11 @@ class UiComponent {
 
     private fun initTextArea(){
         webEngine.load(url)
+        webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
+            testTextSync.text = e.data
+        }
+
+//        webEngine.loadWorker.stateProperty().addListener({ a -> testTextSync.text = a.toString() })
     }
 
     private fun  initLeftList(){
@@ -74,6 +82,7 @@ class UiComponent {
         leftMenu.fillHeightProperty().set(true)
 
         noteArea.children.add(textArea)
+        noteArea.children.add(testTextSync)
 
         base.children.add(leftMenu)
         base.children.add(noteArea)

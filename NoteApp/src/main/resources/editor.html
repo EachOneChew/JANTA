@@ -8,7 +8,13 @@
         branding: false,
         menubar: false,
         resize: false,
-        height: '100vh'
+        height: '100vh',
+
+        setup: function(ed) {
+            ed.on('change', function(e) {
+                alert(ed.getContent())
+            });
+        }
     });
     </script>
 </head>
