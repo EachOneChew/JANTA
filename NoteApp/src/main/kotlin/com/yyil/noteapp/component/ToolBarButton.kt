@@ -1,4 +1,4 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.component
 
 import com.yyil.noteapp.HelloApplication
 import javafx.scene.control.Button

@@ -1,54 +1,59 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.component
 
-import  javafx.collections.FXCollections
+import javafx.beans.InvalidationListener
+import javafx.collections.FXCollections
 import javafx.event.EventHandler
 import javafx.scene.control.*
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
-import javafx.scene.text.Font
+import javafx.scene.text.Text
+import javafx.scene.web.WebEngine
+import javafx.scene.web.WebEvent
+import javafx.scene.web.WebView
 
-class UiComponent {
+
+class TempComponent {
     val base = HBox()
     val noteArea = VBox()
     val leftMenu = HBox()
 
-    val toolBar = ToolBar()
-    val toolBarButton = ToolBarButton()
-    val toolBarLeft = HBox()
-    val toolBarRight = HBox()
+//    val toolBar = ToolBar()
+//    val toolBarButton = ToolBarButton()
+//    val toolBarLeft = HBox()
+//    val toolBarRight = HBox()
 
-    val textArea = TextArea()
-    val textScroll = ScrollPane()
+    val textArea = WebView()
+    val webEngine: WebEngine = textArea.engine
+    val url: String = javaClass.classLoader.getResource("editor.html")?.toExternalForm() ?: "N/A"
 
     val leftList = ListView<String>()
     val listScroll = ScrollPane()
     val showListButton = Button("<")
 
-    val defaultFont = "Helvetica"
-    val defaultFontSize = 12.0
+    var testTextSync = Text("init")
 
-    constructor()
-
-    private fun initToolBar(){
-        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
-        HBox.setHgrow(toolBarRight, Priority.ALWAYS)
-
-        toolBar.items.add(toolBarLeft)
-        toolBarButton.addToToolBar(toolBar)
-        toolBar.items.add(toolBarRight)
-    }
+//    private fun initToolBar(){
+//        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
+//        HBox.setHgrow(toolBarRight, Priority.ALWAYS)
+//
+//        toolBar.items.add(toolBarLeft)
+//        toolBarButton.addToToolBar(toolBar)
+//        toolBar.items.add(toolBarRight)
+//    }
 
     private fun initTextArea(){
-        textArea.font = Font(defaultFont, defaultFontSize)
-        textArea.wrapTextProperty().set(true)
+        webEngine.load(url)
+        webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
+            testTextSync.text = e.data
+        }
 
-        textScroll.content = textArea
+//        webEngine.loadWorker.stateProperty().addListener({ a -> testTextSync.text = a.toString() })
     }
 
     private fun  initLeftList(){
-        var leftListItems = FXCollections.observableArrayList (
+        val leftListItems = FXCollections.observableArrayList (
             "Note1", "Note2", "Note3", "Note4")
         leftList.items = leftListItems
 
@@ -68,7 +73,7 @@ class UiComponent {
     }
 
     fun init(){
-        initToolBar()
+//        initToolBar()
         initTextArea()
         initLeftList()
 
@@ -76,10 +81,8 @@ class UiComponent {
         leftMenu.children.add(showListButton)
         leftMenu.fillHeightProperty().set(true)
 
-        noteArea.children.add(toolBar)
         noteArea.children.add(textArea)
-        VBox.setVgrow(textArea, Priority.ALWAYS)
-        noteArea.fillWidthProperty().set(true)
+        noteArea.children.add(testTextSync)
 
         base.children.add(leftMenu)
         base.children.add(noteArea)

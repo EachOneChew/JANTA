@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="tinymce_5.10.3/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+    tinymce.init({
+        selector: '#TinyMCEInstance',
+        branding: false,
+        menubar: false,
+        resize: false,
+        height: '100vh',
+
+        setup: function(ed) {
+            ed.on('change', function(e) {
+                alert(ed.getContent())
+            });
+        }
+    });
+    </script>
+</head>
+<body>
+<form method="post">
+    <textarea id="TinyMCEInstance">Hello, World!</textarea>
+</form>
+</body>
+</html>
+
+<style>
+body {
+    margin: 0px;
+    height: 100vh;
+}
+</style>
