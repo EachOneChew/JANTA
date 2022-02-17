@@ -6,11 +6,6 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import java.io.File
-
-
 class HelloApplication : Application() {
 
     override fun init() {
@@ -20,16 +15,9 @@ class HelloApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        val webView = WebView()
-        val webEngine = webView.engine
-
-        val url = javaClass.classLoader.getResource("editor.html").toExternalForm()
-
-        webEngine.load(url)
-
         val component = UiComponent()
         component.init()
-        stage.scene = Scene(webView, WindowSettings.width, WindowSettings.height)
+        stage.scene = Scene(component.base, WindowSettings.width, WindowSettings.height)
         stage.title = WindowSettings.title
         //stage.initStyle(StageStyle.UNDECORATED)
         stage.show()
