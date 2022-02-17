@@ -1,25 +1,23 @@
 package com.yyil.noteapp.ui
 
-import javafx.collections.FXCollections
+import  javafx.collections.FXCollections
 import javafx.event.EventHandler
 import javafx.scene.control.*
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
-
-import com.yyil.noteapp.settings.FontSettings
 import javafx.scene.text.Font
 
 class UiComponent {
-    val leftMenu = HBox()
-    val noteArea = VBox()
     val base = HBox()
+    val noteArea = VBox()
+    val leftMenu = HBox()
 
     val toolBar = ToolBar()
-    val button1 = Button("Button1")
-    val button2 = Button("Button2")
-    val button3 = Button("Button3")
+    val toolBarButton = ToolBarButton()
+    val toolBarLeft = HBox()
+    val toolBarRight = HBox()
 
     val textArea = TextArea()
     val textScroll = ScrollPane()
@@ -28,22 +26,29 @@ class UiComponent {
     val listScroll = ScrollPane()
     val showListButton = Button("<")
 
-    val defaultFont = FontSettings.style
-    val defaultFontSize = FontSettings.size
+    val defaultFont = "Helvetica"
+    val defaultFontSize = 12.0
+
+    constructor()
 
     private fun initToolBar(){
-        toolBar.items.add(button1)
-        toolBar.items.add(button2)
-        toolBar.items.add(button3)
+        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
+        HBox.setHgrow(toolBarRight, Priority.ALWAYS)
+
+        toolBar.items.add(toolBarLeft)
+        toolBarButton.addToToolBar(toolBar)
+        toolBar.items.add(toolBarRight)
     }
 
     private fun initTextArea(){
         textArea.font = Font(defaultFont, defaultFontSize)
+        textArea.wrapTextProperty().set(true)
+
         textScroll.content = textArea
     }
 
-    private fun initLeftList(){
-        val leftListItems = FXCollections.observableArrayList (
+    private fun  initLeftList(){
+        var leftListItems = FXCollections.observableArrayList (
             "Note1", "Note2", "Note3", "Note4")
         leftList.items = leftListItems
 
@@ -75,7 +80,6 @@ class UiComponent {
         noteArea.children.add(textArea)
         VBox.setVgrow(textArea, Priority.ALWAYS)
         noteArea.fillWidthProperty().set(true)
-        noteArea.widthProperty().addListener { observable, oldValue, newValue ->  }
 
         base.children.add(leftMenu)
         base.children.add(noteArea)
