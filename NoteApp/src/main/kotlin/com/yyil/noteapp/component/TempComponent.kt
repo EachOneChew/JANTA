@@ -61,6 +61,8 @@ class TempComponent {
                     .getMember("activeEditor") as JSObject
             }
         }
+        testTextScroll.maxHeight = 100.0
+        testTextScroll.minHeight = 100.0
     }
 
     private fun initLeftList() {
