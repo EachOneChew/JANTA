@@ -37,6 +37,7 @@ class TempComponent {
     val showListButton = Button("<")
 
     var testTextSync = Text("init")
+    val testTextScroll = ScrollPane(testTextSync)
 
 //    private fun initToolBar(){
 //        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
@@ -101,7 +102,7 @@ class TempComponent {
         leftMenu.fillHeightProperty().set(true)
 
         noteArea.children.add(textArea)
-        noteArea.children.add(testTextSync)
+        noteArea.children.add(testTextScroll)
 
         base.children.add(leftMenu)
         base.children.add(noteArea)
