@@ -1,9 +1,11 @@
 package com.yyil.noteapp.component
 
-import javafx.beans.InvalidationListener
 import javafx.collections.FXCollections
+import javafx.concurrent.Worker
 import javafx.event.EventHandler
-import javafx.scene.control.*
+import javafx.scene.control.Button
+import javafx.scene.control.ListView
+import javafx.scene.control.ScrollPane
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
@@ -12,6 +14,7 @@ import javafx.scene.text.Text
 import javafx.scene.web.WebEngine
 import javafx.scene.web.WebEvent
 import javafx.scene.web.WebView
+import netscape.javascript.JSObject
 
 
 class TempComponent {
@@ -27,6 +30,7 @@ class TempComponent {
     val textArea = WebView()
     val webEngine: WebEngine = textArea.engine
     val url: String = javaClass.classLoader.getResource("editor.html")?.toExternalForm() ?: "N/A"
+    lateinit var tinyMCE: JSObject
 
     val leftList = ListView<String>()
     val listScroll = ScrollPane()
@@ -43,24 +47,39 @@ class TempComponent {
 //        toolBar.items.add(toolBarRight)
 //    }
 
-    private fun initTextArea(){
+    private fun initTextArea() {
         webEngine.load(url)
         webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
             testTextSync.text = e.data
         }
 
-//        webEngine.loadWorker.stateProperty().addListener({ a -> testTextSync.text = a.toString() })
+        webEngine.loadWorker.stateProperty().addListener { _, _, newState ->
+            if (newState == Worker.State.SUCCEEDED) {
+                tinyMCE = (webEngine.executeScript("window.tinymce") as JSObject)
+                    .getMember("activeEditor") as JSObject
+            }
+        }
     }
 
-    private fun  initLeftList(){
-        val leftListItems = FXCollections.observableArrayList (
-            "Note1", "Note2", "Note3", "Note4")
+    private fun initLeftList() {
+        val leftListItems = FXCollections.observableArrayList(
+            "Note1", "Note2", "Note3", "Note4"
+        )
         leftList.items = leftListItems
+
+        leftList.onMouseClicked = EventHandler { _ ->
+            val i = leftList.selectionModel.selectedIndex
+            val tempContent = FXCollections.observableArrayList(
+                "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
+            )
+            tinyMCE.call("setContent", tempContent[i])
+        }
 
         listScroll.content = leftList
 
         showListButton.prefHeight = Double.MAX_VALUE
         showListButton.minWidth = 25.0
+        showListButton.style = "-fx-background-radius: 0";
 
         val showListHandler = EventHandler{
                 event : MouseEvent ->
@@ -72,7 +91,7 @@ class TempComponent {
         showListButton.addEventHandler(MouseEvent.MOUSE_CLICKED, showListHandler)
     }
 
-    fun init(){
+    fun init() {
 //        initToolBar()
         initTextArea()
         initLeftList()
