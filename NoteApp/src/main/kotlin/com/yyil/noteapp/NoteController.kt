@@ -3,7 +3,7 @@ package com.yyil.noteapp
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 
-class HelloController {
+class NoteController {
     @FXML
     private lateinit var welcomeText: Label
 

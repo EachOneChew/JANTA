@@ -6,7 +6,7 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class HelloApplication : Application() {
+class NoteApplication : Application() {
 
     override fun init() {
         super.init()
@@ -17,9 +17,8 @@ class HelloApplication : Application() {
     override fun start(stage: Stage) {
         val component = TempComponent()
         component.init()
-        stage.scene = Scene(component.base, WindowSettings.width, WindowSettings.height)
-        stage.title = WindowSettings.title
-        //stage.initStyle(StageStyle.UNDECORATED)
+        stage.scene = Scene(component.base, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
+        stage.title = WindowSettings.WINDOW_TITLE
         stage.show()
     }
 }

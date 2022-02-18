@@ -7,15 +7,14 @@ import kotlinx.serialization.decodeFromString
 
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
-import java.io.File
 
-internal class HelloApplicationTest {
+internal class NoteApplicationTest {
     @Test
     fun testJson() {
         // Serialization (Kotlin object to JSON string)
-        var textFormat = TextFormat(font = "Arial", fontSize = 11.0f, colour="#951595")
-        var link = "this is a link to the week 7 content"
-        var url = "https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-7-sprint-1-demo"
+        val textFormat = TextFormat(font = "Arial", fontSize = 11.0f, colour="#951595")
+        val link = "this is a link to the week 7 content"
+        val url = "https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-7-sprint-1-demo"
         val test1 = LinkEntity(textFormat = textFormat, link = link, url = url)
         val s = Json.encodeToString(test1)
 //        File("output.out").writeText(s)

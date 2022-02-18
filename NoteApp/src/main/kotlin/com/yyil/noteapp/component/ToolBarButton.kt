@@ -1,6 +1,7 @@
 package com.yyil.noteapp.component
 
-import com.yyil.noteapp.HelloApplication
+import com.yyil.noteapp.NoteApplication
+import com.yyil.noteapp.settings.FontSettings
 import javafx.scene.control.Button
 import javafx.scene.control.MenuButton
 import javafx.scene.control.MenuItem
@@ -8,12 +9,13 @@ import javafx.scene.control.ToolBar
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 
-class ToolBarButton {
+
+class ToolBarButton() {
 
     private val buttonH = 20.0
     private val buttonW = 20.0
 
-    private val fontMenu = MenuButton("Helvetica")
+    private val fontMenu = MenuButton(FontSettings.STYLE)
 
     private val saveIconString = "toolbar-icons/save.png"
     private val saveIcon = ImageView()
@@ -24,7 +26,7 @@ class ToolBarButton {
     private val fontSizeButton = Button("", fontSizeIcon)
 
 
-    constructor(): super(){
+    init {
         setupButtons()
     }
 
@@ -34,11 +36,11 @@ class ToolBarButton {
             MenuItem("Comic Sans"))
         fontMenu.prefHeight = buttonH
 
-        var icon = Image(HelloApplication::class.java.getResource(saveIconString).toString(),
+        var icon = Image(NoteApplication::class.java.getResource(saveIconString).toString(),
         buttonW, buttonH, true, false)
         saveIcon.image = icon
 
-        icon = Image(HelloApplication::class.java.getResource(fontSizeIconString).toString(),
+        icon = Image(NoteApplication::class.java.getResource(fontSizeIconString).toString(),
             buttonW, buttonH, true, false)
         fontSizeIcon.image = icon
     }

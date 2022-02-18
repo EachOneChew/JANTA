@@ -1,5 +1,6 @@
 package com.yyil.noteapp.component
 
+import com.yyil.noteapp.constant.ComponentConstant
 import javafx.collections.FXCollections
 import javafx.concurrent.Worker
 import javafx.event.EventHandler
@@ -29,7 +30,7 @@ class TempComponent {
 
     val textArea = WebView()
     val webEngine: WebEngine = textArea.engine
-    val url: String = javaClass.classLoader.getResource("editor.html")?.toExternalForm() ?: "N/A"
+    val url: String = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm() ?: "N/A"
     lateinit var tinyMCE: JSObject
 
     val leftList = ListView<String>()
@@ -56,7 +57,7 @@ class TempComponent {
 
         webEngine.loadWorker.stateProperty().addListener { _, _, newState ->
             if (newState == Worker.State.SUCCEEDED) {
-                tinyMCE = (webEngine.executeScript("window.tinymce") as JSObject)
+                tinyMCE = (webEngine.executeScript(ComponentConstant.TINYMCE_SCRIPT) as JSObject)
                     .getMember("activeEditor") as JSObject
             }
         }
@@ -68,7 +69,7 @@ class TempComponent {
         )
         leftList.items = leftListItems
 
-        leftList.onMouseClicked = EventHandler { _ ->
+        leftList.onMouseClicked = EventHandler {
             val i = leftList.selectionModel.selectedIndex
             val tempContent = FXCollections.observableArrayList(
                 "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
@@ -79,8 +80,8 @@ class TempComponent {
         listScroll.content = leftList
 
         showListButton.prefHeight = Double.MAX_VALUE
-        showListButton.minWidth = 25.0
-        showListButton.style = "-fx-background-radius: 0";
+        showListButton.minWidth = ComponentConstant.MIN_BUTTON_WIDTH
+        showListButton.style = "-fx-background-radius: 0"
 
         val showListHandler = EventHandler{
                 event : MouseEvent ->
