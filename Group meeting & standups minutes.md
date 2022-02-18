@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 1.149 seconds.
+Conversion time: 2.711 seconds.
 
 
 Using this Markdown file:
@@ -17,10 +17,82 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Wed Feb 09 2022 16:54:00 GMT-0800 (PST)
+* Fri Feb 18 2022 10:11:59 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
+
+
+# ~~~~TEMPLATE~~~~
+
+
+# Date: ???  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* ???
+
+**Notes:**
+
+
+
+* ???
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**~~~~~~~~~~~~~~~~~**
 
 
 # Date: January 10th Team: 110
@@ -278,6 +350,9 @@ Ivan, Logan, Yixin, Yichuan
 * Technical impact
 
 
+# 
+
+
 # Date: January 24th Team: 110
 
 **Present:**
@@ -505,55 +580,51 @@ Ivan, Logan, Yixin
 * Stand up 1 for spring 1
 * Keep working on the thing we are supposed to do
 
-**_Ivan:_**
-
-**What I did recently:**
+**Notes:**
 
 
 
-* Json Parser, entity for text, and example Json file for text format
+* ???
 
-**What I am doing today:**
+**Individual:**
+
+**Ivan:**
 
 
 
-* Leave it for tomorrow on the parser
+* **What I did recently**
+    * Json Parser, entity for text, and example Json file for text format
+* **What I am doing today**
+    * Leave it for tomorrow on the parser
+* **Issues**
+    * Lib import, structure on saving the text data
+    * I have a data entity created for text, but I am not sure whether or not we should use it.
 
-**Issues**
+**Yixin:**
 
-* Lib import, structure on saving the text data
-* I have a data entity created for text, but I am not sure whether or not we should use it.
 
-**_Yixin:_**
 
-**What I did recently:**
+* **What I did recently**
+    * Making the UI skeleton
+* **What I am doing today**
+    * Fixed the text area and toolbar display: resize with window
+    * Researched on styling the top bar (StageStyle)
+* **Issues**
+    * Disable Horizontal scrollbar for self-wrapping
+    * Need to research on the frontend text display, which class (Text, TextField, TextArea etc) is better
+    * Need to update on the frontend file structure, currently putting everything in one file as a start
 
-* Making the UI skeleton
+**Logan:**
 
-**What I am doing today:**
 
-* Fixed the text area and toolbar display: resize with window
-* Researched on styling the top bar (StageStyle)
 
-**Issues**
+* **What I did recently**
+    * Research on the class structure
+* **What I am doing today**
+    * Solve the issue
+* **Issues**
+    * Blocked by Yichuan’s task, unsure about data format
 
-* Disable Horizontal scrollbar for self-wrapping 
-* Need to research on the frontend text display, which class (Text, TextField, TextArea etc) is better
-* Need to update on the frontend file structure, currently putting everything in one file as a start
-
-**_Logan:_**
-
-**What I did recently:**
-
-* Research on the skeleton
-
-**What I am doing today:**
-
-* Solve the issue
-
-**Issues:**
-
-* Not sure whether or not stuff are needed
 
 # Date: February 11  Team: 110
 
@@ -561,66 +632,210 @@ Ivan, Logan, Yixin
 
 Ivan, Logan, Yixin, Yichuan
 
-**Absent: **
+**Absent:**
 
 **Agenda:**
 
-* Stand up 2 for sprint 1
-* Keep working on the thing we are supposed to do
-* Have Yichuan catch up
 
-**_Ivan:_**
 
-**What I did recently:**
+* Stand up 2 for spring 1
+* Have Yichuan catch up, sync on overall project goals
 
-* ---
+**Notes:**
 
-**What I am doing today:**
 
-* ---
 
-**Issues**
+* Decided on using HTML internally for text display, editing, storage, etc.
+    * Built in HTML editor or use external WYSIWYG editor
+    * Keep parallel data structure of HTML so we can make our own changes (e.g. annotations)
+* Reached consensus on next what we want to finish for next Friday
 
-* ---
+**Individual:**
 
-**_Yixin:_**
+**Ivan:**
 
-**What I did recently:**
 
-* ---
 
-**What I am doing today:**
+* **What I did recently**
+    * Saving template, example Json file
+* **What I am doing today**
+    * Look into HTML / CSS for displaying tooltips and annotations
+* **Issues**
+    * Library import
 
-* ---
+**Yixin:**
 
-**Issues**
 
-* ---
 
-**_Logan:_**
+* **What I did recently**
+    * Building up the UI skeleton
+* **What I am doing today**
+    * Pair programming with Logan
+    * Updated the current file structure, created a new class container for all ui elements
+* **Issues**
+    * Horizontal scroll - may be caused by not defining prefWidth and maxWidth
+    * Create container class for Buttons
 
-**What I did recently:**
+**Logan:**
 
-* ---
 
-**What I am doing today:**
 
-* ---
+* **What I did recently**
+    * Looked into setting up unit tests
+    * Blocked with creating business class skeletons
+* **What I am doing today**
+    * Pair programming with Yixin
+* **Issues**
+    * Currently blocked on creating some of the backend
+    * UI scrolls horizontally
 
-**Issues:**
+**Yichuan:**
 
-* ---
 
-**_Yichuan:_**
 
-**What I did recently:**
+* **What I did recently**
+    * Researched 3 options for text editing and display
+* **What I am doing today**
+    * Diving into HTML editing and how it will integrate with our app
+* **Issues**
+    * Blocking everyone else basically, until this issue is resolved
 
-* ---
 
-**What I am doing today:**
+# Date: February 14  Team: 110
 
-* ---
+**Present:**
 
-**Issues**
+Ivan, Logan, Yixin, Yichuan
 
-* ---
+**Absent:**
+
+**Agenda:**
+
+
+
+* Integrate RichTextFX with existing code
+
+**Notes:**
+
+
+
+* HTML doesn’t work use RichTextFX >.&lt;
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * JavaScript annotation on HTML
+* **What I am doing today**
+    * Improve the structure of the project
+* **Issues**
+    * Figure out the annotation on richTextFX
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Building up the UI skeleton
+* **What I am doing today**
+    * Fixed the horizontal scrollbar issue
+    * Add pictures to UI buttons
+* **Issues**
+    * Stuck on methods to load image resources
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Created settings classes and cleaned up some code (primarily in the ui section)
+* **What I am doing today**
+    * Meeting to discuss and _hopefully_ get an editor’s base functionality working
+* **Issues**
+    * Still somewhat blocked by not having an editor integration to create classes and abstract
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Researched HTML editors, tried to implement it, realized it isn’t going to support the features we want
+    * Extreme performance issues with TinyMCE on notes with > 10000 characters
+* **What I am doing today**
+    * Figure out RichTextFX demos and try to link buttons to styling
+* **Issues**
+    * HTML editors no good potentially
+
+
+# Date: February 16  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Revert integrations of RichTextFX and get HTML editor to work again
+* Insert TinyMCE Webview component into text area
+
+**Notes:**
+
+
+
+* See comments on issue #60 for data format and editing update
+* For updates to issues, use comments; changing issue titles and descriptions is very bad for consistency and will confuse people
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Change the file structure
+* **What I am doing today**
+    * Unit test for Json parsing 
+* **Issues**
+    * tinyMCE annotations
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Building up the UI Skeleton
+* **What I am doing today**
+    * Merged UI Skeleton branch into master
+* **Issues**
+    * Need to look into TinyMCE for actual implementations
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Pair programmed with Yichuan to get the text editor (tinymce) to work reverting from RichTextFx
+* **What I am doing today**
+    * Continuing to work on tinymce and look into its API + unit test it (hopefully)
+* **Issues**
+    * RichTextFX’s documentation needs improvement
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Pair programming with Logan, figured out how to resolve performance issues with TinyMCE (use older version and leave out everything except for core features)
+    * Looked over TinyMCE API docs, it’s better than we thought
+* **What I am doing today**
+    * Pull updated UI and project structure from master
+    * Insert TinyMCE Webview component into UI text area
+* **Issues**
+    * RichTextFX is awful and the demo they made won’t run
