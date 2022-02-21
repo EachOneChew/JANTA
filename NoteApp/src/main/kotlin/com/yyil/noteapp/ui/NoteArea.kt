@@ -25,8 +25,6 @@ object NoteArea {
     private val testTextScroll = ScrollPane(testTextSync)
 
     fun init(){
-
-        println("init")
         webEngine.load(url)
         webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
             testTextSync.text = e.data
