@@ -1,20 +1,20 @@
 package com.yyil.noteapp.ui
 
 import javafx.scene.layout.HBox
+import netscape.javascript.JSObject
 
 
-class NoteBaseUI {
+object NoteBaseUI {
 
     val base = HBox()
-    val noteArea = NoteArea()
-    val noteRepository = NoteRepository()
+    lateinit var tinyMCE: JSObject
 
     fun init() {
-        noteArea.init()
-        noteRepository.init(noteArea.tinyMCE)
+        NoteArea.init()
+        NoteRepository.init()
 
-        base.children.add(noteRepository.base)
-        base.children.add(noteArea.base)
+        base.children.add(NoteRepository.base)
+        base.children.add(NoteArea.base)
         base.fillHeightProperty().set(true)
     }
 }

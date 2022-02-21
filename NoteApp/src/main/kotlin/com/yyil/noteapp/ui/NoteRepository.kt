@@ -8,16 +8,15 @@ import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.HBox
-import netscape.javascript.JSObject
 
-class NoteRepository {
+object NoteRepository {
     val base = HBox()
 
     val noteList = ListView<String>()
     private val listScroll = ScrollPane(noteList)
     val showListButton = Button("<")
 
-    private fun initNoteList (tinyMCE: JSObject) {
+    private fun initNoteList () {
         val leftListItems = FXCollections.observableArrayList(
             "Note1", "Note2", "Note3", "Note4"
         )
@@ -28,7 +27,7 @@ class NoteRepository {
             val tempContent = FXCollections.observableArrayList(
                 "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
             )
-            tinyMCE.call("setContent", tempContent[i])
+            NoteBaseUI.tinyMCE.call("setContent", tempContent[i])
         }
 
         showListButton.prefHeight = Double.MAX_VALUE
@@ -37,7 +36,6 @@ class NoteRepository {
 
         val showListHandler = EventHandler{
                 event : MouseEvent ->
-            println("Button Clicked (" + event.x + "," + event.y + ")")
             noteList.isVisible = !noteList.isVisible
             noteList.isManaged = !noteList.isManaged
             showListButton.text = if(showListButton.text == "<") ">" else "<"
@@ -45,8 +43,8 @@ class NoteRepository {
         showListButton.addEventHandler(MouseEvent.MOUSE_CLICKED, showListHandler)
     }
 
-    fun init(tinyMCE: JSObject){
-        initNoteList(tinyMCE)
+    fun init(){
+        initNoteList()
 
         base.children.add(noteList)
         base.children.add(showListButton)

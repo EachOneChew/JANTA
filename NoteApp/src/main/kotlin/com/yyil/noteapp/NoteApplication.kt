@@ -15,9 +15,8 @@ class NoteApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        val component = NoteBaseUI()
-        component.init()
-        stage.scene = Scene(component.base, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
+        NoteBaseUI.init()
+        stage.scene = Scene(NoteBaseUI.base, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
         stage.title = WindowSettings.WINDOW_TITLE
         stage.show()
     }

@@ -13,20 +13,20 @@ import javafx.scene.web.WebEvent
 import javafx.scene.web.WebView
 import netscape.javascript.JSObject
 
-class NoteArea {
+object NoteArea {
 
     val base = VBox()
 
     val textArea = WebView()
     val webEngine: WebEngine = textArea.engine
     val url: String = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm() ?: "N/A"
-    lateinit var tinyMCE: JSObject
 
     var testTextSync = Text("init")
     private val testTextScroll = ScrollPane(testTextSync)
 
     fun init(){
 
+        println("init")
         webEngine.load(url)
         webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
             testTextSync.text = e.data
@@ -34,7 +34,7 @@ class NoteArea {
 
         webEngine.loadWorker.stateProperty().addListener { _, _, newState ->
             if (newState == Worker.State.SUCCEEDED) {
-                tinyMCE = (webEngine.executeScript(ComponentConstant.TINYMCE_SCRIPT) as JSObject)
+                NoteBaseUI.tinyMCE = (webEngine.executeScript(ComponentConstant.TINYMCE_SCRIPT) as JSObject)
                     .getMember("activeEditor") as JSObject
             }
         }

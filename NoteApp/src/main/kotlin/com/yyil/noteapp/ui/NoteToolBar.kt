@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 
 
-class NoteToolBar {
+object NoteToolBar {
 
     private val buttonH = 20.0
     private val buttonW = 20.0
