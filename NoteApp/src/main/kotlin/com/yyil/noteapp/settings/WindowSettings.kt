@@ -6,7 +6,7 @@ object WindowSettings {
     }
 
     //TODO: Implement setting that allows the app to be opened in full screen
-    const val width = 800.0
-    const val height = 600.0
-    const val title = "Note Taking App"
+    const val WINDOW_WIDTH = 800.0
+    const val WINDOW_HEIGHT = 600.0
+    const val WINDOW_TITLE = "Note Taking App"
 }

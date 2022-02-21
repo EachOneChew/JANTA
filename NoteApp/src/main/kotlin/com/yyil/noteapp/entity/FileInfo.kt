@@ -1,7 +1,6 @@
 package com.yyil.noteapp.entity
 
 import kotlinx.serialization.*
-import kotlinx.serialization.json.*
 
 @Serializable
 data class FileInfo (

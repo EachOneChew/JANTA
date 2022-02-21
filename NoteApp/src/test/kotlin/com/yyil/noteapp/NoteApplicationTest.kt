@@ -2,7 +2,7 @@ package com.yyil.noteapp
 
 import org.junit.jupiter.api.Test
 
-internal class HelloApplicationTest {
+internal class NoteApplicationTest {
 
     @Test
     fun start() {

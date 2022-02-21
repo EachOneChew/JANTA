@@ -1,6 +1,5 @@
 package com.yyil.noteapp.entity
 
-import javafx.scene.layout.Background
 import kotlinx.serialization.Serializable
 
 @Serializable

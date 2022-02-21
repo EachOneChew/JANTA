@@ -1,4 +1,3 @@
 package com.yyil.noteapp.constant
 
-class GlobalConstant {
-}
+object GlobalConstant
