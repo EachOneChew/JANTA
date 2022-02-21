@@ -1,4 +1,4 @@
-package com.yyil.noteapp.component
+package com.yyil.noteapp.ui
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.settings.FontSettings
@@ -8,9 +8,11 @@ import javafx.scene.control.MenuItem
 import javafx.scene.control.ToolBar
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.layout.HBox
+import javafx.scene.layout.Priority
 
 
-class ToolBarButton() {
+class NoteToolBar {
 
     private val buttonH = 20.0
     private val buttonW = 20.0
@@ -25,12 +27,26 @@ class ToolBarButton() {
     private val fontSizeIcon = ImageView()
     private val fontSizeButton = Button("", fontSizeIcon)
 
+    val toolBar = ToolBar()
+    val toolBarLeft = HBox()
+    val toolBarRight = HBox()
 
-    init {
-        setupButtons()
+
+    fun init(){
+        HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
+        HBox.setHgrow(toolBarRight, Priority.ALWAYS)
+
+        initButtons()
+
+        toolBar.items.add(toolBarLeft)
+        toolBar.items.add(fontMenu)
+        toolBar.items.add(fontSizeButton)
+        toolBar.items.add(saveButton)
+        toolBar.items.add(toolBarRight)
     }
 
-    private fun setupButtons(){
+
+    private fun initButtons(){
         fontMenu.items.addAll(
             MenuItem("Arial"),
             MenuItem("Comic Sans"))
@@ -45,9 +61,4 @@ class ToolBarButton() {
         fontSizeIcon.image = icon
     }
 
-    fun addToToolBar(toolBar: ToolBar) {
-        toolBar.items.add(fontMenu)
-        toolBar.items.add(fontSizeButton)
-        toolBar.items.add(saveButton)
-    }
 }

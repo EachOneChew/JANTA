@@ -1,7 +1,7 @@
 package com.yyil.noteapp
 
 import com.yyil.noteapp.settings.WindowSettings
-import com.yyil.noteapp.component.TempComponent
+import com.yyil.noteapp.ui.NoteBaseUI
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
@@ -15,7 +15,7 @@ class NoteApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        val component = TempComponent()
+        val component = NoteBaseUI()
         component.init()
         stage.scene = Scene(component.base, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
         stage.title = WindowSettings.WINDOW_TITLE
