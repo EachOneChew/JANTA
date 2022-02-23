@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 
 
-object NoteToolBar {
+class NoteToolBar : View {
 
     private val buttonH = 20.0
     private val buttonW = 20.0
@@ -28,21 +28,24 @@ object NoteToolBar {
     private val fontSizeButton = Button("", fontSizeIcon)
 
     val toolBar = ToolBar()
-    val toolBarLeft = HBox()
-    val toolBarRight = HBox()
+    private val toolBarLeft = HBox()
+    private val toolBarRight = HBox()
 
+    override val base = HBox()
 
-    fun init(){
+    override fun init(){
         HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
         HBox.setHgrow(toolBarRight, Priority.ALWAYS)
 
         initButtons()
 
-        toolBar.items.add(toolBarLeft)
         toolBar.items.add(fontMenu)
         toolBar.items.add(fontSizeButton)
         toolBar.items.add(saveButton)
-        toolBar.items.add(toolBarRight)
+
+        base.children.add(toolBarLeft)
+        base.children.add(toolBar)
+        base.children.add(toolBarRight)
     }
 
 
@@ -52,13 +55,11 @@ object NoteToolBar {
             MenuItem("Comic Sans"))
         fontMenu.prefHeight = buttonH
 
-        var icon = Image(NoteApplication::class.java.getResource(saveIconString).toString(),
-        buttonW, buttonH, true, false)
-        saveIcon.image = icon
-
-        icon = Image(NoteApplication::class.java.getResource(fontSizeIconString).toString(),
+        saveIcon.image = Image(NoteApplication::class.java.getResource(saveIconString).toString(),
             buttonW, buttonH, true, false)
-        fontSizeIcon.image = icon
+
+        fontSizeIcon.image = Image(NoteApplication::class.java.getResource(fontSizeIconString).toString(),
+            buttonW, buttonH, true, false)
     }
 
 }
