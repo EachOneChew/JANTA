@@ -1,4 +1,4 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.TinyMCEInterface
 import com.yyil.noteapp.constant.ComponentConstant
@@ -9,13 +9,11 @@ import javafx.scene.layout.VBox
 import javafx.scene.text.Text
 
 class NoteArea(tinyMCEInterface : TinyMCEInterface) : View {
-
     override val base = VBox()
 
     private val testTextSync = Text()
     private val testTextScroll = ScrollPane(testTextSync)
     private var tinyMCE : TinyMCEInterface
-
 
     init {
         tinyMCE = tinyMCEInterface

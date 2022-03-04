@@ -12,21 +12,22 @@
             height: '100vh',
 
             setup: function(ed) {
-                window.bridgeObject.setActiveEditor(ed)
-
                 ed.on('init', function() {
                     ed.setContent(initContent)
-                    window.bridgeObject.updateContent(ed.getContent())
+                    window.bridgeObject.setEditorAndSelection(ed)
+                    window.bridgeObject.setInterfaceContent(ed.getContent())
                 });
 
-                ed.on('change', function(e) {
-                    window.bridgeObject.updateContent(ed.getContent())
+                ed.on('Change SetContent', function(e) {
+                    window.bridgeObject.setInterfaceContent(ed.getContent())
                 });
             }
         });
     }
     window.destroyFunction = function() {
         tinymce.activeEditor.destroy();
+        window.bridgeObject.setEditorAndSelection(null)
+        window.bridgeObject.setInterfaceContent('')
     }
     </script>
 </head>

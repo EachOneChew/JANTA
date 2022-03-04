@@ -1,6 +1,6 @@
-package com.yyil.noteapp.controller
+package com.yyil.noteapp.mvc.controller
 
-import com.yyil.noteapp.ui.NoteRepository
+import com.yyil.noteapp.mvc.view.NoteRepository
 import javafx.event.EventHandler
 import javafx.scene.input.MouseEvent
 

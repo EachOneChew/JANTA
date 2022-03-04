@@ -11,52 +11,39 @@ import javafx.scene.web.WebView
 import netscape.javascript.JSObject
 
 class TinyMCEInterface(initContent : String) {
+    val isActive : Boolean
+        get() = editor == null
+
     /**
      * Content in the editor, handles changes as one would expect
      * Get with content.get()
-     * Set with content.set(_)
+     * If you want to change content, please call replaceContent
      */
-    val content: StringProperty = SimpleStringProperty()
+    val content : StringProperty = SimpleStringProperty()
 
-    class Selection {
-        fun getSelectedContent() : String {
-            return "hihi"
-        }
-
-        fun setSelectedContent() : Int {
-            return 0
-        }
+    /**
+     * Replaces content in editor, resets the caret
+     */
+    fun replaceContent(newContent : String) {
+        editor?.call("setContent", newContent)
     }
 
     /**
      * Text currently selected by user, the Selection class have intuitively named methods
      */
-    val selection : Selection
-        get() = Selection()
+    var selectionObject : SelectionObject = SelectionObject()
 
     /**
      * WebView for UI purposes, only Yixin should be using this probably
      */
     val webView = WebView()
-    private val webEngine: WebEngine = webView.engine
 
-    private val url: String? = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm()
-    private var editor: JSObject? = null
-
-    /**
-     * Can't be private because of Javascript shenanigans, please don't use
-     */
-    inner class BridgeObject {
-        fun setActiveEditor(ed : JSObject) {
-            editor = ed
-        }
-
-        fun updateContent(newContent : String) {
-            content.set(newContent)
-        }
-    }
-
+    private val webEngine : WebEngine = webView.engine
+    private val url : String? = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm()
     private val bridgeObject : BridgeObject = BridgeObject()
+
+    private var editor : JSObject? = null
+    private var selection : JSObject? = null
 
     init {
         webEngine.load(url)
@@ -67,10 +54,6 @@ class TinyMCEInterface(initContent : String) {
                     .setMember("bridgeObject", bridgeObject)
 
                 initEditor(initContent)
-
-                content.addListener { _, _, newString ->
-                    editor?.call("setContent", newString)
-                }
             }
         }
     }
@@ -81,5 +64,29 @@ class TinyMCEInterface(initContent : String) {
 
     private fun destroyEditor() {
         webEngine.executeScript("window.destroyFunction()")
+    }
+
+    /**
+     * Can't be private because of Javascript shenanigans, please don't use
+     */
+    inner class BridgeObject {
+        fun setEditorAndSelection(ed : JSObject?) {
+            editor = ed
+            selection = editor?.getMember("selection") as JSObject?
+        }
+
+        fun setInterfaceContent(newContent : String) {
+            content.set(newContent)
+        }
+    }
+
+    inner class SelectionObject() {
+        fun getSelectedContent() : String {
+            return (selection?.call("getContent") ?: "") as String
+        }
+
+        fun setSelectedContent(newContent : String) {
+            selection?.call("setContent", newContent)
+        }
     }
 }

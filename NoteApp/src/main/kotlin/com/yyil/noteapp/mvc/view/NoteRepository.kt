@@ -1,4 +1,4 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.constant.ComponentConstant
 import javafx.collections.FXCollections

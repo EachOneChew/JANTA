@@ -1,4 +1,4 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.settings.FontSettings

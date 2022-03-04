@@ -1,9 +1,9 @@
 package com.yyil.noteapp
 
-import com.yyil.noteapp.controller.NoteRepositoryController
+import com.yyil.noteapp.mvc.controller.NoteRepositoryController
 import com.yyil.noteapp.settings.WindowSettings
-import com.yyil.noteapp.ui.NoteArea
-import com.yyil.noteapp.ui.NoteRepository
+import com.yyil.noteapp.mvc.view.NoteArea
+import com.yyil.noteapp.mvc.view.NoteRepository
 import javafx.application.Application
 import javafx.collections.FXCollections
 import javafx.event.EventHandler
@@ -38,7 +38,7 @@ class NoteApplication : Application() {
             val tempContent = FXCollections.observableArrayList(
                 "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
             )
-            tinyMCEInterface.content.set(tempContent[i])
+            tinyMCEInterface.selectionObject.setSelectedContent(tempContent[i])
         }
 
         stage.scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
