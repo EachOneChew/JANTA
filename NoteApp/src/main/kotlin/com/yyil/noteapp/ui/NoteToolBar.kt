@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 
-
 class NoteToolBar : View {
 
     private val buttonH = 20.0

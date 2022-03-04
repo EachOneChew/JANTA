@@ -16,10 +16,14 @@ class NoteArea(tinyMCEInterface : TinyMCEInterface) : View {
     private val testTextScroll = ScrollPane(testTextSync)
     private var tinyMCE : TinyMCEInterface
 
+
     init {
         tinyMCE = tinyMCEInterface
+
         testTextScroll.maxHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
         testTextScroll.minHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
+
+        testTextSync.textProperty().bind(tinyMCE.content)
 
         base.children.add(tinyMCE.webView)
         base.children.add(testTextScroll)

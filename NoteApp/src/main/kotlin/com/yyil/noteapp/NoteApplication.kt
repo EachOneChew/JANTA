@@ -5,6 +5,8 @@ import com.yyil.noteapp.settings.WindowSettings
 import com.yyil.noteapp.ui.NoteArea
 import com.yyil.noteapp.ui.NoteRepository
 import javafx.application.Application
+import javafx.collections.FXCollections
+import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.HBox
 import javafx.stage.Stage
@@ -16,7 +18,7 @@ class NoteApplication : Application() {
     var noteArea = NoteArea(tinyMCEInterface)
     val noteRepository = NoteRepository()
 
-    lateinit var noteRepositoryController: NoteRepositoryController
+    val noteRepositoryController: NoteRepositoryController = NoteRepositoryController(noteRepository)
 
     override fun init() {
         super.init()
@@ -29,8 +31,15 @@ class NoteApplication : Application() {
         baseUI.children.add(noteArea.base)
         baseUI.fillHeightProperty().set(true)
 
-        noteRepositoryController = NoteRepositoryController(noteRepository)
         noteRepositoryController.handleEvents()
+
+        noteRepository.noteList.onMouseClicked = EventHandler { _ ->
+            val i = noteRepository.noteList.selectionModel.selectedIndex
+            val tempContent = FXCollections.observableArrayList(
+                "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
+            )
+            tinyMCEInterface.content.set(tempContent[i])
+        }
 
         stage.scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
         stage.title = WindowSettings.WINDOW_TITLE

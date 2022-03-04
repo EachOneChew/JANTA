@@ -16,11 +16,11 @@
 
                 ed.on('init', function() {
                     ed.setContent(initContent)
+                    window.bridgeObject.updateContent(ed.getContent())
                 });
 
                 ed.on('change', function(e) {
-                    alert('changed at least')
-                    window.bridgeObject.updateContent('hi')
+                    window.bridgeObject.updateContent(ed.getContent())
                 });
             }
         });
