@@ -1,8 +1,10 @@
 package com.yyil.noteapp
 
 import com.yyil.noteapp.constant.ComponentConstant
-import com.yyil.noteapp.ui.NoteArea
-import javafx.collections.FXCollections
+
+import javafx.beans.property.StringProperty
+import javafx.beans.property.SimpleStringProperty
+
 import javafx.concurrent.Worker
 import javafx.event.EventHandler
 import javafx.scene.web.WebEngine
@@ -10,38 +12,57 @@ import javafx.scene.web.WebEvent
 import javafx.scene.web.WebView
 import netscape.javascript.JSObject
 
-class TinyMCEInterface (val noteArea : NoteArea) {
 
-    val editor = WebView()
-    val webEngine: WebEngine = editor.engine
-    val url: String = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm() ?: "N/A"
-    lateinit var tinyMCE: JSObject
+class TinyMCEInterface(initContent : String) {
+    val content: StringProperty = SimpleStringProperty()
 
-    //Code in NoteArea
-    fun initTinyMCE() {
+    val webView = WebView()
+    private val webEngine: WebEngine = webView.engine
+
+    private val url: String? = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm()
+    private var editor: JSObject? = null
+
+    inner class BridgeObject {
+        var counter = 1
+
+        fun setActiveEditor(ed : JSObject) {
+            println("ACTIVE EDITOR SET")
+            editor = ed
+        }
+
+        fun updateContent(newContent : String) {
+            println("UPDATED CONTENT $counter")
+            counter += 1
+//            content.set(newContent)
+        }
+    }
+
+    init {
         webEngine.load(url)
+
         webEngine.onAlert = EventHandler<WebEvent<String>> { e ->
-            noteArea.testTextSync.text = e.data
+            println(e.data)
         }
 
         webEngine.loadWorker.stateProperty().addListener { _, _, newState ->
             if (newState == Worker.State.SUCCEEDED) {
-                tinyMCE = (webEngine.executeScript(ComponentConstant.TINYMCE_SCRIPT) as JSObject)
-                    .getMember("activeEditor") as JSObject
+                (webEngine.executeScript("window") as JSObject)
+                    .setMember("bridgeObject", BridgeObject())
+
+                initEditor(initContent)
+
+//                content.addListener { _, _, newString ->
+//                    editor?.call("setContent", newString)
+//                }
             }
         }
-
     }
 
+    private fun initEditor(initContent : String) {
+        webEngine.executeScript("window.initFunction('$initContent')")
+    }
 
-    //Code in NoteRepo
-    /*    noteList.onMouseClicked = EventHandler {
-            val i = noteList.selectionModel.selectedIndex
-            val tempContent = FXCollections.observableArrayList(
-                "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
-            )
-            tinyMCE.call("setContent", tempContent[i])
-        }
-
-     */
+    private fun destroyEditor() {
+        webEngine.executeScript("window.destroyFunction()")
+    }
 }

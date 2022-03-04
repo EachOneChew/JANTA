@@ -33,7 +33,7 @@ class NoteToolBar : View {
 
     override val base = HBox()
 
-    override fun init(){
+    init {
         HBox.setHgrow(toolBarLeft, Priority.ALWAYS)
         HBox.setHgrow(toolBarRight, Priority.ALWAYS)
 

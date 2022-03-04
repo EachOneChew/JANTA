@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent
 class NoteRepositoryController (val noteRepository: NoteRepository) {
 
     fun handleEvents() {
-        val showListHandler = EventHandler { event: MouseEvent ->
+        val showListHandler = EventHandler { _: MouseEvent ->
             noteRepository.noteList.isVisible = !noteRepository.noteList.isVisible
             noteRepository.noteList.isManaged = !noteRepository.noteList.isManaged
 

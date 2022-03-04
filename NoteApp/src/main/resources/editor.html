@@ -3,24 +3,36 @@
 <head>
     <script src="tinymce_5.10.3/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
-    tinymce.init({
-        selector: '#TinyMCEInstance',
-        branding: false,
-        menubar: false,
-        resize: false,
-        height: '100vh',
+    window.initFunction = function(initContent) {
+        tinymce.init({
+            selector: '#TinyMCEInstance',
+            branding: false,
+            menubar: false,
+            resize: false,
+            height: '100vh',
 
-        setup: function(ed) {
-            ed.on('change', function(e) {
-                alert(ed.getContent())
-            });
-        }
-    });
+            setup: function(ed) {
+                window.bridgeObject.setActiveEditor(ed)
+
+                ed.on('init', function() {
+                    ed.setContent(initContent)
+                });
+
+                ed.on('change', function(e) {
+                    alert('changed at least')
+                    window.bridgeObject.updateContent('hi')
+                });
+            }
+        });
+    }
+    window.destroyFunction = function() {
+        tinymce.activeEditor.destroy();
+    }
     </script>
 </head>
 <body>
 <form method="post">
-    <textarea id="TinyMCEInstance">Hello, World!</textarea>
+    <textarea id="TinyMCEInstance"></textarea>
 </form>
 </body>
 </html>

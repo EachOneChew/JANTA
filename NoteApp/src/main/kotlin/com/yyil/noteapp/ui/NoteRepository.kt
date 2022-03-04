@@ -15,6 +15,16 @@ class NoteRepository : View {
     private val listScroll = ScrollPane(noteList)
     val showListButton = Button("<")
 
+    init {
+        initNoteList()
+
+        //TODO: Add scrollpane instead after making noteList items as labels
+        //base.children.add(listScroll)
+        base.children.add(noteList)
+        base.children.add(showListButton)
+        base.fillHeightProperty().set(true)
+    }
+
     private fun initNoteList () {
         //TODO: After making items as Labels, enable wrapText property to disable horizontal scroll
         val leftListItems = FXCollections.observableArrayList(
@@ -27,15 +37,4 @@ class NoteRepository : View {
         showListButton.style = "-fx-background-radius: 0"
 
     }
-
-    override fun init(){
-        initNoteList()
-
-        //TODO: Add scrollpane instead after making noteList items as labels
-        //base.children.add(listScroll)
-        base.children.add(noteList)
-        base.children.add(showListButton)
-        base.fillHeightProperty().set(true)
-    }
-
 }

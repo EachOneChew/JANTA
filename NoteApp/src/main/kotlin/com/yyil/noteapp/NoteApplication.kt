@@ -10,12 +10,11 @@ import javafx.scene.layout.HBox
 import javafx.stage.Stage
 
 class NoteApplication : Application() {
+    val tinyMCEInterface = TinyMCEInterface("TESTING INIT CONTENT")
 
     val baseUI = HBox()
-    var noteArea = NoteArea()
+    var noteArea = NoteArea(tinyMCEInterface)
     val noteRepository = NoteRepository()
-
-    val tinyMCEInterface = TinyMCEInterface(noteArea)
 
     lateinit var noteRepositoryController: NoteRepositoryController
 
@@ -26,11 +25,6 @@ class NoteApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        tinyMCEInterface.initTinyMCE()
-
-        noteArea.init(tinyMCEInterface)
-        noteRepository.init()
-
         baseUI.children.add(noteRepository.base)
         baseUI.children.add(noteArea.base)
         baseUI.fillHeightProperty().set(true)

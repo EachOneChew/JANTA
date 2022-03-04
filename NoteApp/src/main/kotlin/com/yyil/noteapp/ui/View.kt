@@ -4,6 +4,4 @@ import javafx.scene.layout.Pane
 
 interface View {
     val base : Pane
-
-    fun init()
 }
