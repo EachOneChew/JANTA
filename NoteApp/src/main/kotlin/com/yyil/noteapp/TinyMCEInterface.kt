@@ -15,18 +15,20 @@ class TinyMCEInterface(initContent : String) {
         get() = editorObj == null
 
     /**
-     * Content in the editor, handles changes as one would expect
-     * Get with content.get()
-     * If you want to change content, please call replaceContent
+     * Content in the editor as a StringProperty
      */
-    val content : StringProperty = SimpleStringProperty()
+    val contentProp : StringProperty = SimpleStringProperty()
 
     /**
-     * Replaces content in editor, resets the caret
+     * Content in the editor as a String
+     * IMPORTANT
+     * Changing this replaces all content in the editor and resets caret
      */
-    fun replaceContent(newContent : String) {
-        editorObj?.call("setContent", newContent)
-    }
+    var content : String
+        get() = contentProp.value
+        set(newContent) {
+            editorObj?.call("setContent", newContent)
+        }
 
     /**
      * Text currently selected by user
@@ -45,8 +47,8 @@ class TinyMCEInterface(initContent : String) {
 
     private val webEngine : WebEngine = webView.engine
     private val url : String? = javaClass.classLoader.getResource(ComponentConstant.EDITOR_FILE)?.toExternalForm()
-    private val bridgeObj : BridgeObject = BridgeObject()
 
+    private val bridgeObj : BridgeObject = BridgeObject()
     private var editorObj : JSObject? = null
     private var selectionObj : JSObject? = null
 
@@ -81,7 +83,7 @@ class TinyMCEInterface(initContent : String) {
         }
 
         fun setInterfaceContent(newContent : String) {
-            content.set(newContent)
+            contentProp.value = newContent
         }
     }
 }

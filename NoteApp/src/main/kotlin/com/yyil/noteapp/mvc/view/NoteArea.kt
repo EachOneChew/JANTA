@@ -21,7 +21,7 @@ class NoteArea(tinyMCEInterface : TinyMCEInterface) : View {
         testTextScroll.maxHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
         testTextScroll.minHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
 
-        testTextSync.textProperty().bind(tinyMCE.content)
+        testTextSync.textProperty().bind(tinyMCE.contentProp)
 
         base.children.add(tinyMCE.webView)
         base.children.add(testTextScroll)
