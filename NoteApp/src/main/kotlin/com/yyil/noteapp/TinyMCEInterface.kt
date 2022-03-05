@@ -11,6 +11,11 @@ import javafx.scene.web.WebView
 import netscape.javascript.JSObject
 
 class TinyMCEInterface(initContent : String) {
+    /**
+     * The editor is sometimes uninitialized and null
+     * Try to check that an editor exists if you're doing stuff
+     * If you don't app won't crash, but nothing will happen
+     */
     val isActive : Boolean
         get() = editorObj == null
 
