@@ -38,7 +38,8 @@ class NoteApplication : Application() {
             val tempContent = FXCollections.observableArrayList(
                 "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
             )
-            tinyMCEInterface.selectionObject.setSelectedContent(tempContent[i])
+            println(tinyMCEInterface.selection)
+            tinyMCEInterface.selection = tempContent[i]
         }
 
         stage.scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
