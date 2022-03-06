@@ -39,7 +39,14 @@ class NoteApplication : Application() {
                 "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
             )
             println(tinyMCEInterface.selection)
-            tinyMCEInterface.selection = tempContent[i]
+
+            // Only replaces selected content if it has a length (i.e. something is selected) otherwise opens the other note
+            if (tinyMCEInterface.selection.isNotEmpty()) {
+                tinyMCEInterface.selection = tempContent[i]
+            }
+            else {
+                tinyMCEInterface.content = tempContent[i]
+            }
         }
 
         stage.scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
