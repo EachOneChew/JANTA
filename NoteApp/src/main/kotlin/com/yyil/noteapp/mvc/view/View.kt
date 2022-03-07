@@ -1,4 +1,4 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.mvc.view
 
 import javafx.scene.layout.Pane
 

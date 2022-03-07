@@ -1,31 +1,24 @@
-package com.yyil.noteapp.ui
+package com.yyil.noteapp.mvc.view
 
-import com.yyil.noteapp.TinyMCEInterface
 import com.yyil.noteapp.constant.ComponentConstant
 import javafx.scene.control.ScrollPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
 import javafx.scene.text.Text
+import javafx.scene.web.WebView
 
-class NoteArea(tinyMCEInterface : TinyMCEInterface) : View {
-
+class NoteArea(tinyMCEView : WebView) : View {
     override val base = VBox()
 
-    private val testTextSync = Text()
+    val testTextSync = Text()
     private val testTextScroll = ScrollPane(testTextSync)
-    private var tinyMCE : TinyMCEInterface
-
 
     init {
-        tinyMCE = tinyMCEInterface
-
         testTextScroll.maxHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
         testTextScroll.minHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
 
-        testTextSync.textProperty().bind(tinyMCE.content)
-
-        base.children.add(tinyMCE.webView)
+        base.children.add(tinyMCEView)
         base.children.add(testTextScroll)
         HBox.setHgrow(base, Priority.ALWAYS)
     }
