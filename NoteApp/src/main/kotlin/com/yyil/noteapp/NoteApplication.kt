@@ -35,7 +35,7 @@ class NoteApplication : Application() {
         baseUI.fillHeightProperty().set(true)
 
         scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
-        scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm());
+        scene.stylesheets.add(javaClass.getResource("dark-mode-style.css").toExternalForm());
 
         stage.scene = scene
         stage.title = WindowSettings.WINDOW_TITLE

@@ -23,18 +23,14 @@ class NoteRepository : View {
     }
 
     private fun initNoteList () {
-        //TODO: After making items as Labels, enable wrapText property to disable horizontal scroll
-
+        //TODO: make items as Labels?
         val listItems = FXCollections.observableArrayList(
             "Note1", "Note2", "Note3", "Note4"
         )
         noteList.items.addAll(listItems)
-        noteList.setOnMouseClicked {
-            println(noteList.selectionModel.selectedItem)
-        }
 
         showListButton.prefHeight = Double.MAX_VALUE
-        showListButton.id = "sidebar-button"
+        showListButton.id = ComponentConstant.SHOW_LIST_BUTTON_ID
     }
 
 }
