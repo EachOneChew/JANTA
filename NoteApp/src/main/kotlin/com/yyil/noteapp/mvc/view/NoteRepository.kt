@@ -1,5 +1,6 @@
 package com.yyil.noteapp.mvc.view
 
+import com.yyil.noteapp.constant.ComponentConstant
 import javafx.collections.FXCollections
 import javafx.scene.control.Button
 import javafx.scene.control.ListView
@@ -21,16 +22,15 @@ class NoteRepository : View {
         base.fillHeightProperty().set(true)
     }
 
-    private fun initNoteList() {
-        //TODO: After making items as Labels, enable wrapText property to disable horizontal scroll
-
+    private fun initNoteList () {
+        //TODO: make items as Labels?
         val listItems = FXCollections.observableArrayList(
             "Note1", "Note2", "Note3", "Note4"
         )
         noteList.items.addAll(listItems)
 
         showListButton.prefHeight = Double.MAX_VALUE
-        showListButton.id = "sidebar-button"
+        showListButton.id = ComponentConstant.SHOW_LIST_BUTTON_ID
     }
 
 }
