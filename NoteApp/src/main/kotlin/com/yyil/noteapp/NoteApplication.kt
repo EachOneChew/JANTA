@@ -14,6 +14,8 @@ import javafx.stage.Stage
 class NoteApplication : Application() {
     val tinyMCEInterface = TinyMCEInterface("TESTING INIT CONTENT")
 
+    lateinit var scene : Scene
+
     val baseUI = HBox()
     var noteArea = NoteArea(tinyMCEInterface)
     val noteRepository = NoteRepository()
@@ -41,7 +43,10 @@ class NoteApplication : Application() {
             tinyMCEInterface.content.set(tempContent[i])
         }
 
-        stage.scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
+        scene = Scene(baseUI, WindowSettings.WINDOW_WIDTH, WindowSettings.WINDOW_HEIGHT)
+        scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm());
+
+        stage.scene = scene
         stage.title = WindowSettings.WINDOW_TITLE
         stage.show()
     }
