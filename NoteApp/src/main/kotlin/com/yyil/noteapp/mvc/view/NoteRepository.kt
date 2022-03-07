@@ -8,7 +8,6 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.layout.HBox
 
 class NoteRepository : View {
-
     override val base = HBox()
 
     val noteList = ListView<String>()
@@ -35,6 +34,5 @@ class NoteRepository : View {
         showListButton.prefHeight = Double.MAX_VALUE
         showListButton.minWidth = ComponentConstant.MIN_BUTTON_WIDTH
         showListButton.style = "-fx-background-radius: 0"
-
     }
 }

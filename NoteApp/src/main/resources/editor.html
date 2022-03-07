@@ -11,23 +11,51 @@
             resize: false,
             height: '100vh',
 
+            plugins: [
+                "lists"
+            ],
+
+            toolbar: `
+                undo redo |
+                styleselect |
+                bold italic underline strikethrough |
+                alignleft aligncenter alignright alignjustify |
+                bullist numlist outdent indent
+            `,
+
             setup: function(ed) {
+                const bridge = window.bridgeObj
+
                 ed.on('init', function() {
                     ed.setContent(initContent)
-                    window.bridgeObj.setEditorAndSelection(ed)
-                    window.bridgeObj.setInterfaceContent(ed.getContent())
+                    bridge.setEditorAndSelection(ed)
+                    bridge.setInterfaceContent(ed.getContent())
                 });
 
                 ed.on('Change SetContent', function(e) {
-                    window.bridgeObj.setInterfaceContent(ed.getContent())
+                    bridge.setInterfaceContent(ed.getContent())
+                });
+
+                ed.ui.registry.addButton('annotateButton', {
+                  text: 'Annotate',
+                  onAction: function (_) {
+                    bridge.callModelFunc('annotate')
+                  }
+                });
+
+                ed.ui.registry.addButton('labelButton', {
+                  text: 'Label',
+                  onAction: function (_) {
+                    bridge.callModelFunc('label')
+                  }
                 });
             }
         });
     }
     window.destroyFunction = function() {
         tinymce.activeEditor.destroy();
-        window.bridgeObj.setEditorAndSelection(null)
-        window.bridgeObj.setInterfaceContent('')
+        bridge.setEditorAndSelection(null)
+        bridge.setInterfaceContent('')
     }
     </script>
 </head>

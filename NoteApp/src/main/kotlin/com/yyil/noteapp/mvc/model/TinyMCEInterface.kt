@@ -1,16 +1,17 @@
-package com.yyil.noteapp
+package com.yyil.noteapp.mvc.model
 
 import com.yyil.noteapp.constant.ComponentConstant
-
-import javafx.beans.property.StringProperty
 import javafx.beans.property.SimpleStringProperty
-
+import javafx.beans.property.StringProperty
 import javafx.concurrent.Worker
 import javafx.scene.web.WebEngine
 import javafx.scene.web.WebView
 import netscape.javascript.JSObject
 
-class TinyMCEInterface(initContent : String) {
+class TinyMCEInterface(
+    initContent : String,
+    val handleModelCall : (String) -> Unit
+) {
     /**
      * The editor is sometimes uninitialized and null
      * Try to check that an editor exists if you're doing stuff
@@ -89,6 +90,10 @@ class TinyMCEInterface(initContent : String) {
 
         fun setInterfaceContent(newContent : String) {
             contentProp.value = newContent
+        }
+
+        fun callModel(target : String) {
+            handleModelCall(target)
         }
     }
 }
