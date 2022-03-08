@@ -3,7 +3,7 @@ package com.yyil.noteapp.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ImageEntity (
+data class ImageEntity(
     var contentList: List<ContentEntity> = ArrayList(),
     var text: String? = null,
     var templateEntityId: String = "0",

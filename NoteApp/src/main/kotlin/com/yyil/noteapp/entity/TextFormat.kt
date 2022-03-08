@@ -3,7 +3,7 @@ package com.yyil.noteapp.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TextFormat (
+data class TextFormat(
 //    var id: String,
     var bold: Boolean = false,
     var italic: Boolean = false,

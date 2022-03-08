@@ -3,7 +3,7 @@ package com.yyil.noteapp.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TemplateEntity (
+data class TemplateEntity(
     var id: String,
 
     var basedOn: String? = null,
@@ -11,5 +11,5 @@ data class TemplateEntity (
     var textFormat: TextFormat = TextFormat(),
     var paragraphFormat: ParagraphFormat = ParagraphFormat()
 ) {
-    val type:String = "templateEntity"
+    val type: String = "templateEntity"
 }

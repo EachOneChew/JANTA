@@ -51,17 +51,22 @@ class NoteToolBar : View {
     }
 
 
-    private fun initButtons(){
+    private fun initButtons() {
         fontMenu.items.addAll(
             MenuItem("Arial"),
-            MenuItem("Comic Sans"))
+            MenuItem("Comic Sans")
+        )
         fontMenu.prefHeight = buttonH
 
-        saveIcon.image = Image(NoteApplication::class.java.getResource(saveIconString).toString(),
-            buttonW, buttonH, true, false)
+        saveIcon.image = Image(
+            NoteApplication::class.java.getResource(saveIconString).toString(),
+            buttonW, buttonH, true, false
+        )
 
-        fontSizeIcon.image = Image(NoteApplication::class.java.getResource(fontSizeIconString).toString(),
-            buttonW, buttonH, true, false)
+        fontSizeIcon.image = Image(
+            NoteApplication::class.java.getResource(fontSizeIconString).toString(),
+            buttonW, buttonH, true, false
+        )
     }
 
 }

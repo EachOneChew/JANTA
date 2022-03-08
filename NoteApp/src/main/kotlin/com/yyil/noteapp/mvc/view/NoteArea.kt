@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox
 import javafx.scene.text.Text
 import javafx.scene.web.WebView
 
-class NoteArea(tinyMCEView : WebView) : View {
+class NoteArea(tinyMCEView: WebView) : View {
     override val base = VBox()
 
     val testTextSync = Text()

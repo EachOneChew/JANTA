@@ -21,43 +21,49 @@
                 styleselect |
                 bold italic underline strikethrough |
                 alignleft aligncenter alignright alignjustify |
-                bullist numlist outdent indent
+                bullist numlist outdent indent |
+                annotateButton labelButton
             `,
 
             setup: function(ed) {
-                const bridge = window.bridgeObj
+                const bridge = window.bridgeObj;
 
                 ed.on('init', function() {
-                    ed.setContent(initContent)
-                    bridge.setEditorAndSelection(ed)
-                    bridge.setInterfaceContent(ed.getContent())
+                    // triggers SetContent event and updates interface content
+                    ed.setContent(initContent);
+                    bridge.setEditorAndSelection(ed);
                 });
 
                 ed.on('Change SetContent', function(e) {
-                    bridge.setInterfaceContent(ed.getContent())
+                    bridge.setInterfaceContent(ed.getContent());
                 });
 
                 ed.ui.registry.addButton('annotateButton', {
-                  text: 'Annotate',
-                  onAction: function (_) {
-                    bridge.callModelFunc('annotate')
-                  }
+                    icon: 'edit-block',
+                    tooltip: 'Annotate',
+                    onAction: function (_) {
+                        bridge.callModel('annotate');
+                    }
                 });
 
                 ed.ui.registry.addButton('labelButton', {
-                  text: 'Label',
-                  onAction: function (_) {
-                    bridge.callModelFunc('label')
-                  }
+                    icon: 'character-count',
+                    tooltip: 'Label',
+                    onAction: function (_) {
+                        bridge.callModel('label');
+                    }
                 });
             }
         });
-    }
+    };
+
     window.destroyFunction = function() {
+        const bridge = window.bridgeObj;
+
         tinymce.activeEditor.destroy();
-        bridge.setEditorAndSelection(null)
-        bridge.setInterfaceContent('')
-    }
+        bridge.setEditorAndSelection(null);
+        bridge.setInterfaceContent('');
+    };
     </script>
 </head>
 <body>

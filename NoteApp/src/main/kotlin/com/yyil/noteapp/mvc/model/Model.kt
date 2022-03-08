@@ -1,5 +1,6 @@
 package com.yyil.noteapp.mvc.model
 
+import com.yyil.noteapp.TinyMCEInterface
 import javafx.collections.FXCollections
 
 class Model {
@@ -8,16 +9,17 @@ class Model {
     val tempContent = FXCollections.observableArrayList(
         "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
     )
-    fun handleNoteSelect(index : Int) {
+
+    fun handleNoteSelect(index: Int) {
         if (index < tempContent.size) {
-            tinyMCE.content = tempContent[index]
+            tinyMCE.selection = tempContent[index]
         }
     }
 
     /**
      * Example for Logan on how to receive event from interface
      */
-    fun handleModelCall(target : String) {
+    fun handleModelCall(target: String) {
         when (target) {
             "annotate" -> doSomething()
             "label" -> {} // TODO:  ModelCall.LABEL
@@ -25,6 +27,6 @@ class Model {
     }
 
     fun doSomething() {
-        tinyMCE.content = "HAH, YOU PRESSED ANNOTATE"
+        tinyMCE.selection = "HAH, YOU PRESSED ANNOTATE"
     }
 }

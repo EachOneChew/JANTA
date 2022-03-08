@@ -14,7 +14,7 @@ import javafx.stage.Stage
 class NoteApplication : Application() {
     val model = Model()
 
-    lateinit var scene : Scene
+    lateinit var scene: Scene
 
     val baseUI = HBox()
 

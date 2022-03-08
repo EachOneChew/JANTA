@@ -8,7 +8,6 @@ class NoteAreaController(
     noteArea: NoteArea
 ) {
     init {
-        println("NOTEAREA INIT RAN")
         noteArea.testTextSync.textProperty().bind(model.tinyMCE.contentProp)
     }
 }

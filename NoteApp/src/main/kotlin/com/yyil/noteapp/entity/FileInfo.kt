@@ -1,9 +1,9 @@
 package com.yyil.noteapp.entity
 
-import kotlinx.serialization.*
+import kotlinx.serialization.Serializable
 
 @Serializable
-data class FileInfo (
+data class FileInfo(
     var id: String,
     var createdBy: String,
     var createdTime: String,
