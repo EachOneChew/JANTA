@@ -53,7 +53,7 @@ class TinyMCEInterface(
      * "skin" property in editor init function
      * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var editorSkin : String
+    var editorSkin: String
         get() = initOptionsObj?.getMember("skin") as String
         set(newSkin) {
             initOptionsObj?.setMember("skin", newSkin)
@@ -65,7 +65,7 @@ class TinyMCEInterface(
      * "content_css" property in editor init function
      * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var editorContentCSS : String
+    var editorContentCSS: String
         get() = initOptionsObj?.getMember("content_css") as String
         set(newContentCSS) {
             initOptionsObj?.setMember("content_css", newContentCSS)
@@ -112,9 +112,16 @@ class TinyMCEInterface(
      */
     inner class BridgeObject {
         fun setObjs(ed: JSObject?) {
-            editorObj = ed
-            selectionObj = editorObj?.getMember("selection") as JSObject?
-            initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject?
+            if (ed != null) {
+                editorObj = ed
+                selectionObj = ed.getMember("selection") as JSObject
+                initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject
+            }
+            else {
+                editorObj = null
+                selectionObj = null
+                initOptionsObj = null
+            }
         }
 
         fun setInterfaceContent(newContent: String) {
