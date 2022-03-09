@@ -30,6 +30,23 @@ internal class NoteModelTest {
     }
 
     @Test
-    fun removeAnnotation() {
+    fun removeAnnotationNoTags() {
+        val entryString = "Hello this is a possible string, with like stuff in it &nbsp; but no tags just html"
+        val exitString = "<span title=\"yo\">Hello this is a possible string, with like stuff in it &nbsp; but no tags just html</span>"
+        assertEquals(testNoteModel.removeAnnotation(exitString), entryString)
+    }
+
+    @Test
+    fun removeAnnotationOnlyOuterTags() {
+        val entryString = "<p>hello world</p>"
+        val exitString = "<p><span title=\"yo\">hello world</span></p>"
+        assertEquals(testNoteModel.removeAnnotation(exitString), entryString)
+    }
+
+    @Test
+    fun removeAnnotationLotsOfTags() {
+        val entryString = "<p><em>Y</em><strong><em>o</em>u</strong>!</p>"
+        val exitString = "<p><em><span title=\"yo\">Y</span></em><strong><em><span title=\"yo\">o</span></em><span title=\"yo\">u</span></strong><span title=\"yo\">!</span></p>"
+        assertEquals(testNoteModel.removeAnnotation(exitString), entryString)
     }
 }

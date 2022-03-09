@@ -21,8 +21,9 @@ class NoteModel {
         return result
     }
 
-    fun removeAnnotation (selection: String) {
-        var result = ""
+    fun removeAnnotation (selection: String): String {
+        return selection.replace("(<span [a-zA-Z=\"]+>)".toRegex(), "")
+            .replace("(</span>)".toRegex(), "")
     }
 
 }
