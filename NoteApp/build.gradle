@@ -28,7 +28,6 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = "com.yyil.noteapp"
     mainClass = "com.yyil.noteapp.NoteApplication"
 }
 
@@ -62,6 +61,8 @@ dependencies {
 
     testImplementation("org.testfx:testfx-core:4.0.16-alpha")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 }
 
 test {

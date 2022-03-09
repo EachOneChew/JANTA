@@ -4,7 +4,7 @@ import com.yyil.noteapp.TinyMCEInterface
 import javafx.collections.FXCollections
 
 class Model {
-    val tinyMCE = TinyMCEInterface("TESTING INIT CONTENT", ::handleModelCall)
+    val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val tempContent = FXCollections.observableArrayList(
         "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
