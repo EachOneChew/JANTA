@@ -12,13 +12,11 @@ class NoteRepository : View {
 
     val noteList = ListView<String>()
     private val listScroll = ScrollPane(noteList)
-    val showListButton = Button("<")
 
     init {
         initNoteList()
 
         base.children.add(noteList)
-        base.children.add(showListButton)
         base.fillHeightProperty().set(true)
     }
 
@@ -29,8 +27,6 @@ class NoteRepository : View {
         )
         noteList.items.addAll(listItems)
 
-        showListButton.prefHeight = Double.MAX_VALUE
-        showListButton.id = ComponentConstant.SHOW_LIST_BUTTON_ID
     }
 
 }
