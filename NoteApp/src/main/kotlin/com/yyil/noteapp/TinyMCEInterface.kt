@@ -22,7 +22,7 @@ class TinyMCEInterface(
      * If you don't app won't crash, but nothing will happen
      */
     val isActive: Boolean
-        get() = editorObj == null
+        get() = editorObj != null && selectionObj != null && initOptionsObj != null
 
     /**
      * Content in the editor as a StringProperty
@@ -31,8 +31,7 @@ class TinyMCEInterface(
 
     /**
      * Content in the editor as a String
-     * IMPORTANT
-     * Changing this replaces all content in the editor and resets caret
+     * IMPORTANT: changing this replaces all content in the editor and resets caret
      */
     var content: String
         get() = contentProp.value
@@ -51,6 +50,30 @@ class TinyMCEInterface(
         }
 
     /**
+     * "skin" property in editor init function
+     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     */
+    var editorSkin : String
+        get() = initOptionsObj?.getMember("skin") as String
+        set(newSkin) {
+            initOptionsObj?.setMember("skin", newSkin)
+            destroyEditor()
+            initEditor("CHANGED SKIN TO $newSkin")
+        }
+
+    /**
+     * "content_css" property in editor init function
+     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     */
+    var editorContentCSS : String
+        get() = initOptionsObj?.getMember("content_css") as String
+        set(newContentCSS) {
+            initOptionsObj?.setMember("content_css", newContentCSS)
+            destroyEditor()
+            initEditor("CHANGED CONTENT CSS TO $newContentCSS")
+        }
+
+    /**
      * WebView for UI purposes, only Yixin should be using this probably
      */
     val webView = WebView()
@@ -61,6 +84,7 @@ class TinyMCEInterface(
     private val bridgeObj: BridgeObject = BridgeObject()
     private var editorObj: JSObject? = null
     private var selectionObj: JSObject? = null
+    private var initOptionsObj: JSObject? = null
 
     init {
         webEngine.load(url)
@@ -87,9 +111,10 @@ class TinyMCEInterface(
      * Can't be private because of Javascript shenanigans, please don't use
      */
     inner class BridgeObject {
-        fun setEditorAndSelection(ed: JSObject?) {
+        fun setObjs(ed: JSObject?) {
             editorObj = ed
             selectionObj = editorObj?.getMember("selection") as JSObject?
+            initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject?
         }
 
         fun setInterfaceContent(newContent: String) {

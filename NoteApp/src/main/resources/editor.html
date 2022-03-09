@@ -3,6 +3,11 @@
 <head>
     <script src="tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
+    window.initOptions = {
+        skin: 'oxide',
+        content_css: 'default'
+    }
+
     window.initFunction = function(initContent) {
         tinymce.init({
             selector: '#TinyMCEInstance',
@@ -10,7 +15,9 @@
             menubar: false,
             resize: false,
             height: '100vh',
-            skin: 'oxide',
+
+            skin: window.initOptions.skin,
+            content_css: window.initOptions.content_css,
 
             plugins: [
                 "lists"
@@ -31,7 +38,7 @@
                 ed.on('init', function() {
                     // triggers SetContent event and updates interface content
                     ed.setContent(initContent);
-                    bridge.setEditorAndSelection(ed);
+                    bridge.setObjs(ed);
                 });
 
                 ed.on('Change SetContent', function(e) {
@@ -61,7 +68,7 @@
         const bridge = window.bridgeObj;
 
         tinymce.activeEditor.destroy();
-        bridge.setEditorAndSelection(null);
+        bridge.setObjs(null);
         bridge.setInterfaceContent('');
     };
     </script>

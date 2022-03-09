@@ -10,14 +10,15 @@ module com.yyil.noteapp {
     requires eu.hansolo.tilesfx;
     requires javafx.base;
 
-    // Json
+    // JSON
     requires kotlinx.serialization.core;
     requires kotlinx.serialization.json;
+
     requires jdk.jsobject;
 
     opens com.yyil.noteapp to javafx.fxml;
     exports com.yyil.noteapp;
 
-    // Json
+    // JSON
     exports com.yyil.noteapp.entity;
 }

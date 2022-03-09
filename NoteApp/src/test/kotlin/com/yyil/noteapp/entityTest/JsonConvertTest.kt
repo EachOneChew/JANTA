@@ -27,10 +27,11 @@ internal class NoteApplicationTest {
 
         val obj = Json.decodeFromString<LinkEntity>(string=s)
         assert(obj == LinkEntity(contentList= emptyList(), templateEntityId="0",
-            textFormat=TextFormat(bold=false, italic=false, underline=false, superscript=false,
+            textFormat= TextFormat(bold=false, italic=false, underline=false, superscript=false,
                 subscript=false, font="Arial", complexFont="Helvetica", fontSize=11.0f, colour="#951595",
                 backgroundColour=null, underlineColour=null),
             link="this is a link to the week 7 content",
-            url="https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-7-sprint-1-demo"))
+            url="https://student.cs.uwaterloo.ca/~cs398/01-syllabus/2-weekly-schedule/#week-7-sprint-1-demo")
+        )
     }
 }
