@@ -1,26 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="tinymce_5.10.3/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
-    tinymce.init({
-        selector: '#TinyMCEInstance',
-        branding: false,
-        menubar: false,
-        resize: false,
-        height: '100vh',
+    window.initOptions = {
+        skin: 'oxide',
+        content_css: 'default'
+    }
 
-        setup: function(ed) {
-            ed.on('change', function(e) {
-                alert(ed.getContent())
-            });
-        }
-    });
+    window.initFunction = function(initContent) {
+        tinymce.init({
+            selector: '#TinyMCEInstance',
+            branding: false,
+            menubar: false,
+            resize: false,
+            height: '100vh',
+
+            skin: window.initOptions.skin,
+            content_css: window.initOptions.content_css,
+
+            plugins: [
+                "lists"
+            ],
+
+            toolbar: `
+                undo redo |
+                styleselect |
+                bold italic underline strikethrough |
+                alignleft aligncenter alignright alignjustify |
+                bullist numlist outdent indent |
+                annotateButton labelButton
+            `,
+
+            setup: function(ed) {
+                const bridge = window.bridgeObj;
+
+                ed.on('init', function() {
+                    // triggers SetContent event and updates interface content
+                    ed.setContent(initContent);
+                    bridge.setObjs(ed);
+                });
+
+                ed.on('Change SetContent', function(e) {
+                    bridge.setInterfaceContent(ed.getContent());
+                });
+
+                ed.ui.registry.addButton('annotateButton', {
+                    icon: 'edit-block',
+                    tooltip: 'Annotate',
+                    onAction: function (_) {
+                        bridge.callModel('annotate');
+                    }
+                });
+
+                ed.ui.registry.addButton('labelButton', {
+                    icon: 'character-count',
+                    tooltip: 'Label',
+                    onAction: function (_) {
+                        bridge.callModel('label');
+                    }
+                });
+            }
+        });
+    };
+
+    window.destroyFunction = function() {
+        const bridge = window.bridgeObj;
+
+        tinymce.activeEditor.destroy();
+        bridge.setObjs(null);
+        bridge.setInterfaceContent('');
+    };
     </script>
 </head>
 <body>
 <form method="post">
-    <textarea id="TinyMCEInstance">Hello, World!</textarea>
+    <textarea id="TinyMCEInstance"></textarea>
 </form>
 </body>
 </html>

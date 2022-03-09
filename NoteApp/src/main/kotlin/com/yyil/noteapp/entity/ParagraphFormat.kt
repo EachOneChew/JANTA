@@ -3,7 +3,7 @@ package com.yyil.noteapp.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ParagraphFormat (
+data class ParagraphFormat(
 //    var id: String,
     var align: String = "left",
     var bulletType: String? = null,
