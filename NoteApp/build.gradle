@@ -63,6 +63,10 @@ dependencies {
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+
+    // database (sqlite)
+    implementation "org.xerial:sqlite-jdbc:3.30.1"
+
 }
 
 test {
