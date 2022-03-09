@@ -20,15 +20,32 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
      */
     @BeforeEach
     fun delayForInit() {
-        runBlocking {
-            launch {
-                delay(1000L)
+        if (!tinyMCE!!.isActive) {
+            runBlocking {
+                launch {
+                    delay(1000L)
+                }
             }
         }
     }
 
     @Test
     fun doSomething() {
+        println(tinyMCE!!.content)
+    }
+
+    @Test
+    fun doSomething2() {
+        println("2")
+    }
+
+    @Test
+    fun doSomething3() {
+        println("3")
+    }
+
+    @Test
+    fun doSomething4() {
         println(tinyMCE!!.content)
     }
 }
