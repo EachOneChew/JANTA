@@ -29,7 +29,7 @@
                 bold italic underline strikethrough |
                 alignleft aligncenter alignright alignjustify |
                 bullist numlist outdent indent |
-                annotateButton labelButton
+                addAnnotateButton removeAnnotateButton labelButton
             `,
 
             setup: function(ed) {
@@ -45,11 +45,19 @@
                     bridge.setInterfaceContent(ed.getContent());
                 });
 
-                ed.ui.registry.addButton('annotateButton', {
+                ed.ui.registry.addButton('addAnnotateButton', {
                     icon: 'edit-block',
-                    tooltip: 'Annotate',
+                    tooltip: 'AddAnnotation',
                     onAction: function (_) {
-                        bridge.callModel('annotate');
+                        bridge.callModel('addAnnotation');
+                    }
+                });
+
+                ed.ui.registry.addButton('removeAnnotateButton', {
+                    icon: 'edit-block',
+                    tooltip: 'RemoveAnnotation',
+                    onAction: function (_) {
+                        bridge.callModel('removeAnnotation');
                     }
                 });
 
