@@ -2,7 +2,6 @@ package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.constant.ComponentConstant
 import javafx.collections.FXCollections
-import javafx.scene.control.Button
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
 import javafx.scene.layout.HBox
@@ -26,7 +25,7 @@ class NoteRepository : View {
         base.isManaged = false
     }
 
-    private fun initNoteList () {
+    private fun initNoteList() {
         //TODO: make items as Labels?
         val listItems = FXCollections.observableArrayList(
             "Note1", "Note2", "Note3", "Note4"
