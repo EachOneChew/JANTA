@@ -23,7 +23,7 @@ class NoteArea(tinyMCEView: WebView) : View {
         testTextScroll.isFitToHeight = true
 
         base.children.add(tinyMCEView)
-        //base.children.add(testTextScroll)
+        base.children.add(testTextScroll)
         HBox.setHgrow(base, Priority.ALWAYS)
     }
 }
