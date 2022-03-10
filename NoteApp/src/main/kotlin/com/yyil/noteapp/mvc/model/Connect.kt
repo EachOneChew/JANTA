@@ -46,9 +46,9 @@ object Connect {
                 println("All notes:")
                 while (results.next()) {
 //                    println("HERE!!!!!!!!!!!!!!!!!!!!!!")
-                    val note_id = results.getInt("note_content_id")
-                    val repository_path = results.getString("repository_path")
-                    val note_content = results.getString("note_content")
+                    val note_id = results.getInt("NOTE_CONTENT_ID")
+                    val repository_path = results.getString("REPOSITORY_PATH")
+                    val note_content = results.getString("NOTE_CONTENT")
                     println(note_id.toString() + "\t" + repository_path + "\t" + note_content)
                 }
             }
@@ -60,13 +60,13 @@ object Connect {
     
     // insert
     fun createContent(line: String) {
-        val sql = "INSERT INTO \"main\".\"$dbName\"(\"note_content\") VALUES(\"$line\")"
+        val sql = "INSERT INTO \"main\".\"$dbName\"(\"NOTE_CONTENT\") VALUES(\"$line\")"
         stmt!!.execute(sql)
     }
     
     // change
     fun updateContent(line: String, id: Int) {
-        val sql = "UPDATE \"main\".\"$dbName\" SET \"note_content\" = \"$line\" where \"note_content_id\" = $id"
+        val sql = "UPDATE \"main\".\"$dbName\" SET \"NOTE_CONTENT\" = \"$line\" where \"NOTE_CONTENT_ID\" = $id"
         stmt!!.execute(sql)
     }
     
