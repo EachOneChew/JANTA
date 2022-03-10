@@ -16,8 +16,14 @@ class NoteRepository : View {
     init {
         initNoteList()
 
-        base.children.add(noteList)
+        base.children.add(listScroll)
+        listScroll.isFitToWidth = true
+        listScroll.isFitToHeight = true
+
         base.fillHeightProperty().set(true)
+        base.id = ComponentConstant.NOTE_REPO_ID
+        base.isVisible = false
+        base.isManaged = false
     }
 
     private fun initNoteList () {

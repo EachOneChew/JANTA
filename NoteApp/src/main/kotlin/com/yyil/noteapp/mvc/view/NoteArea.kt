@@ -15,11 +15,15 @@ class NoteArea(tinyMCEView: WebView) : View {
     private val testTextScroll = ScrollPane(testTextSync)
 
     init {
+        testTextSync.id = ComponentConstant.TEST_TEXT_ID
+
         testTextScroll.maxHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
         testTextScroll.minHeight = ComponentConstant.TEST_SCROLL_PANE_HEIGHT
+        testTextScroll.isFitToWidth = true
+        testTextScroll.isFitToHeight = true
 
         base.children.add(tinyMCEView)
-        base.children.add(testTextScroll)
+        //base.children.add(testTextScroll)
         HBox.setHgrow(base, Priority.ALWAYS)
     }
 }
