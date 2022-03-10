@@ -55,8 +55,8 @@ class TinyMCEInterface(
      */
     var appearance: Pair<String, String>
         get() = Pair(
-            initOptionsObj?.getMember("skin") as String,
-            initOptionsObj?.getMember("content_css") as String
+            (initOptionsObj?.getMember("skin") ?: "") as String,
+            (initOptionsObj?.getMember("content_css") ?: "") as String
         )
         set(newAppearance: Pair<String, String>) {
             val (newSkin, newContentCSS) = newAppearance
