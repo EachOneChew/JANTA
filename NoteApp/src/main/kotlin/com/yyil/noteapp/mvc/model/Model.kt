@@ -65,8 +65,7 @@ class Model {
     }
 
     fun handleSwitchTheme(theme: String, content: String) {
-        tinyMCE.editorSkin = theme
-        tinyMCE.editorContentCSS = content
+        tinyMCE.appearance = Pair(theme, content)
         currentTheme = theme
     }
 }
