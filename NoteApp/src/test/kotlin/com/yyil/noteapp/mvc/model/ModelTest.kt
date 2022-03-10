@@ -17,14 +17,22 @@ internal class ModelTest : ApplicationTest()  {
         testNoteModel = Model()
     }
 
+    fun delayOneSecond() {
+        runBlocking {
+            launch {
+                delay(1000L)
+            }
+        }
+    }
+
+    /**
+     * Delays execution of tests so editor can initialize properly
+     */
     @BeforeEach
     fun delayForInit() {
-        if (!testNoteModel?.tinyMCE!!.isActive) {
-            runBlocking {
-                launch {
-                    delay(1000L)
-                }
-            }
+        if (!testNoteModel!!.tinyMCE.isActive) {
+            delayOneSecond()
+            assertEquals(testNoteModel!!.tinyMCE.isActive, true)
         }
     }
 

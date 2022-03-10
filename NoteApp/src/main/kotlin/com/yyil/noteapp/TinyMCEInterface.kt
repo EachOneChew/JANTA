@@ -14,7 +14,7 @@ import netscape.javascript.JSObject
  */
 class TinyMCEInterface(
     initContent: String,
-    val handleModelCall: (String) -> Unit
+    private val handleModelCall: (String) -> Unit
 ) {
     /**
      * The editor is sometimes uninitialized and null
@@ -53,7 +53,7 @@ class TinyMCEInterface(
      * "skin" property in editor init function
      * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var editorSkin: String
+    var skin: String
         get() = initOptionsObj?.getMember("skin") as String
         set(newSkin) {
             initOptionsObj?.setMember("skin", newSkin)
@@ -65,7 +65,7 @@ class TinyMCEInterface(
      * "content_css" property in editor init function
      * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var editorContentCSS: String
+    var contentCSS: String
         get() = initOptionsObj?.getMember("content_css") as String
         set(newContentCSS) {
             initOptionsObj?.setMember("content_css", newContentCSS)
@@ -99,11 +99,11 @@ class TinyMCEInterface(
         }
     }
 
-    private fun initEditor(initContent: String) {
+    fun initEditor(initContent: String) {
         webEngine.executeScript("window.initFunction('$initContent')")
     }
 
-    private fun destroyEditor() {
+    fun destroyEditor() {
         webEngine.executeScript("window.destroyFunction()")
     }
 
