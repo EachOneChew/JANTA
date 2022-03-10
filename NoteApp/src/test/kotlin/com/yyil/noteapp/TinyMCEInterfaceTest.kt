@@ -1,9 +1,6 @@
 package com.yyil.noteapp
 
 import javafx.stage.Stage
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -22,14 +19,6 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
         tinyMCE = TinyMCEInterface("", fun(_: String) {
             testCallModel = "CALLED"
         })
-    }
-
-    fun delayOneSecond() {
-        runBlocking {
-            launch {
-                delay(1000L)
-            }
-        }
     }
 
     /**
