@@ -23,16 +23,22 @@ class Model {
      */
     fun handleModelCall(target: String) {
         when (target) {
-            "addAnnotation" -> {tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection); count ++}
-            "removeAnnotation" -> tinyMCE.selection = removeAnnotation(tinyMCE.selection)
-            "label" -> {} // TODO:  ModelCall.LABEL
+            "addAnnotation" -> {
+                tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection);
+                count++
+            }
+            "removeAnnotation" -> {
+                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
+            }
+            "label" -> TODO()
         }
     }
 
-    fun insertAnnotation (annotation: String, selection: String): String {
+    fun insertAnnotation(annotation: String, selection: String): String {
         val openTag = "<span title=\"$annotation\">"
         val closeTag = "</span>"
-        var result = selection.replace(">(?=[^<])".toRegex(), ">$openTag")
+        var result = selection
+            .replace(">(?=[^<])".toRegex(), ">$openTag")
             .replace("(?<=[^>])<".toRegex(), "$closeTag<")
 
         if (selection[0] != '<') {
@@ -46,8 +52,9 @@ class Model {
         return result
     }
 
-    fun removeAnnotation (selection: String) : String {
-         return selection.replace("(<span [^>]+>)".toRegex(), "")
+    fun removeAnnotation(selection: String): String {
+        return selection
+            .replace("(<span [^>]+>)".toRegex(), "")
             .replace("(</span>)".toRegex(), "")
     }
 }

@@ -51,7 +51,7 @@ class TinyMCEInterface(
 
     /**
      * "skin" property in editor init function
-     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
     var editorSkin: String
         get() = initOptionsObj?.getMember("skin") as String
@@ -63,7 +63,7 @@ class TinyMCEInterface(
 
     /**
      * "content_css" property in editor init function
-     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
     var editorContentCSS: String
         get() = initOptionsObj?.getMember("content_css") as String
@@ -116,8 +116,7 @@ class TinyMCEInterface(
                 editorObj = ed
                 selectionObj = ed.getMember("selection") as JSObject
                 initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject
-            }
-            else {
+            } else {
                 editorObj = null
                 selectionObj = null
                 initOptionsObj = null
