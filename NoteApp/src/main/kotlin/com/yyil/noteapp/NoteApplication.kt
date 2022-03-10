@@ -40,8 +40,8 @@ class NoteApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        defaultStyle = javaClass.getResource("css/default-style.css").toExternalForm()
-        darkModeStyle = javaClass.getResource("css/dark-mode-style.css").toExternalForm()
+        defaultStyle = javaClass.getResource(ComponentConstant.DEFAULT_CSS).toExternalForm()
+        darkModeStyle = javaClass.getResource(ComponentConstant.DARK_MODE_CSS).toExternalForm()
 
         baseUI.children.add(noteToolBar.base)
         baseUI.children.add(noteRepository.base)

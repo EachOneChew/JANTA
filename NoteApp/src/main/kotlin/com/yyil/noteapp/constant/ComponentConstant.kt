@@ -3,6 +3,9 @@ package com.yyil.noteapp.constant
 object ComponentConstant {
     const val EDITOR_FILE = "editor.html"
 
+    const val DEFAULT_CSS = "css/default-style.css"
+    const val DARK_MODE_CSS = "css/dark-mode-style.css"
+
     const val STAGE_MIN_WIDTH = 200.0
     const val BUTTON_ICON_WIDTH = 15.0
     const val BUTTON_ICON_HEIGHT = 15.0
