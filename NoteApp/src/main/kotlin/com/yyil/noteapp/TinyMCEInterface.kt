@@ -53,7 +53,7 @@ class TinyMCEInterface(
      * "skin" property in editor init function
      * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var skin: String
+    var editorSkin: String
         get() = initOptionsObj?.getMember("skin") as String
         set(newSkin) {
             initOptionsObj?.setMember("skin", newSkin)
@@ -65,7 +65,7 @@ class TinyMCEInterface(
      * "content_css" property in editor init function
      * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var contentCSS: String
+    var editorContentCSS: String
         get() = initOptionsObj?.getMember("content_css") as String
         set(newContentCSS) {
             initOptionsObj?.setMember("content_css", newContentCSS)
