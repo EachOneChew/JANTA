@@ -48,7 +48,6 @@
           }
         ]
       },
-
       {
         "type": "h2",
         "align": "centre",
@@ -58,7 +57,6 @@
           }
         ]
       },
-
       {
         "type": "normal text",
         "children": [
@@ -68,7 +66,8 @@
               {
                 "text": "this is the first line of the paragraph."
               },
-              {"text":  "this is a bold sentence.",
+              {
+                "text": "this is a bold sentence.",
                 "bold": "true"
               },
               {

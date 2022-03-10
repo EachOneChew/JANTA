@@ -36,7 +36,7 @@ class Model {
         tinyMCE.selection = "HAH, YOU PRESSED ANNOTATE"
     }
 
-    fun handleSwitchTheme(theme : String, content : String) {
+    fun handleSwitchTheme(theme: String, content: String) {
         tinyMCE.editorSkin = theme
         tinyMCE.editorContentCSS = content
         currentTheme = theme

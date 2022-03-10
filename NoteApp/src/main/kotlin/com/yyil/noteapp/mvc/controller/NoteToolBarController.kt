@@ -20,15 +20,14 @@ class NoteToolBarController(
         noteToolBar.noteListButton.addEventHandler(MouseEvent.MOUSE_CLICKED, showListHandler)
     }
 
-    fun handleSwitchTheme(scene: Scene, noteToolBar: NoteToolBar, defaultStyle: String, darkModeStyle: String){
+    fun handleSwitchTheme(scene: Scene, noteToolBar: NoteToolBar, defaultStyle: String, darkModeStyle: String) {
 
         val switchThemeHandler = EventHandler { _: MouseEvent ->
-            if(model.currentTheme == model.lightTheme){
+            if (model.currentTheme == model.lightTheme) {
                 model.handleSwitchTheme(model.darkTheme, model.darkContent)
                 scene.stylesheets.clear()
                 scene.stylesheets.add(darkModeStyle)
-            }
-            else{
+            } else {
                 model.handleSwitchTheme(model.lightTheme, model.lightContent)
                 scene.stylesheets.clear()
                 scene.stylesheets.add(defaultStyle)

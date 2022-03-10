@@ -28,12 +28,13 @@ class NoteApplication : Application() {
     val noteRepository = NoteRepository()
 
     val noteToolBarController = NoteToolBarController(
-        model, noteToolBar, noteRepository)
+        model, noteToolBar, noteRepository
+    )
     var noteAreaController = NoteAreaController(model, noteArea)
     val noteRepositoryController: NoteRepositoryController = NoteRepositoryController(model, noteRepository)
 
-    lateinit var defaultStyle : String
-    lateinit var darkModeStyle : String
+    lateinit var defaultStyle: String
+    lateinit var darkModeStyle: String
 
     override fun init() {
         super.init()
@@ -56,7 +57,8 @@ class NoteApplication : Application() {
         stage.minWidth = ComponentConstant.STAGE_MIN_WIDTH
         stage.scene = scene
         stage.title = WindowSettings.WINDOW_TITLE
-        stage.icons.add(Image(
+        stage.icons.add(
+            Image(
                 NoteApplication::class.java.getResource(ComponentConstant.TITLE_BAR_ICON).toString()
             )
         )
