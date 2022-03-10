@@ -14,7 +14,7 @@ import netscape.javascript.JSObject
  */
 class TinyMCEInterface(
     initContent: String,
-    val handleModelCall: (String) -> Unit
+    private val handleModelCall: (String) -> Unit
 ) {
     /**
      * The editor is sometimes uninitialized and null
@@ -51,7 +51,7 @@ class TinyMCEInterface(
 
     /**
      * "skin" property in editor init function
-     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
     var editorSkin: String
         get() = initOptionsObj?.getMember("skin") as String
@@ -63,7 +63,7 @@ class TinyMCEInterface(
 
     /**
      * "content_css" property in editor init function
-     * WARNING: WILL DESTROY AND REINITIALIZE EDITOR
+     * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
     var editorContentCSS: String
         get() = initOptionsObj?.getMember("content_css") as String
@@ -99,11 +99,11 @@ class TinyMCEInterface(
         }
     }
 
-    private fun initEditor(initContent: String) {
+    fun initEditor(initContent: String) {
         webEngine.executeScript("window.initFunction('$initContent')")
     }
 
-    private fun destroyEditor() {
+    fun destroyEditor() {
         webEngine.executeScript("window.destroyFunction()")
     }
 
@@ -112,9 +112,15 @@ class TinyMCEInterface(
      */
     inner class BridgeObject {
         fun setObjs(ed: JSObject?) {
-            editorObj = ed
-            selectionObj = editorObj?.getMember("selection") as JSObject?
-            initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject?
+            if (ed != null) {
+                editorObj = ed
+                selectionObj = ed.getMember("selection") as JSObject
+                initOptionsObj = webEngine.executeScript("window.initOptions") as JSObject
+            } else {
+                editorObj = null
+                selectionObj = null
+                initOptionsObj = null
+            }
         }
 
         fun setInterfaceContent(newContent: String) {

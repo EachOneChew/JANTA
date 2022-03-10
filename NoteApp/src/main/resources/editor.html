@@ -8,7 +8,19 @@
         content_css: 'default'
     }
 
+    window.destroyFunction = function() {
+        const bridge = window.bridgeObj;
+
+        if (tinymce.activeEditor) {
+            tinymce.activeEditor.destroy();
+        }
+        bridge.setObjs(null);
+        bridge.setInterfaceContent('');
+    };
+
     window.initFunction = function(initContent) {
+        window.destroyFunction();
+
         tinymce.init({
             selector: '#TinyMCEInstance',
             branding: false,
@@ -29,7 +41,7 @@
                 bold italic underline strikethrough |
                 alignleft aligncenter alignright alignjustify |
                 bullist numlist outdent indent |
-                annotateButton labelButton
+                addAnnotateButton removeAnnotateButton labelButton
             `,
 
             setup: function(ed) {
@@ -45,11 +57,19 @@
                     bridge.setInterfaceContent(ed.getContent());
                 });
 
-                ed.ui.registry.addButton('annotateButton', {
+                ed.ui.registry.addButton('addAnnotateButton', {
                     icon: 'edit-block',
-                    tooltip: 'Annotate',
+                    tooltip: 'Add annotation',
                     onAction: function (_) {
-                        bridge.callModel('annotate');
+                        bridge.callModel('addAnnotation');
+                    }
+                });
+
+                ed.ui.registry.addButton('removeAnnotateButton', {
+                    icon: 'edit-block',
+                    tooltip: 'Remove annotation',
+                    onAction: function (_) {
+                        bridge.callModel('removeAnnotation');
                     }
                 });
 
@@ -62,14 +82,6 @@
                 });
             }
         });
-    };
-
-    window.destroyFunction = function() {
-        const bridge = window.bridgeObj;
-
-        tinymce.activeEditor.destroy();
-        bridge.setObjs(null);
-        bridge.setInterfaceContent('');
     };
 
     </script>

@@ -10,11 +10,13 @@ class Model {
     val darkContent = "dark-mode"
     var currentTheme = lightTheme
 
-    val tinyMCE = TinyMCEInterface("TESTING INIT CONTENT", ::handleModelCall)
+    val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val tempContent = FXCollections.observableArrayList(
         "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
     )
+
+    var count = 0
 
     fun handleNoteSelect(index: Int) {
         if (index < tempContent.size) {
@@ -27,13 +29,39 @@ class Model {
      */
     fun handleModelCall(target: String) {
         when (target) {
-            "annotate" -> doSomething()
-            "label" -> {} // TODO:  ModelCall.LABEL
+            "addAnnotation" -> {
+                tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection);
+                count++
+            }
+            "removeAnnotation" -> {
+                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
+            }
+            "label" -> TODO()
         }
     }
 
-    fun doSomething() {
-        tinyMCE.selection = "HAH, YOU PRESSED ANNOTATE"
+    fun insertAnnotation(annotation: String, selection: String): String {
+        val openTag = "<span title=\"$annotation\">"
+        val closeTag = "</span>"
+        var result = selection
+            .replace(">(?=[^<])".toRegex(), ">$openTag")
+            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
+
+        if (selection[0] != '<') {
+            result = "$openTag$result"
+        }
+
+        if (selection[selection.length - 1] != '>') {
+            result = "$result$closeTag"
+        }
+
+        return result
+    }
+
+    fun removeAnnotation(selection: String): String {
+        return selection
+            .replace("(<span [^>]+>)".toRegex(), "")
+            .replace("(</span>)".toRegex(), "")
     }
 
     fun handleSwitchTheme(theme: String, content: String) {
