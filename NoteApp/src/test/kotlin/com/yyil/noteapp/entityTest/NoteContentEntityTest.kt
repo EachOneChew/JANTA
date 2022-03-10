@@ -7,8 +7,8 @@ import java.time.LocalDateTime
 class NoteContentEntityTest {
 	@Test
 	fun testcontentEntity() {
-		var temp = NoteContentEntity(creator="IVAN", create_time= LocalDateTime.now(), updater="BOB",
-			update_time=LocalDateTime.now(), repository_path="/desktop/", note_content="<html><\\html>",
+		var temp = NoteContentEntity(creator="IVAN", createTime= LocalDateTime.now(), updater="BOB",
+			updateTime=LocalDateTime.now(), repositoryPath="/desktop/", noteContent="<html><\\html>",
 				category="my cate", title= "my title")
 		var str = temp.getInsertBraStr()
 		var str2 = temp.getUpdateStr()

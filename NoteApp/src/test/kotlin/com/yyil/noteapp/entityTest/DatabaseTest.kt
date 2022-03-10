@@ -14,15 +14,15 @@ internal class DatabaseTest {
 		var check: Boolean
 		
 		// where create, don't assign note_content_id field
-		val temp = NoteContentEntity(creator="IVAN", create_time= LocalDateTime.now(), updater="BOB",
-			update_time= LocalDateTime.now(), repository_path="/desktop/", note_content="<html><\\html>",
+		val temp = NoteContentEntity(creator="IVAN", createTime= LocalDateTime.now(), updater="BOB",
+			updateTime= LocalDateTime.now(), repositoryPath="/desktop/", noteContent="<html><\\html>",
 			category="my cate", title= "my title")
 		check = Connect.createContent(temp)
 		println("create check: $check")
 		
 		// where update, HAVE TO set note_content_id field
-		val temp2 = NoteContentEntity(note_content_id = 4, creator="IVAN", create_time= LocalDateTime.now(), updater="BOB",
-			update_time= LocalDateTime.now(), repository_path="/desktop/", note_content="update the db with entity",
+		val temp2 = NoteContentEntity(noteContentId = 4, creator="IVAN", createTime= LocalDateTime.now(), updater="BOB",
+			updateTime= LocalDateTime.now(), repositoryPath="/desktop/", noteContent="update the db with entity",
 			category="my cate", title= "my title")
 		check = Connect.updateContent(temp2)
 		println("update check: $check")

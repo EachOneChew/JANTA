@@ -20,13 +20,13 @@ import java.time.LocalDateTime
  * ALL FUNCTIONS ARE FOR SQL
  */
 data class NoteContentEntity (
-	var note_content_id: Int? = null,
+	var noteContentId: Int? = null,
 	var creator: String? = null,
-	var create_time: LocalDateTime? = null,
+	var createTime: LocalDateTime? = null,
 	var updater: String? = null,
-	var update_time: LocalDateTime? = null,
-	var repository_path: String? = null,
-	var note_content: String? = null,
+	var updateTime: LocalDateTime? = null,
+	var repositoryPath: String? = null,
+	var noteContent: String? = null,
 	var category: String? = null,
 	var title: String? = null
 ) {
@@ -39,19 +39,19 @@ data class NoteContentEntity (
 			}
 			braStr = "CATEGORY$braStr"
 		}
-		if (note_content != null) {
+		if (noteContent != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
 			braStr = "NOTE_CONTENT$braStr"
 		}
-		if (repository_path != null) {
+		if (repositoryPath != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
 			braStr = "REPOSITORY_PATH$braStr"
 		}
-		if (update_time != null) {
+		if (updateTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
@@ -63,7 +63,7 @@ data class NoteContentEntity (
 			}
 			braStr = "UPDATER$braStr"
 		}
-		if (create_time != null) {
+		if (createTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
@@ -88,23 +88,23 @@ data class NoteContentEntity (
 			}
 			braStr = "CATEGORY = \"$category\"$braStr"
 		}
-		if (note_content != null) {
+		if (noteContent != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "NOTE_CONTENT = \"$note_content\"$braStr"
+			braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
 		}
-		if (repository_path != null) {
+		if (repositoryPath != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "REPOSITORY_PATH = \"$repository_path\"$braStr"
+			braStr = "REPOSITORY_PATH = \"$repositoryPath\"$braStr"
 		}
-		if (update_time != null) {
+		if (updateTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "UPDATE_TIME = \"$update_time\"$braStr"
+			braStr = "UPDATE_TIME = \"$updateTime\"$braStr"
 		}
 		if (updater != null) {
 			if (braStr != "") {
@@ -112,11 +112,11 @@ data class NoteContentEntity (
 			}
 			braStr = "UPDATER = \"$updater\"$braStr"
 		}
-		if (create_time != null) {
+		if (createTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "CREATE_TIME = \"$create_time\"$braStr"
+			braStr = "CREATE_TIME = \"$createTime\"$braStr"
 		}
 		if (creator != null) {
 			if (braStr != "") {
@@ -137,23 +137,23 @@ data class NoteContentEntity (
 			}
 			braStr = "CATEGORY = \"$category\"$braStr"
 		}
-		if (note_content != null) {
+		if (noteContent != null) {
 			if (braStr != "") {
 				braStr = "AND $braStr"
 			}
-			braStr = "NOTE_CONTENT = \"$note_content\"$braStr"
+			braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
 		}
-		if (repository_path != null) {
+		if (repositoryPath != null) {
 			if (braStr != "") {
 				braStr = "AND $braStr"
 			}
-			braStr = "REPOSITORY_PATH = \"$repository_path\"$braStr"
+			braStr = "REPOSITORY_PATH = \"$repositoryPath\"$braStr"
 		}
-		if (update_time != null) {
+		if (updateTime != null) {
 			if (braStr != "") {
 				braStr = "AND $braStr"
 			}
-			braStr = "UPDATE_TIME = \"$update_time\"$braStr"
+			braStr = "UPDATE_TIME = \"$updateTime\"$braStr"
 		}
 		if (updater != null) {
 			if (braStr != "") {
@@ -161,11 +161,11 @@ data class NoteContentEntity (
 			}
 			braStr = "UPDATER = \"$updater\"$braStr"
 		}
-		if (create_time != null) {
+		if (createTime != null) {
 			if (braStr != "") {
 				braStr = "AND $braStr"
 			}
-			braStr = "CREATE_TIME = \"$create_time\"$braStr"
+			braStr = "CREATE_TIME = \"$createTime\"$braStr"
 		}
 		if (creator != null) {
 			if (braStr != "") {
@@ -186,23 +186,23 @@ data class NoteContentEntity (
 			}
 			braStr = "\"$category\"" + braStr
 		}
-		if (note_content != null) {
+		if (noteContent != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "\"$note_content\"" + braStr
+			braStr = "\"$noteContent\"" + braStr
 		}
-		if (repository_path != null) {
+		if (repositoryPath != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "\"$repository_path\"" + braStr
+			braStr = "\"$repositoryPath\"" + braStr
 		}
-		if (update_time != null) {
+		if (updateTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "\"$update_time\"" + braStr
+			braStr = "\"$updateTime\"" + braStr
 		}
 		if (updater != null) {
 			if (braStr != "") {
@@ -210,11 +210,11 @@ data class NoteContentEntity (
 			}
 			braStr = "\"$updater\"" + braStr
 		}
-		if (create_time != null) {
+		if (createTime != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "\"$create_time\"" + braStr
+			braStr = "\"$createTime\"" + braStr
 		}
 		if (creator != null) {
 			if (braStr != "") {
