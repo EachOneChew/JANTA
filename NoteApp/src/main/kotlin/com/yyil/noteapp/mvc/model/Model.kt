@@ -10,6 +10,8 @@ class Model {
         "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
     )
 
+    var count = 0
+
     fun handleNoteSelect(index: Int) {
         if (index < tempContent.size) {
             tinyMCE.selection = tempContent[index]
@@ -21,12 +23,31 @@ class Model {
      */
     fun handleModelCall(target: String) {
         when (target) {
-            "annotate" -> doSomething()
+            "addAnnotation" -> {tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection); count ++}
+            "removeAnnotation" -> tinyMCE.selection = removeAnnotation(tinyMCE.selection)
             "label" -> {} // TODO:  ModelCall.LABEL
         }
     }
 
-    fun doSomething() {
-        tinyMCE.selection = "HAH, YOU PRESSED ANNOTATE"
+    fun insertAnnotation (annotation: String, selection: String): String {
+        val openTag = "<span title=\"$annotation\">"
+        val closeTag = "</span>"
+        var result = selection.replace(">(?=[^<])".toRegex(), ">$openTag")
+            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
+
+        if (selection[0] != '<') {
+            result = "$openTag$result"
+        }
+
+        if (selection[selection.length - 1] != '>') {
+            result = "$result$closeTag"
+        }
+
+        return result
+    }
+
+    fun removeAnnotation (selection: String) : String {
+         return selection.replace("(<span [^>]+>)".toRegex(), "")
+            .replace("(</span>)".toRegex(), "")
     }
 }
