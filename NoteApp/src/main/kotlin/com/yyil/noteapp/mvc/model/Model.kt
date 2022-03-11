@@ -4,6 +4,12 @@ import com.yyil.noteapp.TinyMCEInterface
 import javafx.collections.FXCollections
 
 class Model {
+    val lightTheme = "oxide"
+    val lightContent = "default"
+    val darkTheme = "dark-mode"
+    val darkContent = "dark-mode"
+    var currentTheme = lightTheme
+
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val tempContent = FXCollections.observableArrayList(
@@ -14,7 +20,7 @@ class Model {
 
     fun handleNoteSelect(index: Int) {
         if (index < tempContent.size) {
-            tinyMCE.selection = tempContent[index]
+            tinyMCE.content = tempContent[index]
         }
     }
 
@@ -56,5 +62,10 @@ class Model {
         return selection
             .replace("(<span [^>]+>)".toRegex(), "")
             .replace("(</span>)".toRegex(), "")
+    }
+
+    fun handleSwitchTheme(theme: String, content: String) {
+        tinyMCE.appearance = Pair(theme, content)
+        currentTheme = theme
     }
 }

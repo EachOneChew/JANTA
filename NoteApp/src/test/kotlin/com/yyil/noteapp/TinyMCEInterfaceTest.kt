@@ -131,30 +131,16 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
     }
 
     /**
-     * Should be able to change editor skin through interface
+     * Should be able to change editor appearance through interface
      */
     @Test
-    fun setEditorSkin() {
+    fun setAppearance() {
         interact {
-            tinyMCE!!.skin = testSkin
+            tinyMCE!!.appearance = Pair(testSkin, testContentCSS)
         }
         delayOneSecond()
         interact {
-            assertEquals(testSkin, tinyMCE!!.skin)
-        }
-    }
-
-    /**
-     * Should be able to change editor content css through interface
-     */
-    @Test
-    fun setEditorContentCSS() {
-        interact {
-            tinyMCE!!.contentCSS = testContentCSS
-        }
-        delayOneSecond()
-        interact {
-            assertEquals(testContentCSS, tinyMCE!!.contentCSS)
+            assertEquals(Pair(testSkin, testContentCSS), tinyMCE!!.appearance)
         }
     }
 }

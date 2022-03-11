@@ -27,7 +27,7 @@ class TinyMCEInterface(
     /**
      * Content in the editor as a StringProperty
      */
-    val contentProp: StringProperty = SimpleStringProperty()
+    val contentProp: StringProperty = SimpleStringProperty("")
 
     /**
      * Content in the editor as a String
@@ -50,27 +50,23 @@ class TinyMCEInterface(
         }
 
     /**
-     * "skin" property in editor init function
+     * Pair(skin, content_css) property in editor init function
      * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
      */
-    var skin: String
-        get() = initOptionsObj?.getMember("skin") as String
-        set(newSkin) {
+    var appearance: Pair<String, String>
+        get() = Pair(
+            (initOptionsObj?.getMember("skin") ?: "") as String,
+            (initOptionsObj?.getMember("content_css") ?: "") as String
+        )
+        set(newAppearance: Pair<String, String>) {
+            val (newSkin, newContentCSS) = newAppearance
             initOptionsObj?.setMember("skin", newSkin)
-            destroyEditor()
-            initEditor("CHANGED SKIN TO $newSkin")
-        }
-
-    /**
-     * "content_css" property in editor init function
-     * WARNING: MODIFYING WILL DESTROY AND REINITIALIZE EDITOR
-     */
-    var contentCSS: String
-        get() = initOptionsObj?.getMember("content_css") as String
-        set(newContentCSS) {
             initOptionsObj?.setMember("content_css", newContentCSS)
+
+            editorObj?.call("insertContent", "")
+            val tempContent = content
             destroyEditor()
-            initEditor("CHANGED CONTENT CSS TO $newContentCSS")
+            initEditor(tempContent)
         }
 
     /**
@@ -131,8 +127,8 @@ class TinyMCEInterface(
             handleModelCall(target)
         }
 
-//        fun printDebug(msg : String) {
-//            println(msg)
-//        }
+        fun printDebug(msg : String) {
+            println(msg)
+        }
     }
 }
