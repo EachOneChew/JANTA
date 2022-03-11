@@ -63,7 +63,7 @@ class TinyMCEInterface(
             initOptionsObj?.setMember("skin", newSkin)
             initOptionsObj?.setMember("content_css", newContentCSS)
 
-            editorObj?.call("insertContent", "")
+            forceUpdate()
             val tempContent = content
             destroyEditor()
             initEditor(tempContent)
@@ -93,6 +93,10 @@ class TinyMCEInterface(
                 initEditor(initContent)
             }
         }
+    }
+
+    fun forceUpdate() {
+        editorObj?.call("insertContent", "")
     }
 
     fun initEditor(initContent: String) {

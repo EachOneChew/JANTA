@@ -52,6 +52,7 @@ internal class DatabaseTest {
 
         Connect.query(conn)
         Connect.resetDatabase()
+        Connect.query(conn)
         Connect.close(conn)
     }
 }

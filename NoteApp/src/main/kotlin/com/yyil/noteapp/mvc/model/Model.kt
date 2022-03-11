@@ -2,25 +2,30 @@ package com.yyil.noteapp.mvc.model
 
 import com.yyil.noteapp.TinyMCEInterface
 import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 
 class Model {
+    val tinyMCE = TinyMCEInterface("", ::handleModelCall)
+
+    val notes = retrieveNotes()
+
     val lightTheme = "oxide"
     val lightContent = "default"
     val darkTheme = "dark-mode"
     val darkContent = "dark-mode"
-    var currentTheme = lightTheme
-
-    val tinyMCE = TinyMCEInterface("", ::handleModelCall)
-
-    val tempContent = FXCollections.observableArrayList(
-        "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
-    )
 
     var count = 0
+    var currentTheme = lightTheme
+    var currentIndex: Int? = null
 
-    fun handleNoteSelect(index: Int) {
-        if (index < tempContent.size) {
-            tinyMCE.content = tempContent[index]
+    fun handleNoteSelect(newIndex: Int) {
+        if (newIndex < notes.size) {
+            if (currentIndex != null && currentIndex != newIndex) {
+                tinyMCE.forceUpdate()
+                notes[currentIndex!!] = tinyMCE.content
+            }
+            tinyMCE.content = notes[newIndex]
+            currentIndex = newIndex
         }
     }
 
@@ -67,5 +72,11 @@ class Model {
     fun handleSwitchTheme(theme: String, content: String) {
         tinyMCE.appearance = Pair(theme, content)
         currentTheme = theme
+    }
+
+    fun retrieveNotes(): ObservableList<String> {
+        return FXCollections.observableArrayList(
+            "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
+        )
     }
 }
