@@ -96,7 +96,7 @@ class TinyMCEInterface(
     }
 
     fun forceUpdate() {
-        editorObj?.call("insertContent", "")
+        editorObj?.call("fire", "Change")
     }
 
     fun initEditor(initContent: String) {
