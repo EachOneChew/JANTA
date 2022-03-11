@@ -127,7 +127,7 @@ class TinyMCEInterface(
             handleModelCall(target)
         }
 
-        fun printDebug(msg : String) {
+        fun printDebug(msg: String) {
             println(msg)
         }
     }
