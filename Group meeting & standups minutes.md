@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 2.711 seconds.
+Conversion time: 3.13 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Fri Feb 18 2022 10:11:59 GMT-0800 (PST)
+* Thu Mar 10 2022 18:35:31 GMT-0800 (PST)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -839,3 +839,316 @@ Ivan, Logan, Yixin, Yichuan
     * Insert TinyMCE Webview component into UI text area
 * **Issues**
     * RichTextFX is awful and the demo they made won’t run
+
+**Reading week**
+
+**Things:**
+
+
+
+* Finalized plan for MVC refactoring
+* Cleaned up code for view nodes
+* Coded partial skeleton for MVC
+* Looked deeper into implementation details for labels and annotations
+
+
+# Date: Feb 28  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Sprint 2 planning
+
+**Notes:**
+
+
+
+* Assigned issues and discussed steps moving forward
+
+**Individual:**
+
+N/A
+
+
+# Date: March 2  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Give updates on individual task progress
+* Pair program (?)
+
+**Notes:**
+
+
+
+* TinyMCE doesn’t support free customization, need to make change to JavaFX to match UI
+* WebView interface almost done
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Converting Html and Json
+* **What I am doing today**
+    * Saving the html to a file
+* **Issues**
+    * N/A
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Refactored frontend based on MVC
+* **What I am doing today**
+    * Look into styling with css 
+* **Issues**
+    * N/A
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Looked into label tags a bit
+    * Waiting on TinyMCE MVC implementation
+* **What I am doing today**
+    * Working with Yichuan later on the TinyMCE implementation to help with labels
+* **Issues**
+    * Somewhat blocked by the needed TinyMCE implementation
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Coded WebView Interface
+* **What I am doing today**
+    * Fix bugs
+    * Discuss implementation details with Logan for labels and annotations
+* **Issues**
+    * Weird bugs with interface
+
+
+# Date: March 4  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Continue working on Sprint 2
+
+**Notes:**
+
+
+
+* Yichuan needs to sleep
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Figuring how to save on a mssql
+* **What I am doing today**
+    * Create the database on mssql
+* **Issues**
+    * ???
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Work on UI styling
+* **What I am doing today**
+    * Trying to figure out TinyMCE custom styling
+* **Issues**
+    * How to add custom skin to the project
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Looked into the label and annotation further
+* **What I am doing today**
+    * Looking over the TinyMCE changes and looking to being to implement it
+* **Issues**
+    * Our idea for how to implement labels and annotations could be difficult based on how tags work in TinyMCE
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Finishing touches on TinyMCEInterface
+* **What I am doing today**
+    * Adding extra properties requested by others
+* **Issues**
+    * Concurrency jank
+
+
+# Date: March 7 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Continue working
+
+**Notes:**
+
+
+
+* Business as usual, Yichuan needs to meet with people to sync up on interface behaviour
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Saving the content
+* **What I am doing today**
+    * Trying to make mssql to work
+* **Issues**
+    * Mssql works fine locally, but it cannot connect to idea (TCP/IP) error
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Work on UI styling
+* **What I am doing today**
+    * Add trigger for dark / light mode switching
+* **Issues**
+    * Todo: Add toolbar? (save, setting button)
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Began making annotation functionality and adding unit tests
+* **What I am doing today**
+    * Rebasing from the mvc branch and add the other functions
+    * Get the functions to integrate correctly with updating the html
+* **Issues**
+    * The rebase is going to have a bunch of merge conflicts
+    * I might need to use REGEX
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Worked on MVC refactor code
+* **What I am doing today**
+    * Finishing MVC refactor
+* **Issues**
+    * Bridge object from JS to Java is behaving strangely
+
+
+# Date: March 9 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Nothing new
+
+**Notes:**
+
+
+
+* Need to prepare for Friday demo
+* Unit test setup is finished, we can all write unit tests properly now
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Give up on mssql, and sqlite works fine on the idea!
+* **What I am doing today**
+    * Change the parameter of saving and updating to an entity, which I will create shortly
+* **Issues**
+    * ???
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * UI redesign and update, UI dark mode
+* **What I am doing today**
+    * UI improvement (resizing window), UI dark mode
+* **Issues**
+    * N/A
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Reworked the insert annotation to use regex and made it cleaner
+* **What I am doing today**
+    * Getting remove annotation to work and hopefully integrating it and getting the unit tests to work in the correct class
+* **Issues**
+    * Regex is annoying
+    * Unit tests don’t like web view :( **THEY DO NOW - Yichuan**
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Fixed MVC refactor bugs
+    * Set up unit testing with TestFX
+* **What I am doing today**
+    * Write unit tests for TinyMCEInterface
+* **Issues**
+    * COMPLETE AND UTTER SUFFERING DEALING WITH CONCURRENCY BUT ITS ALL GOOD NOW
