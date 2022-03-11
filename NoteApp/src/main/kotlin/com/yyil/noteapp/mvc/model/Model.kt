@@ -23,9 +23,9 @@ class Model {
             if (currentIndex != null && currentIndex != newIndex) {
                 tinyMCE.forceUpdate()
                 notes[currentIndex!!] = tinyMCE.content
+                tinyMCE.content = notes[newIndex]
+                currentIndex = newIndex
             }
-            tinyMCE.content = notes[newIndex]
-            currentIndex = newIndex
         }
     }
 
