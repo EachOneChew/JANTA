@@ -51,8 +51,6 @@ internal class DatabaseTest {
         Connect.deleteContent(temp4)
 
         Connect.query(conn)
-        Connect.resetDatabase()
-        Connect.query(conn)
         Connect.close(conn)
     }
 }
