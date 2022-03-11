@@ -127,7 +127,6 @@ object Connect {
         stmt!!.execute(sql)
     }
 
-
     fun close(conn: Connection?) {
         try {
             if (conn != null) {
@@ -137,5 +136,25 @@ object Connect {
         } catch (ex: SQLException) {
             println(ex.message)
         }
+    }
+
+    /**
+     * Clears and re-builds table
+     */
+    fun resetDatabase() {
+        val sql =
+            "DROP TABLE IF EXISTS \"main\".\"NOTE_CONTENT\";\n" +
+            "CREATE TABLE \"NOTE_CONTENT\" (\n" +
+            "\"NOTE_CONTENT_ID\"  INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\"CREATOR\"  varchar(200),\n" +
+            "\"CREATE_TIME\"  timestamp DEFAULT current_timestamp,\n" +
+            "\"UPDATER\"  varchar(200),\n" +
+            "\"UPDATE_TIME\"  timestamp DEFAULT current_timestamp,\n" +
+            "\"REPOSITORY_PATH\"  varchar(200),\n" +
+            "\"NOTE_CONTENT\"  text,\n" +
+            "\"CATEGORY\"  varchar(200),\n" +
+            "\"TITLE\"  varchar(200)\n" +
+            ");"
+        stmt!!.execute(sql)
     }
 }

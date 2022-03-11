@@ -2,7 +2,6 @@ package com.yyil.noteapp.entity
 
 import java.time.LocalDateTime
 
-
 /**
  * note_content_id: Int?
  *      system created id (primary key)
