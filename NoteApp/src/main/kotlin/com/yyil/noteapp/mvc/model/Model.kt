@@ -20,9 +20,11 @@ class Model {
 
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size) {
-            if (currentIndex != null && currentIndex != newIndex) {
-                tinyMCE.forceUpdate()
-                notes[currentIndex!!] = tinyMCE.content
+            if (currentIndex != newIndex) {
+                if (currentIndex != null) {
+                    tinyMCE.forceUpdate()
+                    notes[currentIndex!!] = tinyMCE.content
+                }
                 tinyMCE.content = notes[newIndex]
                 currentIndex = newIndex
             }
