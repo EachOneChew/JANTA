@@ -19,7 +19,7 @@ internal class DatabaseTest {
             updateTime = LocalDateTime.now(), repositoryPath = "/desktop/", noteContent = "<html><\\html>",
             category = "my cate", title = "my title"
         )
-        check = Connect.createContent(temp)
+        check = Connect.createContent(conn, temp)
         println("create check: $check")
 
         // where update, HAVE TO set note_content_id field
@@ -28,7 +28,7 @@ internal class DatabaseTest {
             updateTime = LocalDateTime.now(), repositoryPath = "/desktop/", noteContent = "update the db with entity",
             category = "my cate", title = "my title"
         )
-        check = Connect.updateContent(temp2)
+        check = Connect.updateContent(conn, temp2)
         println("update check: $check")
 
         // find
@@ -37,7 +37,7 @@ internal class DatabaseTest {
         // conditions on fields are possible, and could be done if required
         val temp3 = NoteContentEntity(creator = "IVAN")
 
-        val result: ResultSet? = Connect.findContent(temp3)
+        val result: ResultSet? = Connect.findContent(conn, temp3)
         println("All notes:")
         while (result?.next() == true) {
             val noteId = result.getInt("NOTE_CONTENT_ID")
@@ -48,8 +48,8 @@ internal class DatabaseTest {
         }
 
         val temp4 = NoteContentEntity(category = "my cate")
-        Connect.deleteContent(temp4)
-
+        Connect.deleteContent(conn, temp4)
+        Connect.resetContent(conn)
         Connect.query(conn)
         Connect.close(conn)
     }
