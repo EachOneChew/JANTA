@@ -3,7 +3,7 @@ package com.yyil.noteapp.entity
 import java.time.LocalDateTime
 
 /**
- * note_content_id: Int?
+ * setting_id: Int?
  *      system created id (primary key)
  *      Don't assign this field while creating a new note
  *
@@ -13,43 +13,31 @@ import java.time.LocalDateTime
  * update_time: LocalDateTime?
  *      system default current time
  *
+ * name: String?
+ *      the setting name
  *
- * note_content: String?
- *      the main html field
+ * value: String?
+ *      the setting value
  *
  * ALL FUNCTIONS ARE FOR SQL
  */
-data class NoteContentEntity(
-    var noteContentId: Int? = null,
-    var creator: String? = null,
-    var createTime: LocalDateTime? = null,
-    var updater: String? = null,
-    var updateTime: LocalDateTime? = null,
-	var repositoryPath: String? = null,
-    var noteContent: String? = null,
-    var category: String? = null,
-    var title: String? = null
+data class SettingEntity(
+	var settingId: Int? = null,
+	var creator: String? = null,
+	var createTime: LocalDateTime? = null,
+	var updater: String? = null,
+	var updateTime: LocalDateTime? = null,
+	var name: String? = null,
+	var value: String? = null
 ) : SQLEntity() {
 	override fun getInsertBraStr(): String {
 		var braStr: String
-		braStr = if (title != null) "TITLE" else ""
-		if (category != null) {
+		braStr = if (value != null) "VALUE" else ""
+		if (name != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "CATEGORY$braStr"
-		}
-		if (noteContent != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "NOTE_CONTENT$braStr"
-		}
-		if (repositoryPath != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "REPOSITORY_PATH$braStr"
+			braStr = "NAME$braStr"
 		}
 		if (updateTime != null) {
 			if (braStr != "") {
@@ -81,24 +69,12 @@ data class NoteContentEntity(
 	
 	override fun getUpdateStr(): String {
 		var braStr: String
-		braStr = if (title != null) "TITLE = \"$title\"" else ""
-		if (category != null) {
+		braStr = if (value != null) "VALUE = \"$value\"" else ""
+		if (name != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "CATEGORY = \"$category\"$braStr"
-		}
-		if (noteContent != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
-		}
-		if (repositoryPath != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "REPOSITORY_PATH = \"$repositoryPath\"$braStr"
+			braStr = "NAME = \"$name\"$braStr"
 		}
 		if (updateTime != null) {
 			if (braStr != "") {
@@ -130,24 +106,12 @@ data class NoteContentEntity(
 	
 	override fun getConStr(): String {
 		var braStr: String
-		braStr = if (title != null) "TITLE = \"$title\"" else ""
-		if (category != null) {
+		braStr = if (value != null) "VALUE = \"$value\"" else ""
+		if (name != null) {
 			if (braStr != "") {
 				braStr = " AND $braStr"
 			}
-			braStr = "CATEGORY = \"$category\"$braStr"
-		}
-		if (noteContent != null) {
-			if (braStr != "") {
-				braStr = " AND $braStr"
-			}
-			braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
-		}
-		if (repositoryPath != null) {
-			if (braStr != "") {
-				braStr = " AND $braStr"
-			}
-			braStr = "REPOSITORY_PATH = \"$repositoryPath\"$braStr"
+			braStr = "NAME = \"$name\"$braStr"
 		}
 		if (updateTime != null) {
 			if (braStr != "") {
@@ -179,24 +143,12 @@ data class NoteContentEntity(
 	
 	override fun getInsertStr(): String {
 		var braStr: String
-		braStr = if (title != null) "\"$title\"" else ""
-		if (category != null) {
+		braStr = if (value != null) "\"$value\"" else ""
+		if (name != null) {
 			if (braStr != "") {
 				braStr = ", $braStr"
 			}
-			braStr = "\"$category\"" + braStr
-		}
-		if (noteContent != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "\"$noteContent\"" + braStr
-		}
-		if (repositoryPath != null) {
-			if (braStr != "") {
-				braStr = ", $braStr"
-			}
-			braStr = "\"$repositoryPath\"" + braStr
+			braStr = "\"$name\"" + braStr
 		}
 		if (updateTime != null) {
 			if (braStr != "") {
@@ -227,19 +179,18 @@ data class NoteContentEntity(
 	}
 	
 	override fun getId(): Int? {
-		return noteContentId
+		return settingId
 	}
 	
 	override fun getIdColumn(): String {
-		return "NOTE_CONTENT_ID"
+		return "SETTING_ID"
 	}
 	
 	override fun getFullColumn(): String {
-		return "NOTE_CONTENT_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, REPOSITORY_PATH, NOTE_CONTENT, CATEGORY, TITLE"
+		return "SETTING_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, NAME, VALUE"
 	}
 	
 	override fun getDbName(): String {
-		return "\"MAIN\".\"NOTE_CONTENT\""
+		return "\"MAIN\".\"NOTE_SETTING\""
 	}
 }
-

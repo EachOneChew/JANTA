@@ -15,7 +15,8 @@ class NoteContentEntityTest {
         var str = temp.getInsertBraStr()
         var str2 = temp.getUpdateStr()
         var str3 = temp.getInsertStr()
+        var str4 = temp.getConStr()
 
-        println("getInsertBraStr:\n$str\ngetUpdateStr:\n$str2\ngetInsertStr:\n$str3")
+        println("getInsertBraStr:\n$str\ngetUpdateStr:\n$str2\ngetInsertStr:\n$str3\ngetConstr:$str4\n")
     }
 }
