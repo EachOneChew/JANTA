@@ -3,7 +3,7 @@
 }
 
 #note-repo {
-    -fx-min-width: 50.0
+    -fx-min-width: 80.0;
 }
 
 .button {
@@ -46,9 +46,3 @@
     -fx-background-color: #a1a1a1;
     -fx-text-fill: white;
  }
-
-/* Can't modify bg color
-#test-text {
-    -fx-fill: white;
-}
-*/

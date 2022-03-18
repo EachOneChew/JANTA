@@ -59,7 +59,7 @@ class NoteApplication : Application() {
         stage.title = WindowSettings.WINDOW_TITLE
         stage.icons.add(
             Image(
-                NoteApplication::class.java.getResource(ComponentConstant.TITLE_BAR_ICON).toString()
+                NoteApplication::class.java.getResource(ComponentConstant.TITLE_BAR_ICON_PATH).toString()
             )
         )
         stage.show()

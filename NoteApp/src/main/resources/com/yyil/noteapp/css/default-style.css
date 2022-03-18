@@ -3,5 +3,20 @@
 }
 
 #note-repo {
-    -fx-min-width: 50.0
+    -fx-min-width: 80.0;
+}
+
+.menu-button {
+    -fx-min-width: 20.0;
+    -fx-max-width: 20.0;
+    -fx-pref-width: 20.0;
+    -fx-background-color: transparent;
+}
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
 }
