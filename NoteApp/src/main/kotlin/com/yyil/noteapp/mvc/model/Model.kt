@@ -34,10 +34,10 @@ class Model {
     /**
      * Example for Logan on how to receive event from interface
      */
-    fun handleModelCall(target: String) {
+    fun handleModelCall(target: String, arg: String) {
         when (target) {
             "addAnnotation" -> {
-                tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection);
+                tinyMCE.selection = insertAnnotation(arg, tinyMCE.selection);
                 count++
             }
             "removeAnnotation" -> {

@@ -6,7 +6,7 @@
     window.initOptions = {
         skin: 'oxide',
         content_css: 'default'
-    }
+    };
 
     window.destroyFunction = function() {
         const bridge = window.bridgeObj;
@@ -46,6 +46,13 @@
 
             setup: function(ed) {
                 const bridge = window.bridgeObj;
+                const openAnnotateForm = function() {
+                    if (ed.selection.getContent()) {
+                        ed.fire('contexttoolbar-show', {
+                            toolbarKey: 'annotate-form'
+                        });
+                    }
+                };
 
                 ed.on('init', function() {
                     // triggers SetContent event and updates interface content
@@ -60,25 +67,45 @@
                 ed.ui.registry.addButton('addAnnotateButton', {
                     icon: 'edit-block',
                     tooltip: 'Add annotation',
-                    onAction: function (_) {
-                        bridge.callModel('addAnnotation');
+                    onAction: function(_) {
+                        openAnnotateForm();
                     }
                 });
 
                 ed.ui.registry.addButton('removeAnnotateButton', {
-                    icon: 'edit-block',
+                    icon: 'cut',
                     tooltip: 'Remove annotation',
-                    onAction: function (_) {
-                        bridge.callModel('removeAnnotation');
+                    onAction: function(_) {
+                        bridge.callModel('removeAnnotation', '');
                     }
                 });
 
                 ed.ui.registry.addButton('labelButton', {
                     icon: 'character-count',
                     tooltip: 'Label',
-                    onAction: function (_) {
-                        bridge.callModel('label');
+                    onAction: function(_) {
+                        bridge.callModel('label', '');
                     }
+                });
+
+                ed.ui.registry.addContextForm('annotate-form', {
+                    label: 'Annotate',
+                    initValue: function() {
+                        return '';
+                    },
+                    commands: [
+                        {
+                            type: 'contextformbutton',
+                            icon: 'checkmark',
+                            tooltip: 'Submit',
+                            primary: true,
+                            onAction: function(formApi) {
+                                var value = formApi.getValue();
+                                bridge.callModel('addAnnotation', value);
+                                formApi.hide();
+                            }
+                        },
+                    ]
                 });
             }
         });

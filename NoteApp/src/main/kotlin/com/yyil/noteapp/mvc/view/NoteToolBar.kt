@@ -10,7 +10,7 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 
-class NoteToolBar : View {
+class NoteToolBar: View {
 
     private val noteListIcon = ImageView()
     val noteListButton = ToggleButton("", noteListIcon)
