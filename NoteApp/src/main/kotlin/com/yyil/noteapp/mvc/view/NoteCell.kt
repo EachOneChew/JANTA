@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.Priority
-import javafx.util.Callback
 
 
 class NoteCell : ListCell<Note>(){
@@ -42,6 +41,8 @@ class NoteCell : ListCell<Note>(){
 
         hbox.alignment = Pos.CENTER
         hbox.children.addAll(label, pane, dropDown)
+
+        label.id = ComponentConstant.CELL_LABEL_ID
     }
 
     override fun updateItem(item: Note?, empty: Boolean) {

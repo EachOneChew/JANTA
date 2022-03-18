@@ -23,9 +23,9 @@ class Model {
             if (currentIndex != newIndex) {
                 if (currentIndex != null) {
                     tinyMCE.forceUpdate()
-                    notes[currentIndex!!] = tinyMCE.content
+                    notes[currentIndex!!].content = tinyMCE.content
                 }
-                tinyMCE.content = notes[newIndex]
+                tinyMCE.content = notes[newIndex].content
                 currentIndex = newIndex
             }
         }
@@ -76,9 +76,11 @@ class Model {
         currentTheme = theme
     }
 
-    fun retrieveNotes(): ObservableList<String> {
+    fun retrieveNotes(): ObservableList<Note> {
         return FXCollections.observableArrayList(
-            "You have opened Note1!", "Note2 Lorem Ipsum", "Note3 Huak Huak Huak", "Note4 READING WEAEK SOON"
+            Note(0, "Note 1", "NOTE 1 CONTENT~"),
+            Note(1, "Note 2", "note 2 content."),
+            Note(2, "Note 3", "This is Note 3--")
         )
     }
 }

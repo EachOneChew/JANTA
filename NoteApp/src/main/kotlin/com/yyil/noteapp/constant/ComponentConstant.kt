@@ -12,7 +12,7 @@ object ComponentConstant {
     const val TEST_SCROLL_PANE_HEIGHT = 100.0
 
     const val TEST_TEXT_ID = "test-text"
-    const val NOTE_REPO_ID = "note-repo"
+    const val CELL_LABEL_ID = "cell-label"
 
     const val NOTE_LIST_ICON_PATH = "icons/folder.png"
     const val SAVE_ICON_PATH = "icons/save.png"
