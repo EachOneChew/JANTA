@@ -33,17 +33,31 @@
 
                 plugins: ["lists"],
 
+                valid_children: "-span[span|strong|em|sup|sub|code]",
+
+                formats: {
+                    annotation: {
+                        inline: "span",
+                        attributes: {
+                            class: "annotation",
+                        },
+                        exact: true,
+                        merge_siblings: false,
+                    },
+                },
+
                 toolbar: `
-                        undo redo |
-                        styleselect |
-                        bold italic underline strikethrough |
-                        alignleft aligncenter alignright alignjustify |
-                        bullist numlist outdent indent |
-                        addAnnotateButton removeAnnotateButton labelButton
-                    `,
+                                undo redo |
+                                styleselect |
+                                bold italic underline strikethrough |
+                                alignleft aligncenter alignright alignjustify |
+                                bullist numlist outdent indent |
+                                addAnnotateButton removeAnnotateButton labelButton
+                            `,
 
                 setup: function (ed) {
                     const bridge = window.bridgeObj;
+
                     const openAnnotateForm = function () {
                         if (ed.selection.getContent()) {
                             ed.fire("contexttoolbar-show", {
@@ -52,29 +66,25 @@
                         }
                     };
 
+                    var isAnnotation = function (node) {
+                        return node.className === "annotation";
+                    };
+
                     ed.on("init", function () {
                         // triggers SetContent event and updates interface content
                         ed.setContent(initContent);
                         bridge.setObjs(ed);
                     });
 
-                    ed.on("Change SetContent", function (e) {
+                    ed.on("Change SetContent FormatApply FormatRemove", function (e) {
                         bridge.setInterfaceContent(ed.getContent());
                     });
 
                     ed.ui.registry.addButton("addAnnotateButton", {
                         icon: "edit-block",
-                        tooltip: "Add annotation",
+                        tooltip: "Annotate",
                         onAction: function (_) {
                             openAnnotateForm();
-                        },
-                    });
-
-                    ed.ui.registry.addButton("removeAnnotateButton", {
-                        icon: "cut",
-                        tooltip: "Remove annotation",
-                        onAction: function (_) {
-                            bridge.callModel("removeAnnotation", "");
                         },
                     });
 
@@ -89,17 +99,37 @@
                     ed.ui.registry.addContextForm("annotate-form", {
                         label: "Annotate",
                         initValue: function () {
-                            return "";
+                            if (isAnnotation(ed.selection.getNode())) {
+                                return ed.selection.getNode().title;
+                            } else {
+                                return "";
+                            }
                         },
+                        predicate: isAnnotation,
                         commands: [
                             {
                                 type: "contextformbutton",
                                 icon: "checkmark",
-                                tooltip: "Submit",
+                                tooltip: "Add",
                                 primary: true,
                                 onAction: function (formApi) {
                                     var value = formApi.getValue();
-                                    bridge.callModel("addAnnotation", value);
+                                    if (!isAnnotation(ed.selection.getNode())) {
+                                        for (k in ed.formatter.get()) {
+                                            ed.formatter.remove(k);
+                                        }
+                                        ed.formatter.apply("annotation");
+                                    }
+                                    // CALL MODEL AND REPLACE TEXT HERE
+                                    formApi.hide();
+                                },
+                            },
+                            {
+                                type: "contextformbutton",
+                                icon: "close",
+                                tooltip: "Remove",
+                                onAction: function (formApi) {
+                                    ed.formatter.remove("annotation");
                                     formApi.hide();
                                 },
                             },
