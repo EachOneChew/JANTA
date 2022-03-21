@@ -2,9 +2,13 @@ package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
+import com.yyil.noteapp.mvc.controller.NoteCellController
 import com.yyil.noteapp.mvc.model.Note
 import javafx.geometry.Pos
-import javafx.scene.control.*
+import javafx.scene.control.Label
+import javafx.scene.control.ListCell
+import javafx.scene.control.MenuButton
+import javafx.scene.control.MenuItem
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
@@ -12,11 +16,12 @@ import javafx.scene.layout.Pane
 import javafx.scene.layout.Priority
 
 
-class NoteCell : ListCell<Note>(){
+class NoteCell : ListCell<Note>() {
 
-    var model = Note(-1, "")
+    var note = Note(-1, "")
+    lateinit var controller: NoteCellController
 
-    val hbox = HBox()
+    private val hbox = HBox()
     private var label: Label = Label()
     private val pane = Pane()
     private var dropDown = MenuButton()
@@ -53,7 +58,7 @@ class NoteCell : ListCell<Note>(){
         } else {
             label.text = item.title
             graphic = hbox
-            model = item
+            note = item
         }
     }
 

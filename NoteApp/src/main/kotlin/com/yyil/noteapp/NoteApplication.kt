@@ -1,10 +1,12 @@
 package com.yyil.noteapp
 
 import com.yyil.noteapp.constant.ComponentConstant
+import com.yyil.noteapp.mvc.controller.LabelListController
 import com.yyil.noteapp.mvc.controller.NoteAreaController
 import com.yyil.noteapp.mvc.controller.NoteRepositoryController
 import com.yyil.noteapp.mvc.controller.NoteToolBarController
 import com.yyil.noteapp.mvc.model.Model
+import com.yyil.noteapp.mvc.view.LabelList
 import com.yyil.noteapp.mvc.view.NoteArea
 import com.yyil.noteapp.mvc.view.NoteRepository
 import com.yyil.noteapp.mvc.view.NoteToolBar
@@ -26,12 +28,14 @@ class NoteApplication : Application() {
     var noteToolBar = NoteToolBar()
     var noteArea = NoteArea(model.tinyMCE.webView)
     val noteRepository = NoteRepository()
+    val labelList = LabelList()
 
     val noteToolBarController = NoteToolBarController(
-        model, noteToolBar, noteRepository
+        model, noteToolBar, noteRepository, labelList
     )
     var noteAreaController = NoteAreaController(model, noteArea)
-    val noteRepositoryController: NoteRepositoryController = NoteRepositoryController(model, noteRepository)
+    val noteRepositoryController = NoteRepositoryController(model, noteRepository)
+    val labelListController = LabelListController(model, labelList)
 
     lateinit var defaultStyle: String
     lateinit var darkModeStyle: String
@@ -46,6 +50,7 @@ class NoteApplication : Application() {
 
         baseUI.children.add(noteToolBar.base)
         baseUI.children.add(noteRepository.base)
+        baseUI.children.add(labelList.base)
         baseUI.children.add(noteArea.base)
         baseUI.fillHeightProperty().set(true)
 

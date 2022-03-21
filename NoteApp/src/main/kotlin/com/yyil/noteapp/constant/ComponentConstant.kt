@@ -19,4 +19,7 @@ object ComponentConstant {
     const val THEME_ICON_PATH = "icons/theme.png"
     const val TITLE_BAR_ICON_PATH = "icons/note.png"
     const val DOTS_ICON_PATH = "icons/dots.png"
+    const val LABEL_ICON_PATH = "icons/label.png"
+    const val SEARCH_ICON_PATH = "icons/search.png"
+    const val CLEAR_ICON_PATH = "icons/clear.png"
 }

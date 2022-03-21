@@ -1,6 +1,5 @@
 package com.yyil.noteapp.mvc.view
 
-import com.yyil.noteapp.constant.ComponentConstant
 import com.yyil.noteapp.mvc.model.Note
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
@@ -22,6 +21,5 @@ class NoteRepository : View {
         base.isManaged = false
 
     }
-
 
 }

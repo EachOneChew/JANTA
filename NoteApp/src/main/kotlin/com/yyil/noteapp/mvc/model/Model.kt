@@ -19,7 +19,7 @@ class Model {
     var currentIndex: Int? = null
 
     fun handleNoteSelect(newIndex: Int) {
-        if (newIndex < notes.size) {
+        if (newIndex < notes.size && newIndex >= 0) {
             if (currentIndex != newIndex) {
                 if (currentIndex != null) {
                     tinyMCE.forceUpdate()
@@ -82,5 +82,9 @@ class Model {
             Note(1, "Note 2", "note 2 content."),
             Note(2, "Note 3", "This is Note 3--")
         )
+    }
+
+    fun deleteNote(note: Note) {
+        notes.remove(note)
     }
 }
