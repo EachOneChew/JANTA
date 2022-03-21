@@ -3,86 +3,163 @@
 <head>
     <script src="tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
-    window.initOptions = {
-        skin: 'oxide',
-        content_css: 'default'
-    }
+        window.initOptions = {
+            skin: "oxide",
+            content_css: "default",
+        };
 
-    window.destroyFunction = function() {
-        const bridge = window.bridgeObj;
+        window.destroyFunction = function () {
+            const bridge = window.bridgeObj;
 
-        if (tinymce.activeEditor) {
-            tinymce.activeEditor.destroy();
-        }
-        bridge.setObjs(null);
-        bridge.setInterfaceContent('');
-    };
-
-    window.initFunction = function(initContent) {
-        window.destroyFunction();
-
-        tinymce.init({
-            selector: '#TinyMCEInstance',
-            branding: false,
-            menubar: false,
-            resize: false,
-            height: '100vh',
-
-            skin: window.initOptions.skin,
-            content_css: window.initOptions.content_css,
-
-            plugins: [
-                'lists'
-            ],
-
-            toolbar: `
-                undo redo |
-                styleselect |
-                bold italic underline strikethrough |
-                alignleft aligncenter alignright alignjustify |
-                bullist numlist outdent indent |
-                addAnnotateButton removeAnnotateButton labelButton
-            `,
-
-            setup: function(ed) {
-                const bridge = window.bridgeObj;
-
-                ed.on('init', function() {
-                    // triggers SetContent event and updates interface content
-                    ed.setContent(initContent);
-                    bridge.setObjs(ed);
-                });
-
-                ed.on('Change SetContent', function(e) {
-                    bridge.setInterfaceContent(ed.getContent());
-                });
-
-                ed.ui.registry.addButton('addAnnotateButton', {
-                    icon: 'edit-block',
-                    tooltip: 'Add annotation',
-                    onAction: function (_) {
-                        bridge.callModel('addAnnotation');
-                    }
-                });
-
-                ed.ui.registry.addButton('removeAnnotateButton', {
-                    icon: 'edit-block',
-                    tooltip: 'Remove annotation',
-                    onAction: function (_) {
-                        bridge.callModel('removeAnnotation');
-                    }
-                });
-
-                ed.ui.registry.addButton('labelButton', {
-                    icon: 'character-count',
-                    tooltip: 'Label',
-                    onAction: function (_) {
-                        bridge.callModel('label');
-                    }
-                });
+            if (tinymce.activeEditor) {
+                tinymce.activeEditor.destroy();
             }
-        });
-    };
+            bridge.setObjs(null);
+            bridge.setInterfaceContent("");
+        };
+
+        window.initFunction = function (initContent) {
+            window.destroyFunction();
+
+            tinymce.init({
+                selector: "#TinyMCEInstance",
+                branding: false,
+                menubar: false,
+                resize: false,
+                height: "100vh",
+
+                skin: window.initOptions.skin,
+                content_css: [
+                    window.initOptions.content_css,
+                    "com/yyil/noteapp/css/extra_styling.css",
+                ],
+
+                plugins: ["lists"],
+
+                custom_elements: "~annotation",
+                valid_children: "-annotation[annotation]",
+
+                formats: {
+                    annotation: {
+                        inline: "annotation",
+                        attributes: {
+                            "data-alt": "%value",
+                        },
+                        exact: true,
+                        merge_siblings: false,
+                    },
+                },
+
+                toolbar: `
+                                undo redo |
+                                styleselect |
+                                bold italic underline strikethrough |
+                                alignleft aligncenter alignright alignjustify |
+                                bullist numlist outdent indent |
+                                addAnnotateButton removeAnnotateButton labelButton
+                            `,
+
+                setup: function (ed) {
+                    const bridge = window.bridgeObj;
+
+                    const openAnnotateForm = function () {
+                        if (ed.selection.getContent()) {
+                            ed.fire("contexttoolbar-show", {
+                                toolbarKey: "annotate-form",
+                            });
+                        }
+                    };
+
+                    const isRootAnnotation = function (node) {
+                        return node ? node.nodeName.toLowerCase() === "annotation" : false;
+                    };
+
+                    const getAnnotationRoot = function (node) {
+                        while (node && !isRootAnnotation(node)) {
+                            node = node.parentNode;
+                        }
+                        return node;
+                    };
+
+                    const calcAnnotationPredicate = function (node) {
+                        return getAnnotationRoot(node) ? true : false;
+                    };
+
+                    ed.on("init", function () {
+                        // triggers SetContent event and updates interface content
+                        ed.setContent(initContent);
+                        bridge.setObjs(ed);
+                    });
+
+                    ed.on("Change SetContent", function (_) {
+                        bridge.setInterfaceContent(ed.getContent());
+                    });
+
+                    ed.ui.registry.addButton("addAnnotateButton", {
+                        icon: "edit-block",
+                        tooltip: "Annotate",
+                        onAction: function (_) {
+                            openAnnotateForm();
+                        },
+                    });
+
+                    ed.ui.registry.addButton("labelButton", {
+                        icon: "character-count",
+                        tooltip: "Label",
+                        onAction: function (_) {
+                            bridge.callModel("label", "");
+                        },
+                    });
+
+                    ed.ui.registry.addContextForm("annotate-form", {
+                        label: "Annotate",
+                        initValue: function () {
+                            var root = getAnnotationRoot(ed.selection.getNode());
+                            return root ? root.getAttribute("data-alt") : "";
+                        },
+                        position: "selection",
+                        predicate: calcAnnotationPredicate,
+                        commands: [
+                            {
+                                type: "contextformbutton",
+                                icon: "checkmark",
+                                tooltip: "Add",
+                                primary: true,
+                                onAction: function (formApi) {
+                                    var value = formApi.getValue();
+                                    var root = getAnnotationRoot(ed.selection.getNode());
+                                    if (!root) {
+                                        for (k in ed.formatter.get()) {
+                                            ed.formatter.remove(k);
+                                        }
+                                        ed.formatter.apply("annotation", { value: value });
+                                    }
+                                    else {
+                                        root.setAttribute("data-alt", value);
+                                    }
+                                    ed.fire("Change");
+                                    formApi.hide();
+                                },
+                            },
+                            {
+                                type: "contextformbutton",
+                                icon: "close",
+                                tooltip: "Remove",
+                                onAction: function (formApi) {
+                                    var root = getAnnotationRoot(ed.selection.getNode());
+                                    if (root) {
+                                        root.removeAttribute("data-alt");
+                                        ed.formatter.remove("annotation", null, root);
+                                    }
+                                    ed.fire("Change");
+                                    formApi.hide();
+                                },
+                            },
+                        ],
+                    });
+                },
+            });
+        };
     </script>
 </head>
 <body>

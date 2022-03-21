@@ -33,45 +33,46 @@ class Model {
 
     /**
      * Example for Logan on how to receive event from interface
+     * Label args example: ["definition", "Theorem 3.3.1", "label_134752"]
      */
-    fun handleModelCall(target: String) {
+    fun handleModelCall(target: String, arg: String) {
         when (target) {
-            "addAnnotation" -> {
-                tinyMCE.selection = insertAnnotation("yo number:$count", tinyMCE.selection);
-                count++
-            }
-            "removeAnnotation" -> {
-                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
-            }
+//            "setAnnotationTitle" -> {
+//                tinyMCE.selection = insertAnnotation(arg, tinyMCE.selection);
+//                count++
+//            }
+//            "removeAnnotation" -> {
+//                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
+//            }
             "label" -> TODO()
         }
     }
 
-    fun insertAnnotation(annotation: String, selection: String): String {
-        val openTag = "<span title=\"$annotation\">"
-        val closeTag = "</span>"
-        var result = selection
-            .replace(">(?=[^<])".toRegex(), ">$openTag")
-            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
+//    fun insertAnnotation(annotation: String, selection: String): String {
+//        val openTag = "<span title=\"$annotation\">"
+//        val closeTag = "</span>"
+//        var result = selection
+//            .replace(">(?=[^<])".toRegex(), ">$openTag")
+//            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
+//
+//        if (selection[0] != '<') {
+//            result = "$openTag$result"
+//        }
+//
+//        if (selection[selection.length - 1] != '>') {
+//            result = "$result$closeTag"
+//        }
+//
+//        return result
+//    }
+//
+//    fun removeAnnotation(selection: String): String {
+//        return selection
+//            .replace("(<span [^>]+>)".toRegex(), "")
+//            .replace("(</span>)".toRegex(), "")
+//    }
 
-        if (selection[0] != '<') {
-            result = "$openTag$result"
-        }
-
-        if (selection[selection.length - 1] != '>') {
-            result = "$result$closeTag"
-        }
-
-        return result
-    }
-
-    fun removeAnnotation(selection: String): String {
-        return selection
-            .replace("(<span [^>]+>)".toRegex(), "")
-            .replace("(</span>)".toRegex(), "")
-    }
-
-    fun handleSwitchTheme(theme: String, content: String) {
+    fun switchTheme(theme: String, content: String) {
         tinyMCE.appearance = Pair(theme, content)
         currentTheme = theme
     }

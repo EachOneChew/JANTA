@@ -14,7 +14,7 @@ import netscape.javascript.JSObject
  */
 class TinyMCEInterface(
     initContent: String,
-    private val handleModelCall: (String) -> Unit
+    private val handleModelCall: (String, String) -> Unit
 ) {
     /**
      * The editor is sometimes uninitialized and null
@@ -127,8 +127,8 @@ class TinyMCEInterface(
             contentProp.value = newContent
         }
 
-        fun callModel(target: String) {
-            handleModelCall(target)
+        fun callModel(target: String, arg: String) {
+            handleModelCall(target, arg)
         }
 
         fun printDebug(msg: String) {

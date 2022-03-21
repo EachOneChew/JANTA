@@ -15,7 +15,7 @@ import javafx.scene.image.Image
 import javafx.scene.layout.HBox
 import javafx.stage.Stage
 
-class NoteApplication : Application() {
+class NoteApplication: Application() {
     val model = Model()
 
     lateinit var scene: Scene
