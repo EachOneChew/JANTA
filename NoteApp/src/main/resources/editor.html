@@ -29,17 +29,21 @@
                 height: "100vh",
 
                 skin: window.initOptions.skin,
-                content_css: window.initOptions.content_css,
+                content_css: [
+                    window.initOptions.content_css,
+                    "com/yyil/noteapp/css/extra_styling.css",
+                ],
 
                 plugins: ["lists"],
 
-                valid_children: "-span[span|strong|em|sup|sub|code]",
+                custom_elements: "~annotation",
+                valid_children: "-annotation[annotation]",
 
                 formats: {
                     annotation: {
-                        inline: "span",
+                        inline: "annotation",
                         attributes: {
-                            class: "annotation",
+                            "data-alt": "%value",
                         },
                         exact: true,
                         merge_siblings: false,
@@ -66,8 +70,19 @@
                         }
                     };
 
-                    var isAnnotation = function (node) {
-                        return node.className === "annotation";
+                    const isRootAnnotation = function (node) {
+                        return node ? node.nodeName.toLowerCase() === "annotation" : false;
+                    };
+
+                    const getAnnotationRoot = function (node) {
+                        while (node && !isRootAnnotation(node)) {
+                            node = node.parentNode;
+                        }
+                        return node;
+                    };
+
+                    const calcAnnotationPredicate = function (node) {
+                        return getAnnotationRoot(node) ? true : false;
                     };
 
                     ed.on("init", function () {
@@ -76,7 +91,7 @@
                         bridge.setObjs(ed);
                     });
 
-                    ed.on("Change SetContent FormatApply FormatRemove", function (e) {
+                    ed.on("Change SetContent", function (_) {
                         bridge.setInterfaceContent(ed.getContent());
                     });
 
@@ -99,13 +114,11 @@
                     ed.ui.registry.addContextForm("annotate-form", {
                         label: "Annotate",
                         initValue: function () {
-                            if (isAnnotation(ed.selection.getNode())) {
-                                return ed.selection.getNode().title;
-                            } else {
-                                return "";
-                            }
+                            var root = getAnnotationRoot(ed.selection.getNode());
+                            return root ? root.getAttribute("data-alt") : "";
                         },
-                        predicate: isAnnotation,
+                        position: "selection",
+                        predicate: calcAnnotationPredicate,
                         commands: [
                             {
                                 type: "contextformbutton",
@@ -114,13 +127,17 @@
                                 primary: true,
                                 onAction: function (formApi) {
                                     var value = formApi.getValue();
-                                    if (!isAnnotation(ed.selection.getNode())) {
+                                    var root = getAnnotationRoot(ed.selection.getNode());
+                                    if (!root) {
                                         for (k in ed.formatter.get()) {
                                             ed.formatter.remove(k);
                                         }
-                                        ed.formatter.apply("annotation");
+                                        ed.formatter.apply("annotation", { value: value });
                                     }
-                                    // CALL MODEL AND REPLACE TEXT HERE
+                                    else {
+                                        root.setAttribute("data-alt", value);
+                                    }
+                                    ed.fire("Change");
                                     formApi.hide();
                                 },
                             },
@@ -129,7 +146,12 @@
                                 icon: "close",
                                 tooltip: "Remove",
                                 onAction: function (formApi) {
-                                    ed.formatter.remove("annotation");
+                                    var root = getAnnotationRoot(ed.selection.getNode());
+                                    if (root) {
+                                        root.removeAttribute("data-alt");
+                                        ed.formatter.remove("annotation", null, root);
+                                    }
+                                    ed.fire("Change");
                                     formApi.hide();
                                 },
                             },

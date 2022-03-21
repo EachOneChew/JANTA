@@ -33,6 +33,7 @@ class Model {
 
     /**
      * Example for Logan on how to receive event from interface
+     * Label args example: ["definition", "Theorem 3.3.1", "label_134752"]
      */
     fun handleModelCall(target: String, arg: String) {
         when (target) {
