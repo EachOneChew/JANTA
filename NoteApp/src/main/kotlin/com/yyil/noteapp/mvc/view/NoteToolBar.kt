@@ -10,16 +10,13 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 
-class NoteToolBar: View {
+class NoteToolBar : View {
 
-    private val noteListIcon = ImageView()
-    val noteListButton = ToggleButton("", noteListIcon)
-
-    private val saveIcon = ImageView()
-    val saveButton = Button("", saveIcon)
-
-    private val themeIcon = ImageView()
-    val themeButton = Button("", themeIcon)
+    val noteListButton = ToggleButton()
+    val saveButton = Button()
+    val addButton = Button()
+    val labelButton = ToggleButton()
+    val themeButton = Button()
 
     val toolBar = ToolBar()
 
@@ -28,9 +25,7 @@ class NoteToolBar: View {
     init {
         initButtons()
 
-        toolBar.items.add(noteListButton)
-        toolBar.items.add(saveButton)
-        toolBar.items.add(themeButton)
+        toolBar.items.addAll(noteListButton, saveButton, addButton, labelButton, themeButton)
 
         toolBar.orientation = Orientation.VERTICAL
 
@@ -39,25 +34,49 @@ class NoteToolBar: View {
 
 
     private fun initButtons() {
-        noteListIcon.image = Image(
-            NoteApplication::class.java.getResource(ComponentConstant.NOTE_LIST_ICON_PATH).toString(),
-            ComponentConstant.BUTTON_ICON_WIDTH,
-            ComponentConstant.BUTTON_ICON_HEIGHT,
-            true, false
+        noteListButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.NOTE_LIST_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
         )
 
-        saveIcon.image = Image(
-            NoteApplication::class.java.getResource(ComponentConstant.SAVE_ICON_PATH).toString(),
-            ComponentConstant.BUTTON_ICON_WIDTH,
-            ComponentConstant.BUTTON_ICON_HEIGHT,
-            true, false
+        addButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.ADD_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
         )
 
-        themeIcon.image = Image(
-            NoteApplication::class.java.getResource(ComponentConstant.THEME_ICON_PATH).toString(),
-            ComponentConstant.BUTTON_ICON_WIDTH,
-            ComponentConstant.BUTTON_ICON_HEIGHT,
-            true, false
+        saveButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.SAVE_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+
+        themeButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.THEME_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+
+        labelButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.LABEL_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
         )
     }
 

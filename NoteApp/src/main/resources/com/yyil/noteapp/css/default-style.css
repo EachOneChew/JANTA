@@ -1,7 +1,28 @@
 .root {
     -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
-#note-repo {
-    -fx-min-width: 50.0
+.list-view {
+    -fx-min-width: 100.0;
+    -fx-border-width: 0;
+}
+
+.list-view:filled:selected:focused, .list-view:filled:selected {
+    -fx-border-width: 0;
+}
+
+.menu-button {
+    -fx-min-width: 20.0;
+    -fx-max-width: 20.0;
+    -fx-pref-width: 20.0;
+    -fx-background-color: transparent;
+}
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
 }

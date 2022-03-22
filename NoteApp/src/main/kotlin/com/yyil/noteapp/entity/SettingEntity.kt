@@ -29,7 +29,7 @@ data class SettingEntity(
     var updateTime: LocalDateTime? = null,
     var name: String? = null,
     var value: String? = null
-): SQLEntity() {
+) : SQLEntity() {
     override fun getInsertBraStr(): String {
         var braStr: String
         braStr = if (value != null) "VALUE" else ""

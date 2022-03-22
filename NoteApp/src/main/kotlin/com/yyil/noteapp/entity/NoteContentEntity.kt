@@ -29,7 +29,7 @@ data class NoteContentEntity(
     var noteContent: String? = null,
     var category: String? = null,
     var title: String? = null
-): SQLEntity() {
+) : SQLEntity() {
     override fun getInsertBraStr(): String {
         var braStr: String
         braStr = if (title != null) "TITLE" else ""
