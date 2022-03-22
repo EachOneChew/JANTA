@@ -14,8 +14,9 @@ class NoteToolBar : View {
 
     val noteListButton = ToggleButton()
     val saveButton = Button()
-    val themeButton = Button()
+    val addButton = Button()
     val labelButton = ToggleButton()
+    val themeButton = Button()
 
     val toolBar = ToolBar()
 
@@ -24,7 +25,7 @@ class NoteToolBar : View {
     init {
         initButtons()
 
-        toolBar.items.addAll(noteListButton, labelButton, themeButton)
+        toolBar.items.addAll(noteListButton, saveButton, addButton, labelButton, themeButton)
 
         toolBar.orientation = Orientation.VERTICAL
 
@@ -36,6 +37,15 @@ class NoteToolBar : View {
         noteListButton.graphic = ImageView(
             Image(
                 NoteApplication::class.java.getResource(ComponentConstant.NOTE_LIST_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+
+        addButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.ADD_ICON_PATH).toString(),
                 ComponentConstant.BUTTON_ICON_WIDTH,
                 ComponentConstant.BUTTON_ICON_HEIGHT,
                 true, false

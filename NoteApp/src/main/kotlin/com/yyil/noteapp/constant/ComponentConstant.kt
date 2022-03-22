@@ -16,6 +16,7 @@ object ComponentConstant {
 
     const val NOTE_LIST_ICON_PATH = "icons/folder.png"
     const val SAVE_ICON_PATH = "icons/save.png"
+    const val ADD_ICON_PATH = "icons/add.png"
     const val THEME_ICON_PATH = "icons/theme.png"
     const val TITLE_BAR_ICON_PATH = "icons/note.png"
     const val DOTS_ICON_PATH = "icons/dots.png"
