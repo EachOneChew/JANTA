@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testfx.framework.junit5.ApplicationTest
 
-internal class ModelTest: ApplicationTest() {
+internal class ModelTest : ApplicationTest() {
 
     private var testNoteModel: Model? = null
 

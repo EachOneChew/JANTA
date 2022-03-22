@@ -21,10 +21,13 @@ class Model {
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
             if (currentIndex != newIndex) {
+                /*
                 if (currentIndex != null) {
                     tinyMCE.forceUpdate()
+                    println("Current Idx $currentIndex; newIdx $newIndex")
                     notes[currentIndex!!].content = tinyMCE.content
                 }
+                */
                 tinyMCE.content = notes[newIndex].content
                 currentIndex = newIndex
             }
@@ -85,7 +88,12 @@ class Model {
         )
     }
 
-    fun deleteNote(note: Note) {
-        notes.remove(note)
+    fun deleteNote(id: Int) {
+        for (note in notes) {
+            if (note.id == id) {
+                notes.remove(note)
+                break
+            }
+        }
     }
 }
