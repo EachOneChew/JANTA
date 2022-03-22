@@ -5,7 +5,7 @@ import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
 import javafx.scene.layout.HBox
 
-class NoteRepository : View {
+class NoteRepository: View {
     override val base = HBox()
 
     val noteList = ListView<Note>()
