@@ -17,7 +17,7 @@ class NoteRepositoryController(
             println("Selected note $i")
         }
 
-        noteRepository.noteList.items.addAll(model.notes)
+        noteRepository.noteList.items = model.notes
 
         noteRepository.noteList.placeholder = NotePlaceHolderCell()
 
@@ -29,7 +29,15 @@ class NoteRepositoryController(
             noteCell.deleteOption.onAction = EventHandler {
                 println("Deleted note ${noteCell.note.title}; ID: ${noteCell.note.id}")
                 model.notes.remove(noteCell.note)
-                noteRepository.noteList.items.remove(noteCell.note)
+                //noteRepository.noteList.items.remove(noteCell.note)
+            }
+
+            noteCell.renameOption.onAction = EventHandler {
+                println("Rename note ${noteCell.note.title}; ID: ${noteCell.note.id}")
+                noteRepository.renameDialog.showAndWait()
+                noteCell.note.title = noteRepository.renameDialog.editor.text
+                noteRepository.noteList.refresh()
+                println("To ${noteCell.note.title}")
             }
             noteCell
         }
