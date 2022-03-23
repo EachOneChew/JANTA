@@ -12,10 +12,15 @@ object ComponentConstant {
     const val TEST_SCROLL_PANE_HEIGHT = 100.0
 
     const val TEST_TEXT_ID = "test-text"
-    const val NOTE_REPO_ID = "note-repo"
+    const val CELL_LABEL_ID = "cell-label"
 
     const val NOTE_LIST_ICON_PATH = "icons/folder.png"
     const val SAVE_ICON_PATH = "icons/save.png"
+    const val ADD_ICON_PATH = "icons/add.png"
     const val THEME_ICON_PATH = "icons/theme.png"
-    const val TITLE_BAR_ICON = "icons/note.png"
+    const val TITLE_BAR_ICON_PATH = "icons/note.png"
+    const val DOTS_ICON_PATH = "icons/dots.png"
+    const val LABEL_ICON_PATH = "icons/label.png"
+    const val SEARCH_ICON_PATH = "icons/search.png"
+    const val CLEAR_ICON_PATH = "icons/clear.png"
 }
