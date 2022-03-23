@@ -1,8 +1,10 @@
 package com.yyil.noteapp.mvc.model
 
 import com.yyil.noteapp.TinyMCEInterface
+import com.yyil.noteapp.entity.NoteContentEntity
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import java.time.LocalDateTime
 
 class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
@@ -17,6 +19,9 @@ class Model {
     var count = 0
     var currentTheme = lightTheme
     var currentIndex: Int? = null
+
+    val connect = Connect.getConnection()
+    var success = false
 
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
@@ -81,10 +86,17 @@ class Model {
     }
 
     fun retrieveNotes(): ObservableList<Note> {
+
+        var note1 = Note("Note 1", "NOTE 1 CONTENT~")
+        var note2 = Note("Note 2", "note 2 content.")
+        var note3 = Note("Note 3", "This is Note 3--")
+        //success = Connect.create(connect, note1.createNoteContentEntity())
+        //println("Create Note success: $success")
+
         return FXCollections.observableArrayList(
-            Note(0, "Note 1", "NOTE 1 CONTENT~"),
-            Note(1, "Note 2", "note 2 content."),
-            Note(2, "Note 3", "This is Note 3--")
+            note1,
+            note2,
+            note3
         )
     }
 

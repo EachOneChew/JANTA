@@ -12,10 +12,22 @@
     -fx-border-width: 0;
 }
 
+.list-cell {
+    -fx-background-color: white;
+    -fx-border-width: 0.3;
+    -fx-border-color: #e8e8e8;
+    -fx-text-fill: black;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #e0e0e0;
+ }
+
+ #cell-label {
+    -fx-text-fill: black;
+ }
+
 .menu-button {
-    -fx-min-width: 20.0;
-    -fx-max-width: 20.0;
-    -fx-pref-width: 20.0;
     -fx-background-color: transparent;
 }
 

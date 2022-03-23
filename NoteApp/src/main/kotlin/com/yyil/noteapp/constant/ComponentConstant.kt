@@ -10,6 +10,7 @@ object ComponentConstant {
     const val BUTTON_ICON_WIDTH = 15.0
     const val BUTTON_ICON_HEIGHT = 15.0
     const val TEST_SCROLL_PANE_HEIGHT = 100.0
+    const val LIST_CELL_HEIGHT = 38.0
 
     const val TEST_TEXT_ID = "test-text"
     const val CELL_LABEL_ID = "cell-label"

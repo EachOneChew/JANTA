@@ -2,7 +2,6 @@ package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
-import com.yyil.noteapp.mvc.controller.NoteCellController
 import com.yyil.noteapp.mvc.model.Note
 import javafx.geometry.Pos
 import javafx.scene.control.*
@@ -16,8 +15,7 @@ import javafx.util.Callback
 
 class NoteCell : ListCell<Note>() {
 
-    var note = Note(-1, "")
-    lateinit var controller: NoteCellController
+    var note = Note()
 
     private val hBox = HBox()
     private var label: Label = Label()
@@ -52,6 +50,7 @@ class NoteCell : ListCell<Note>() {
         super.updateItem(item, empty)
         text = null
         graphic = null
+        prefHeight = ComponentConstant.LIST_CELL_HEIGHT;
         if (!empty && item != null) {
             label.text = item.title
             graphic = hBox
@@ -63,7 +62,8 @@ class NoteCell : ListCell<Note>() {
 
 class NotePlaceHolderCell : ListView<Any?>() {
     init {
-        style = "-fx-background-insets: 0; -fx-padding: 0;"
+        style = "-fx-background-insets: 0;" +
+                "-fx-padding: 0;"
         items.add(null)
         cellFactory = Callback {
             object : ListCell<Any?>() {

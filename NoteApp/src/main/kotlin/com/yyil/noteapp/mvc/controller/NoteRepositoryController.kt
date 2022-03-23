@@ -25,7 +25,6 @@ class NoteRepositoryController(
 
             var noteCell = NoteCell()
             println("Created note cell ${noteCell.note.title}; ID: ${noteCell.note.id}")
-            //noteCell.controller = NoteCellController(model, noteRepository, noteCell)
 
             noteCell.deleteOption.onAction = EventHandler {
                 println("Deleted note ${noteCell.note.title}; ID: ${noteCell.note.id}")
