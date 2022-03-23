@@ -7,6 +7,8 @@ class Note {
     var title = ""
     var content = ""
 
+    constructor()
+
     constructor(title: String, content: String) {
         this.title = title
         this.content = content
