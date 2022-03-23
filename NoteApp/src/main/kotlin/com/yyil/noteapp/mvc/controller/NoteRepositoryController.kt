@@ -5,6 +5,8 @@ import com.yyil.noteapp.mvc.view.NoteCell
 import com.yyil.noteapp.mvc.view.NotePlaceHolderCell
 import com.yyil.noteapp.mvc.view.NoteRepository
 import javafx.event.EventHandler
+import javafx.scene.control.ContextMenu
+import javafx.scene.control.MenuItem
 
 class NoteRepositoryController(
     val model: Model,
@@ -25,20 +27,32 @@ class NoteRepositoryController(
 
             var noteCell = NoteCell()
             println("Created note cell ${noteCell.note.title}; ID: ${noteCell.note.id}")
-
-            noteCell.deleteOption.onAction = EventHandler {
-                println("Deleted note ${noteCell.note.title}; ID: ${noteCell.note.id}")
-                model.notes.remove(noteCell.note)
-                //noteRepository.noteList.items.remove(noteCell.note)
+            var contextMenu = ContextMenu()
+            var renameOption = MenuItem("Rename")
+            var deleteOption = MenuItem("Delete")
+            contextMenu.items.addAll(renameOption, deleteOption)
+            
+            noteCell.emptyProperty().addListener { observable, wasEmpty, isEmpty ->
+                if(isEmpty){
+                    noteCell.contextMenu = null
+                }else{
+                    noteCell.contextMenu = contextMenu
+                }
             }
 
-            noteCell.renameOption.onAction = EventHandler {
+            deleteOption.onAction = EventHandler {
+                println("Deleted note ${noteCell.note.title}; ID: ${noteCell.note.id}")
+                model.notes.remove(noteCell.note)
+            }
+
+            renameOption.onAction = EventHandler {
                 println("Rename note ${noteCell.note.title}; ID: ${noteCell.note.id}")
                 noteRepository.renameDialog.showAndWait()
                 noteCell.note.title = noteRepository.renameDialog.editor.text
                 noteRepository.noteList.refresh()
-                println("To ${noteCell.note.title}")
+                println(" To ${noteCell.note.title}")
             }
+
             noteCell
         }
         /*

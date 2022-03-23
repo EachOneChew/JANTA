@@ -21,27 +21,11 @@ class NoteCell : ListCell<Note>() {
     private var label: Label = Label()
     private val pane = Pane()
 
-    var dropDown = MenuButton()
-    val renameOption = MenuItem("Rename")
-    val deleteOption = MenuItem("Delete")
-
-    private val expandIcon = ImageView(
-        Image(
-            NoteApplication::class.java.getResource(ComponentConstant.DOTS_ICON_PATH).toString(),
-            ComponentConstant.BUTTON_ICON_WIDTH,
-            ComponentConstant.BUTTON_ICON_HEIGHT,
-            true, true
-        )
-    )
-
     init {
-        dropDown.items.addAll(renameOption, deleteOption)
-        dropDown.graphic = expandIcon
-
         HBox.setHgrow(pane, Priority.ALWAYS)
 
         hBox.alignment = Pos.CENTER
-        hBox.children.addAll(label, pane, dropDown)
+        hBox.children.addAll(label, pane)
 
         label.id = ComponentConstant.CELL_LABEL_ID
     }
@@ -62,13 +46,12 @@ class NoteCell : ListCell<Note>() {
 
 class NotePlaceHolderCell : ListView<Any?>() {
     init {
-        style = "-fx-background-insets: 0;" +
-                "-fx-padding: 0;"
         items.add(null)
         cellFactory = Callback {
             object : ListCell<Any?>() {
                 override fun updateItem(item: Any?, empty: Boolean) {
                     super.updateItem(item, true)
+                    prefHeight = ComponentConstant.LIST_CELL_HEIGHT;
                 }
             }
         }
