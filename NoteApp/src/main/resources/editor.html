@@ -5,6 +5,7 @@
     <script src="popper/popper.min.js"></script>
     <script src="tippy/tippy-bundle.umd.min.js"></script>
     <link rel="stylesheet" href="tippy/scale.css">
+    <link rel="stylesheet" href="tippy/light-border.css">
     <script type="text/javascript">
         window.initOptions = {
             skin: "oxide",
@@ -26,7 +27,9 @@
             window.annotationInstances = tippy(doc.querySelectorAll("annotation"), {
                 arrow: false,
                 placement: "right",
-                offset: [40, 20],
+                offset: [40, 10],
+                animation: "scale",
+                theme: "light-border",
             });
         };
 
@@ -113,6 +116,7 @@
                         // triggers SetContent event and updates interface content
                         ed.setContent(initContent);
                         bridge.setObjs(ed);
+                        setAnnotationTippys();
                     });
 
                     ed.on("Change SetContent", function (_) {
