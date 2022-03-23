@@ -7,6 +7,7 @@ import javafx.concurrent.Worker
 import javafx.scene.web.WebEngine
 import javafx.scene.web.WebView
 import netscape.javascript.JSObject
+import kotlin.reflect.KFunction2
 
 /**
  * DO NOT MOVE THIS FILE UNDER ANY CIRCUMSTANCE
@@ -14,7 +15,7 @@ import netscape.javascript.JSObject
  */
 class TinyMCEInterface(
     initContent: String,
-    private val handleModelCall: (String, String) -> Unit
+    private val handleModelCall: KFunction2<String, List<String>, Unit>
 ) {
     /**
      * The editor is sometimes uninitialized and null
@@ -122,7 +123,7 @@ class TinyMCEInterface(
             contentProp.value = newContent
         }
 
-        fun callModel(target: String, arg: String) {
+        fun callModel(target: String, arg: List<String>) {
             handleModelCall(target, arg)
         }
 

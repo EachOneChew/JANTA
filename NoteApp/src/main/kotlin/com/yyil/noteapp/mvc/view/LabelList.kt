@@ -27,11 +27,12 @@ class LabelList : View {
 
         searchBar.promptText = "Search..."
 
-        labelList.items.addAll(
+        /*labelList.items.addAll(
             "Label 1",
             "Label 2",
             "Label 3"
-        )
+        )*/
+
 
         base.children.addAll(searchField, labelList)
 
