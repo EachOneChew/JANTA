@@ -82,6 +82,8 @@ class TinyMCEInterface(
     private var initOptionsObj: JSObject? = null
 
     init {
+        webView.isContextMenuEnabled = false;
+
         webEngine.load(url)
 
         webEngine.loadWorker.stateProperty().addListener { _, _, newState ->

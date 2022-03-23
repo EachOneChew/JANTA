@@ -41,6 +41,7 @@
             if (tinymce.activeEditor) {
                 tinymce.activeEditor.destroy();
             }
+            
             bridge.setObjs(null);
             bridge.setInterfaceContent("");
         };
@@ -61,7 +62,18 @@
                     "com/yyil/noteapp/css/extra_styling.css",
                 ],
 
-                plugins: ["lists"],
+                plugins: [
+                    "help",
+                    "code",
+                    "lists",
+                    "advlist",
+                    "table",
+                    "searchreplace",
+                    "wordcount",
+                    "charmap",
+                    "emoticons",
+                    "hr",
+                ],
 
                 custom_elements: "~annotation",
                 valid_children: "-annotation[annotation]",
@@ -78,13 +90,56 @@
                 },
 
                 toolbar: `
-                                undo redo |
-                                styleselect |
-                                bold italic underline strikethrough |
-                                alignleft aligncenter alignright alignjustify |
-                                bullist numlist outdent indent |
-                                addAnnotateButton removeAnnotateButton labelButton
-                            `,
+                    undo redo |
+                    styleselect |
+                    fontsizeselectgroup insertgroup addAnnotateButton addLabelButton |
+                    bold italic underline strikethrough |
+                    indentgroup aligngroup listgroup tablegroup |
+                    searchreplace code wordcount help |
+                `,
+
+                toolbar_groups: {
+                    fontsizeselectgroup: {
+                        icon: "change-case",
+                        tooltip: "Font size",
+                        items: "fontsizeselect",
+                    },
+                    indentgroup: {
+                        icon: "indent",
+                        tooltip: "Indentation",
+                        items: "indent outdent hr",
+                    },
+                    aligngroup: {
+                        icon: "align-left",
+                        tooltip: "Alignment",
+                        items: "alignleft aligncenter alignright alignjustify",
+                    },
+                    listgroup: {
+                        icon: "unordered-list",
+                        tooltip: "Lists",
+                        items: "bullist numlist",
+                    },
+                    tablegroup: {
+                        icon: "table",
+                        tooltip: "Tables",
+                        items: `
+                            table tabledelete |
+                            tableprops tablerowprops tablecellprops |
+                            tableinsertrowbefore tableinsertrowafter tabledeleterow |
+                            tableinsertcolbefore tableinsertcolafter tabledeletecol |
+                        `,
+                    },
+                    insertgroup: {
+                        icon: "insert-character",
+                        tooltip: "Special characters",
+                        items: "charmap emoticons",
+                    }
+                },
+                
+                help_tabs: [
+                    "shortcuts",
+                    "keyboardnav",
+                ],
 
                 setup: function (ed) {
                     const bridge = window.bridgeObj;
@@ -131,8 +186,8 @@
                         },
                     });
 
-                    ed.ui.registry.addButton("labelButton", {
-                        icon: "character-count",
+                    ed.ui.registry.addButton("addLabelButton", {
+                        icon: "bookmark",
                         tooltip: "Label",
                         onAction: function (_) {
                             bridge.callModel("label", "");
