@@ -17,7 +17,7 @@
 
         const clearAnnotationTippys = function () {
             if (window.annotationInstances) {
-                window.annotationInstances.forEach(e => e.destroy());
+                window.annotationInstances.forEach((e) => e.destroy());
             }
             window.annotationInstances = null;
         };
@@ -156,15 +156,21 @@
                                 onAction: function (formApi) {
                                     var value = formApi.getValue();
                                     if (value) {
-                                        var root = getAnnotationRoot(ed.selection.getNode());
+                                        var root = getAnnotationRoot(
+                                            ed.selection.getNode()
+                                        );
                                         if (!root) {
                                             for (k in ed.formatter.get()) {
                                                 ed.formatter.remove(k);
                                             }
-                                            ed.formatter.apply("annotation", { value: value });
-                                        }
-                                        else {
-                                            root.setAttribute("data-tippy-content", value);
+                                            ed.formatter.apply("annotation", {
+                                                value: value,
+                                            });
+                                        } else {
+                                            root.setAttribute(
+                                                "data-tippy-content",
+                                                value
+                                            );
                                         }
                                         ed.fire("Change");
                                         clearAnnotationTippys();
@@ -178,7 +184,9 @@
                                 icon: "close",
                                 tooltip: "Remove",
                                 onAction: function (formApi) {
-                                    var root = getAnnotationRoot(ed.selection.getNode());
+                                    var root = getAnnotationRoot(
+                                        ed.selection.getNode()
+                                    );
                                     if (root) {
                                         root.removeAttribute("data-tippy-content");
                                         ed.formatter.remove("annotation", null, root);
@@ -196,7 +204,7 @@
         };
     </script>
 </head>
-<body>
+<body scroll="no">
 <form method="post">
     <textarea id="TinyMCEInstance"></textarea>
 </form>
@@ -207,5 +215,6 @@
 body {
     margin: 0px;
     height: 100vh;
+    overflow: hidden;
 }
 </style>
