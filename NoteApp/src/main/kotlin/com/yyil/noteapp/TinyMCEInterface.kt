@@ -65,7 +65,6 @@ class TinyMCEInterface(
 
             forceUpdate()
             val tempContent = content
-            destroyEditor()
             initEditor(tempContent)
         }
 
@@ -101,10 +100,6 @@ class TinyMCEInterface(
 
     fun initEditor(initContent: String) {
         webEngine.executeScript("window.initFunction('$initContent')")
-    }
-
-    fun destroyEditor() {
-        webEngine.executeScript("window.destroyFunction()")
     }
 
     /**

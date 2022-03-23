@@ -1,14 +1,3 @@
-annotation[data-alt]:hover:after {
-    content: attr(data-alt);
-    padding: 4px 8px;
-    color: #333;
-    position: absolute;
-    border-radius: 5px;
-    background-color: #7FFFD4;
-    max-width: 50px;
-}
-
 annotation {
     background-color: #FFFF00;
 }
-
