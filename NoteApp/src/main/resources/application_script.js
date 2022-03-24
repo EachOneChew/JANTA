@@ -7,6 +7,10 @@ window.annotationInstances = null;
 window.labeltargetInstances = null;
 window.labelTypeVar = null;
 
+const getTinymceDoc = function () {
+    return document.querySelector("iframe").contentDocument;
+};
+
 const clearAnnotationTippys = function () {
     if (window.annotationInstances) {
         window.annotationInstances.forEach((e) => e.destroy());
@@ -17,7 +21,7 @@ const clearAnnotationTippys = function () {
 const setAnnotationTippys = function () {
     const doc = document.querySelector("iframe").contentDocument;
     window.annotationInstances = tippy(
-        doc.querySelectorAll(".annotation_class"),
+        getTinymceDoc().querySelectorAll(".annotation_class"),
         {
             arrow: false,
             placement: "right",
@@ -37,7 +41,7 @@ const clearLabeltargetTippys = function () {
 const setLabeltargetTippys = function () {
     const doc = document.querySelector("iframe").contentDocument;
     window.labeltargetInstances = tippy(
-        doc.querySelectorAll(".labeltarget_class"),
+        getTinymceDoc().querySelectorAll(".labeltarget_class"),
         {
             arrow: false,
             placement: "right",
@@ -406,13 +410,17 @@ window.initFunction = function (initContent) {
                                     document.querySelector(
                                         "iframe"
                                     ).contentDocument;
-                                doc.querySelectorAll(
-                                    `a[href="#${temp}"]`
-                                ).forEach((e) => {
-                                    e.removeAttribute("href");
-                                    e.removeAttribute("style");
-                                    ed.formatter.remove("labelref", null, e);
-                                });
+                                getTinymceDoc()
+                                    .querySelectorAll(`a[href="#${temp}"]`)
+                                    .forEach((e) => {
+                                        e.removeAttribute("href");
+                                        e.removeAttribute("style");
+                                        ed.formatter.remove(
+                                            "labelref",
+                                            null,
+                                            e
+                                        );
+                                    });
                                 // CALL MODEL DELETE
                                 // callModel(...)
                             }
@@ -439,7 +447,12 @@ window.initFunction = function (initContent) {
                         primary: true,
                         onAction: function (formApi) {
                             var value = formApi.getValue();
-                            if (value) {
+                            if (
+                                value &&
+                                getTinymceDoc().querySelectorAll(
+                                    `a[name="${value}"]`
+                                ).length == 0
+                            ) {
                                 var root = getRoot(
                                     ed.selection.getNode(),
                                     "labeltarget_class"
@@ -448,11 +461,7 @@ window.initFunction = function (initContent) {
                                     document.querySelector(
                                         "iframe"
                                     ).contentDocument;
-                                if (
-                                    !root &&
-                                    doc.querySelectorAll(`a[name="${value}"]`)
-                                        .length == 0
-                                ) {
+                                if (!root) {
                                     for (k in ed.formatter.get()) {
                                         ed.formatter.remove(k);
                                     }
@@ -493,7 +502,12 @@ window.initFunction = function (initContent) {
                         primary: true,
                         onAction: function (formApi) {
                             var value = formApi.getValue();
-                            if (value) {
+                            if (
+                                value &&
+                                getTinymceDoc().querySelectorAll(
+                                    `a[name="${value}"]`
+                                ).length == 1
+                            ) {
                                 var root = getRoot(
                                     ed.selection.getNode(),
                                     "labelref_class"
