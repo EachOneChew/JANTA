@@ -15,7 +15,7 @@ import kotlin.reflect.KFunction2
  */
 class TinyMCEInterface(
     initContent: String,
-    private val handleModelCall: KFunction2<String, List<String>, Unit>
+    private val handleModelCall: (String, String, String) -> Unit
 ) {
     /**
      * The editor is sometimes uninitialized and null
@@ -125,8 +125,9 @@ class TinyMCEInterface(
             contentProp.value = newContent
         }
 
-        fun callModel(target: String, arg: List<String>) {
-            handleModelCall(target, arg)
+        fun callModel(target: String, type: String, title: String) {
+            println("$target $type $title")
+            handleModelCall(target, type, title)
         }
 
         fun printDebug(msg: String) {
