@@ -324,6 +324,7 @@ window.initFunction = function (initContent) {
                                 }
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearAnnotationTippys();
                             setAnnotationTippys();
                             formApi.hide();
@@ -344,6 +345,7 @@ window.initFunction = function (initContent) {
                                 ed.formatter.remove("annotation", null, root);
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearAnnotationTippys();
                             setAnnotationTippys();
                             formApi.hide();
@@ -425,6 +427,7 @@ window.initFunction = function (initContent) {
                                 // callModel(...)
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearLabeltargetTippys();
                             setLabeltargetTippys();
                             formApi.hide();
@@ -474,6 +477,7 @@ window.initFunction = function (initContent) {
                                 }
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearLabeltargetTippys();
                             setLabeltargetTippys();
                             window.labelTypeVar = null;
@@ -524,6 +528,7 @@ window.initFunction = function (initContent) {
                                 }
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             formApi.hide();
                         },
                     },
@@ -542,6 +547,7 @@ window.initFunction = function (initContent) {
                                 ed.formatter.remove("labelref", null, root);
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             formApi.hide();
                         },
                     },
