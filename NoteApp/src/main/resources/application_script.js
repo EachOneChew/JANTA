@@ -7,6 +7,10 @@ window.annotationInstances = null;
 window.labeltargetInstances = null;
 window.labelTypeVar = null;
 
+const getTinymceDoc = function () {
+    return document.querySelector("iframe").contentDocument;
+};
+
 const clearAnnotationTippys = function () {
     if (window.annotationInstances) {
         window.annotationInstances.forEach((e) => e.destroy());
@@ -15,9 +19,8 @@ const clearAnnotationTippys = function () {
 };
 
 const setAnnotationTippys = function () {
-    const doc = document.querySelector("iframe").contentDocument;
     window.annotationInstances = tippy(
-        doc.querySelectorAll(".annotation_class"),
+        getTinymceDoc().querySelectorAll(".annotation_class"),
         {
             arrow: false,
             placement: "right",
@@ -35,9 +38,8 @@ const clearLabeltargetTippys = function () {
 };
 
 const setLabeltargetTippys = function () {
-    const doc = document.querySelector("iframe").contentDocument;
     window.labeltargetInstances = tippy(
-        doc.querySelectorAll(".labeltarget_class"),
+        getTinymceDoc().querySelectorAll(".labeltarget_class"),
         {
             arrow: false,
             placement: "right",
@@ -45,6 +47,12 @@ const setLabeltargetTippys = function () {
             theme: "light-border",
         }
     );
+};
+
+window.goToTarget = function (target) {
+    getTinymceDoc()
+        .querySelector(`.labeltarget_class[data-tippy-content="${target}"]`)
+        .scrollIntoView({ block: "center" });
 };
 
 window.destroyFunction = function () {
@@ -87,6 +95,8 @@ window.initFunction = function (initContent) {
 
         custom_elements: "~annotation",
         valid_children: "-annotation[annotation|a],-a[annotation|a]",
+        extended_valid_elements:
+            "a[class|data-tippy-content|type|data-alt|style]",
 
         formats: {
             annotation: {
@@ -106,7 +116,6 @@ window.initFunction = function (initContent) {
                 attributes: {
                     class: "labeltarget_class",
                     "data-tippy-content": "%value",
-                    name: "%value",
                     type: "%value2",
                 },
                 styles: {
@@ -119,7 +128,7 @@ window.initFunction = function (initContent) {
                 inline: "a",
                 attributes: {
                     class: "labelref_class",
-                    href: "%value",
+                    "data-alt": "%value",
                 },
                 styles: {
                     "background-color": "#7FFFD4",
@@ -132,7 +141,8 @@ window.initFunction = function (initContent) {
         toolbar: `
             undo redo |
             styleselect |
-            fontsizeselectgroup hr addAnnotationButton labelgroup |
+            fontsizeselectgroup |
+            hr addAnnotationButton addLabeltargetButton addLabelrefButton |
             bold italic underline strikethrough |
             indentgroup aligngroup listgroup tablegroup |
             searchreplace code wordcount help |
@@ -143,11 +153,6 @@ window.initFunction = function (initContent) {
                 icon: "change-case",
                 tooltip: "Font size",
                 items: "fontsizeselect",
-            },
-            labelgroup: {
-                icon: "bookmark",
-                tooltip: "Label",
-                items: "addLabeltargetButton addLabelrefButton",
             },
             indentgroup: {
                 icon: "indent",
@@ -185,8 +190,8 @@ window.initFunction = function (initContent) {
                     {
                         type: "htmlpanel",
                         html: `
-                            <p>Selections may be annotated with a short text. The annotation will then be displayed when the user hovers over the affected selection.</p>
-                            <p>Deletion and editing of annotations is done through the context form triggered by moving the caret into their range.</p>
+                            <p>Selections may be annotated with a short text. The <span style="background-color: #FFFF00">annotation</span> will then be displayed when the user hovers over the affected selection.</p>
+                            <p>Deletion and editing of <span style="background-color: #FFFF00">annotations</span> is done through the context form triggered by moving the caret into their range.</p>
                         `,
                     },
                 ],
@@ -198,12 +203,12 @@ window.initFunction = function (initContent) {
                     {
                         type: "htmlpanel",
                         html: `
-                            <p>Within a note, selections may be designated label targets and label references. Label references point to label targets.</p>
-                            <p>Note that references are not allowed to point to targets that do not exist. Target uniqueness is enforced by the editor.</p>
-                            <p>Label targets are given a type, then a name by the user on creation through two successive context forms. References are pointed to targets using names.</p>
-                            <p>To see the name of a target, hover over its selection.</p>
+                            <p>Within a note, selections may be designated label <span style="background-color: #FF8C00">targets</span> and label <span style="background-color: #7FFFD4">references</span>. Label <span style="background-color: #7FFFD4">references</span> point to label <span style="background-color: #FF8C00">targets</span>.</p>
+                            <p>Note that <span style="background-color: #7FFFD4">references</span> are not allowed to point to <span style="background-color: #FF8C00">targets</span> that do not exist. <span style="background-color: #FF8C00">Target</span> uniqueness is enforced by the editor.</p>
+                            <p>Label <span style="background-color: #FF8C00">targets</span> are given a type, then a title by the user on creation through two successive context forms. <span style="background-color: #7FFFD4">references</span> are pointed to <span style="background-color: #FF8C00">targets</span> using titles.</p>
+                            <p>To see the title of a <span style="background-color: #FF8C00">target</span>, hover over its selection.</p>
                             <p>There is a tab in the sidebar which allows users to aggregate labels within a note by type.</p>
-                            <p>Deleting a target will delete all references pointing to it. Deleting a reference will not affect the target.</p>
+                            <p>Deleting a <span style="background-color: #FF8C00">target</span> will delete all <span style="background-color: #7FFFD4">references</span> pointing to it. Deleting a <span style="background-color: #7FFFD4">reference</span> will not affect the <span style="background-color: #FF8C00">target</span>.</p>
                             <p>Deletion and editing of labels is done through the context form triggered by moving the caret into their range.</p>
                         `,
                     },
@@ -320,6 +325,7 @@ window.initFunction = function (initContent) {
                                 }
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearAnnotationTippys();
                             setAnnotationTippys();
                             formApi.hide();
@@ -340,6 +346,7 @@ window.initFunction = function (initContent) {
                                 ed.formatter.remove("annotation", null, root);
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearAnnotationTippys();
                             setAnnotationTippys();
                             formApi.hide();
@@ -396,25 +403,34 @@ window.initFunction = function (initContent) {
                                 "labeltarget_class"
                             );
                             if (root) {
-                                const temp = root.getAttribute("name");
+                                const tempTitle =
+                                    root.getAttribute("data-tippy-content");
                                 root.removeAttribute("data-tippy-content");
-                                root.removeAttribute("name");
+                                const tempType = root.getAttribute("type");
                                 root.removeAttribute("type");
                                 root.removeAttribute("style");
                                 ed.formatter.remove("labeltarget", null, root);
-                                const doc =
-                                    document.querySelector(
-                                        "iframe"
-                                    ).contentDocument;
-                                doc.querySelectorAll(
-                                    `a[href="#${temp}"]`
-                                ).forEach((e) =>
-                                    ed.formatter.remove("labelref", null, e)
+                                getTinymceDoc()
+                                    .querySelectorAll(
+                                        `.labelref_class[data-alt="${tempTitle}"]`
+                                    )
+                                    .forEach((e) => {
+                                        e.removeAttribute("data-alt");
+                                        e.removeAttribute("style");
+                                        ed.formatter.remove(
+                                            "labelref",
+                                            null,
+                                            e
+                                        );
+                                    });
+                                bridge.callModel(
+                                    "removeLabel",
+                                    tempType,
+                                    tempTitle
                                 );
-                                // CALL MODEL DELETE
-                                // callModel(...)
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearLabeltargetTippys();
                             setLabeltargetTippys();
                             formApi.hide();
@@ -433,24 +449,21 @@ window.initFunction = function (initContent) {
                     {
                         type: "contextformbutton",
                         icon: "checkmark",
-                        tooltip: "Add target name",
+                        tooltip: "Add target title",
                         primary: true,
                         onAction: function (formApi) {
                             var value = formApi.getValue();
-                            if (value) {
+                            if (
+                                value &&
+                                getTinymceDoc().querySelectorAll(
+                                    `.labeltarget_class[data-tippy-content="${value}"]`
+                                ).length == 0
+                            ) {
                                 var root = getRoot(
                                     ed.selection.getNode(),
                                     "labeltarget_class"
                                 );
-                                const doc =
-                                    document.querySelector(
-                                        "iframe"
-                                    ).contentDocument;
-                                if (
-                                    !root &&
-                                    doc.querySelectorAll(`a[name="${value}"]`)
-                                        .length == 0
-                                ) {
+                                if (!root) {
                                     for (k in ed.formatter.get()) {
                                         ed.formatter.remove(k);
                                     }
@@ -458,14 +471,97 @@ window.initFunction = function (initContent) {
                                         value: value,
                                         value2: window.labelTypeVar,
                                     });
-                                    // CALL MODEL ADD
-                                    // callModel(...)
+                                    bridge.callModel(
+                                        "addLabel",
+                                        window.labelTypeVar,
+                                        value
+                                    );
                                 }
                             }
                             ed.fire("Change");
+                            ed.focus(false);
                             clearLabeltargetTippys();
                             setLabeltargetTippys();
                             window.labelTypeVar = null;
+                            formApi.hide();
+                        },
+                    },
+                ],
+            });
+
+            ed.ui.registry.addContextForm("labelref-form", {
+                label: "Label reference",
+                initValue: function () {
+                    var root = getRoot(
+                        ed.selection.getNode(),
+                        "labelref_class"
+                    );
+                    return root ? root.getAttribute("data-alt") : "";
+                },
+                position: "selection",
+                predicate: calcLabelrefPredicate,
+                commands: [
+                    {
+                        type: "contextformbutton",
+                        icon: "checkmark",
+                        tooltip: "Add reference",
+                        primary: true,
+                        onAction: function (formApi) {
+                            var value = formApi.getValue();
+                            if (
+                                value &&
+                                getTinymceDoc().querySelectorAll(
+                                    `.labeltarget_class[data-tippy-content="${value}"]`
+                                ).length == 1
+                            ) {
+                                var root = getRoot(
+                                    ed.selection.getNode(),
+                                    "labelref_class"
+                                );
+                                if (!root) {
+                                    for (k in ed.formatter.get()) {
+                                        ed.formatter.remove(k);
+                                    }
+                                    ed.formatter.apply("labelref", {
+                                        value: `${value}`,
+                                    });
+                                } else {
+                                    root.setAttribute("data-alt", `${value}`);
+                                }
+                                getTinymceDoc()
+                                    .querySelectorAll(".labelref_class")
+                                    .forEach((e) =>
+                                        e.addEventListener(
+                                            "click",
+                                            function () {
+                                                window.goToTarget(
+                                                    e.getAttribute("data-alt")
+                                                );
+                                            }
+                                        )
+                                    );
+                            }
+                            ed.fire("Change");
+                            ed.focus(false);
+                            formApi.hide();
+                        },
+                    },
+                    {
+                        type: "contextformbutton",
+                        icon: "close",
+                        tooltip: "Remove reference",
+                        onAction: function (formApi) {
+                            var root = getRoot(
+                                ed.selection.getNode(),
+                                "labelref_class"
+                            );
+                            if (root) {
+                                root.removeAttribute("data-alt");
+                                root.removeAttribute("style");
+                                ed.formatter.remove("labelref", null, root);
+                            }
+                            ed.fire("Change");
+                            ed.focus(false);
                             formApi.hide();
                         },
                     },

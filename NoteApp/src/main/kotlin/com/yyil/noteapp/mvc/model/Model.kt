@@ -33,20 +33,20 @@ class Model {
 
     /**
      * Example for Logan on how to receive event from interface
-     * Label args example: ["definition", "Theorem 3.3.1", "label_134752"]
+     * Label args example: ["definition", "Theorem 3.3.1"] a.k.a. [TYPE, TITLE]
      */
-    fun handleModelCall(target: String, arg: List<String>) {
+    fun handleModelCall(target: String, type: String, title: String) {
         when (target) {
-            "label" -> if (currentIndex != null) {
-                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
-                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
-                }
-                else {
-                    val nmap = mutableMapOf<String, String>()
-                    nmap[arg[1]] = arg[2]
-                    notes[currentIndex!!].labels[arg[0]] = nmap
-                }
-            }
+//            "label" -> if (currentIndex != null) {
+//                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
+//                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
+//                }
+//                else {
+//                    val nmap = mutableMapOf<String, String>()
+//                    nmap[arg[1]] = arg[2]
+//                    notes[currentIndex!!].labels[arg[0]] = nmap
+//                }
+//            }
         }
     }
 
