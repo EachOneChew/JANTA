@@ -1,6 +1,6 @@
 package com.yyil.noteapp.entity
 
-import java.time.LocalDateTime
+import java.sql.Timestamp
 
 /**
  * setting_id: Int?
@@ -24,9 +24,9 @@ import java.time.LocalDateTime
 data class SettingEntity(
     var settingId: Int? = null,
     var creator: String? = null,
-    var createTime: LocalDateTime? = null,
+    var createTime: String? = null,
     var updater: String? = null,
-    var updateTime: LocalDateTime? = null,
+    var updateTime: String? = null,
     var name: String? = null,
     var value: String? = null
 ) : SQLEntity() {
@@ -63,10 +63,10 @@ data class SettingEntity(
             }
             braStr = "CREATOR$braStr"
         }
-
+        
         return braStr
     }
-
+    
     override fun getUpdateStr(): String {
         var braStr: String
         braStr = if (value != null) "VALUE = \"$value\"" else ""
@@ -100,10 +100,13 @@ data class SettingEntity(
             }
             braStr = "CREATOR = \"$creator\"$braStr"
         }
-
+        if (braStr != "") {
+            braStr += " ,"
+        }
+        braStr += "DEL_FLAG = \"$delFlag\""
         return braStr
     }
-
+    
     override fun getConStr(): String {
         var braStr: String
         braStr = if (value != null) "VALUE = \"$value\"" else ""
@@ -137,10 +140,16 @@ data class SettingEntity(
             }
             braStr = "CREATOR = \"$creator\"$braStr"
         }
-
+        if (settingId != null) {
+            if (braStr != "") {
+                braStr = " AND $braStr"
+            }
+            braStr = "SETTING_ID = \"$settingId\" $braStr "
+        }
+        
         return braStr
     }
-
+    
     override fun getInsertStr(): String {
         var braStr: String
         braStr = if (value != null) "\"$value\"" else ""
@@ -174,23 +183,32 @@ data class SettingEntity(
             }
             braStr = "\"$creator\"" + braStr
         }
-
+        
         return braStr
     }
-
+    
     override fun getId(): Int? {
         return settingId
     }
-
+    
     override fun getIdColumn(): String {
         return "SETTING_ID"
     }
-
+    
     override fun getFullColumn(): String {
         return "SETTING_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, NAME, VALUE"
     }
-
+    
     override fun getDbName(): String {
         return "\"MAIN\".\"NOTE_SETTING\""
+    }
+    
+    override fun updateTime(updateTime: String?) {
+        this.updateTime = updateTime
+    }
+    
+    fun print() {
+        println("settingId: $settingId\ncreateTime: $createTime\nupdater: $updater\nupdateTime: $updateTime" +
+                "\nname: $name\nvalue:$value\n delFlag: $delFlag")
     }
 }
