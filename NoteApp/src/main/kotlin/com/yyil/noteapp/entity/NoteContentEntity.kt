@@ -1,6 +1,6 @@
 package com.yyil.noteapp.entity
 
-import java.time.LocalDateTime
+import java.sql.Timestamp
 
 /**
  * note_content_id: Int?
@@ -19,12 +19,13 @@ import java.time.LocalDateTime
  *
  * ALL FUNCTIONS ARE FOR SQL
  */
+
 data class NoteContentEntity(
     var noteContentId: Int? = null,
     var creator: String? = null,
-    var createTime: LocalDateTime? = null,
+    var createTime: String? = null,
     var updater: String? = null,
-    var updateTime: LocalDateTime? = null,
+    var updateTime: String? = null,
     var repositoryPath: String? = null,
     var noteContent: String? = null,
     var category: String? = null,
@@ -75,10 +76,10 @@ data class NoteContentEntity(
             }
             braStr = "CREATOR$braStr"
         }
-
+        
         return braStr
     }
-
+    
     override fun getUpdateStr(): String {
         var braStr: String
         braStr = if (title != null) "TITLE = \"$title\"" else ""
@@ -124,10 +125,13 @@ data class NoteContentEntity(
             }
             braStr = "CREATOR = \"$creator\"$braStr"
         }
-
+        if (braStr != "") {
+            braStr += " ,"
+        }
+        braStr += "DEL_FLAG = \"$delFlag\""
         return braStr
     }
-
+    
     override fun getConStr(): String {
         var braStr: String
         braStr = if (title != null) "TITLE = \"$title\"" else ""
@@ -173,10 +177,16 @@ data class NoteContentEntity(
             }
             braStr = "CREATOR = \"$creator\"$braStr"
         }
-
+        if (noteContentId != null) {
+            if (braStr != "") {
+                braStr = " AND $braStr"
+            }
+            braStr = "NOTE_CONTENT_ID = \"$noteContentId\" $braStr "
+        }
+        
         return braStr
     }
-
+    
     override fun getInsertStr(): String {
         var braStr: String
         braStr = if (title != null) "\"$title\"" else ""
@@ -222,24 +232,38 @@ data class NoteContentEntity(
             }
             braStr = "\"$creator\"" + braStr
         }
-
+        
         return braStr
     }
-
+    
     override fun getId(): Int? {
         return noteContentId
     }
-
+    
     override fun getIdColumn(): String {
         return "NOTE_CONTENT_ID"
     }
-
+    
     override fun getFullColumn(): String {
         return "NOTE_CONTENT_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, REPOSITORY_PATH, NOTE_CONTENT, CATEGORY, TITLE"
     }
-
+    
     override fun getDbName(): String {
         return "\"MAIN\".\"NOTE_CONTENT\""
+    }
+    
+    override fun updateTime(updateTime: String?) {
+        this.updateTime = updateTime
+    }
+    
+    fun print() {
+        println("noteContentId: $noteContentId\nnoteContent: $noteContent\ncreateTime: $createTime\n" +
+                "updater: $updater\nupdateTime: $updateTime\nrepositoryPath: $repositoryPath\nnoteContent:$noteContent" +
+                "category: $category\ntitle: $title\ndelFlag: $delFlag")
+    }
+    
+    fun getTiTleStr():String {
+        return "NOTE_CONTENT_ID, TITLE"
     }
 }
 
