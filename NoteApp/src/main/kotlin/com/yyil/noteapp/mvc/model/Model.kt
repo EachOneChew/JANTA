@@ -35,42 +35,20 @@ class Model {
      * Example for Logan on how to receive event from interface
      * Label args example: ["definition", "Theorem 3.3.1", "label_134752"]
      */
-    fun handleModelCall(target: String, arg: String) {
+    fun handleModelCall(target: String, arg: List<String>) {
         when (target) {
-//            "setAnnotationTitle" -> {
-//                tinyMCE.selection = insertAnnotation(arg, tinyMCE.selection);
-//                count++
-//            }
-//            "removeAnnotation" -> {
-//                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
-//            }
-            "label" -> TODO()
+            "label" -> if (currentIndex != null) {
+                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
+                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
+                }
+                else {
+                    val nmap = mutableMapOf<String, String>()
+                    nmap[arg[1]] = arg[2]
+                    notes[currentIndex!!].labels[arg[0]] = nmap
+                }
+            }
         }
     }
-
-//    fun insertAnnotation(annotation: String, selection: String): String {
-//        val openTag = "<span title=\"$annotation\">"
-//        val closeTag = "</span>"
-//        var result = selection
-//            .replace(">(?=[^<])".toRegex(), ">$openTag")
-//            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
-//
-//        if (selection[0] != '<') {
-//            result = "$openTag$result"
-//        }
-//
-//        if (selection[selection.length - 1] != '>') {
-//            result = "$result$closeTag"
-//        }
-//
-//        return result
-//    }
-//
-//    fun removeAnnotation(selection: String): String {
-//        return selection
-//            .replace("(<span [^>]+>)".toRegex(), "")
-//            .replace("(</span>)".toRegex(), "")
-//    }
 
     fun switchTheme(theme: String, content: String) {
         tinyMCE.appearance = Pair(theme, content)
@@ -79,10 +57,17 @@ class Model {
 
     fun retrieveNotes(): ObservableList<Note> {
         return FXCollections.observableArrayList(
-            Note(0, "Note 1", "NOTE 1 CONTENT~"),
+            Note(0, "Note 1", "NOTE 1 CONTENT~", mutableMapOf("hello" to mutableMapOf("hi" to "sup"))),
             Note(1, "Note 2", "note 2 content."),
             Note(2, "Note 3", "This is Note 3--")
         )
+    }
+
+    fun retrieveLabels(): MutableSet<String> {
+        if (currentIndex != null) {
+            return notes[currentIndex!!].labels.keys
+        }
+        return mutableSetOf()
     }
 
     fun deleteNote(note: Note) {

@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.Priority
 
-
 class NoteCell : ListCell<Note>() {
 
     var note = Note(-1, "")
@@ -63,14 +62,3 @@ class NoteCell : ListCell<Note>() {
     }
 
 }
-
-
-/*
-class NoteCellFactory : Callback<ListView<Note?>?, ListCell<Note>?> {
-    override fun call(param: ListView<NoteCell?>?): ListCell<NoteCell> {
-        return ListCell<NoteCell>()
-        }
-    }
-}
-
- */

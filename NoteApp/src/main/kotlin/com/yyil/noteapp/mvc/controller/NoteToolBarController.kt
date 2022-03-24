@@ -34,6 +34,9 @@ class NoteToolBarController(
             }
             labelList.base.isVisible = !labelList.base.isVisible
             labelList.base.isManaged = !labelList.base.isManaged
+
+            labelList.labelList.items.clear()
+            labelList.labelList.items.addAll(model.retrieveLabels()) // To load in the associated labels with the note
         }
         noteToolBar.labelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, labelListHandler)
 
