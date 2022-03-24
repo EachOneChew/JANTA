@@ -41,44 +41,22 @@ class Model {
 
     /**
      * Example for Logan on how to receive event from interface
-     * Label args example: ["definition", "Theorem 3.3.1", "label_134752"]
+     * Label args example: ["definition", "Theorem 3.3.1"] a.k.a. [TYPE, TITLE]
      */
-    fun handleModelCall(target: String, arg: String) {
+    fun handleModelCall(target: String, type: String, title: String) {
         when (target) {
-//            "setAnnotationTitle" -> {
-//                tinyMCE.selection = insertAnnotation(arg, tinyMCE.selection);
-//                count++
+//            "label" -> if (currentIndex != null) {
+//                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
+//                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
+//                }
+//                else {
+//                    val nmap = mutableMapOf<String, String>()
+//                    nmap[arg[1]] = arg[2]
+//                    notes[currentIndex!!].labels[arg[0]] = nmap
+//                }
 //            }
-//            "removeAnnotation" -> {
-//                tinyMCE.selection = removeAnnotation(tinyMCE.selection)
-//            }
-            "label" -> TODO()
         }
     }
-
-//    fun insertAnnotation(annotation: String, selection: String): String {
-//        val openTag = "<span title=\"$annotation\">"
-//        val closeTag = "</span>"
-//        var result = selection
-//            .replace(">(?=[^<])".toRegex(), ">$openTag")
-//            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
-//
-//        if (selection[0] != '<') {
-//            result = "$openTag$result"
-//        }
-//
-//        if (selection[selection.length - 1] != '>') {
-//            result = "$result$closeTag"
-//        }
-//
-//        return result
-//    }
-//
-//    fun removeAnnotation(selection: String): String {
-//        return selection
-//            .replace("(<span [^>]+>)".toRegex(), "")
-//            .replace("(</span>)".toRegex(), "")
-//    }
 
     fun switchTheme(theme: String, content: String) {
         tinyMCE.appearance = Pair(theme, content)
@@ -99,6 +77,15 @@ class Model {
             note3
         )
     }
+/*
+    fun retrieveLabels(): MutableSet<String> {
+        if (currentIndex != null) {
+            return notes[currentIndex!!].labels.keys
+        }
+        return mutableSetOf()
+    }
+
+ */
 
     fun deleteNote(id: Int) {
         for (note in notes) {

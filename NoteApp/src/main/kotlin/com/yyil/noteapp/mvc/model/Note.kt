@@ -7,11 +7,17 @@ class Note {
     var title = ""
     var content = ""
 
+    // type -> name -> id
+    var labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()
+
     constructor()
 
-    constructor(title: String, content: String) {
+    constructor(
+        title: String, content: String,
+        labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()) {
         this.title = title
         this.content = content
+        this.labels = labels
     }
 
     fun createNoteContentEntity(): Int {
