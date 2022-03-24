@@ -4,6 +4,7 @@ window.initOptions = {
 };
 
 window.annotationInstances = null;
+window.labeltargetInstances = null;
 window.labelTypeVar = null;
 
 const clearAnnotationTippys = function () {
@@ -15,18 +16,42 @@ const clearAnnotationTippys = function () {
 
 const setAnnotationTippys = function () {
     const doc = document.querySelector("iframe").contentDocument;
-    window.annotationInstances = tippy(doc.querySelectorAll("annotation"), {
-        arrow: false,
-        placement: "right",
-        offset: [40, 10],
-        theme: "light-border",
-    });
+    window.annotationInstances = tippy(
+        doc.querySelectorAll(".annotation_class"),
+        {
+            arrow: false,
+            placement: "right",
+            offset: [40, 10],
+            theme: "light-border",
+        }
+    );
+};
+
+const clearLabeltargetTippys = function () {
+    if (window.labeltargetInstances) {
+        window.labeltargetInstances.forEach((e) => e.destroy());
+    }
+    window.labeltargetInstances = null;
+};
+
+const setLabeltargetTippys = function () {
+    const doc = document.querySelector("iframe").contentDocument;
+    window.labeltargetInstances = tippy(
+        doc.querySelectorAll(".labeltarget_class"),
+        {
+            arrow: false,
+            placement: "right",
+            offset: [40, 10],
+            theme: "light-border",
+        }
+    );
 };
 
 window.destroyFunction = function () {
     const bridge = window.bridgeObj;
 
     clearAnnotationTippys();
+    clearLabeltargetTippys();
 
     if (tinymce.activeEditor) {
         tinymce.activeEditor.destroy();
@@ -80,6 +105,7 @@ window.initFunction = function (initContent) {
                 inline: "a",
                 attributes: {
                     class: "labeltarget_class",
+                    "data-tippy-content": "%value",
                     name: "%value",
                     type: "%value2",
                 },
@@ -172,8 +198,10 @@ window.initFunction = function (initContent) {
                     {
                         type: "htmlpanel",
                         html: `
-                            <p>Within a note, selections may be designated label targets and label references. Label references point to label targets. Note that references are not allowed to point to targets that do not exist.</p>
+                            <p>Within a note, selections may be designated label targets and label references. Label references point to label targets.</p>
+                            <p>Note that references are not allowed to point to targets that do not exist. Target uniqueness is enforced by the editor.</p>
                             <p>Label targets are given a type, then a name by the user on creation through two successive context forms. References are pointed to targets using names.</p>
+                            <p>To see the name of a target, hover over its selection.</p>
                             <p>There is a tab in the sidebar which allows users to aggregate labels within a note by type.</p>
                             <p>Deleting a target will delete all references pointing to it. Deleting a reference will not affect the target.</p>
                             <p>Deletion and editing of labels is done through the context form triggered by moving the caret into their range.</p>
@@ -222,6 +250,7 @@ window.initFunction = function (initContent) {
                 ed.setContent(initContent);
                 bridge.setObjs(ed);
                 setAnnotationTippys();
+                setLabeltargetTippys();
             });
 
             ed.on("Change SetContent", function (_) {
@@ -289,10 +318,10 @@ window.initFunction = function (initContent) {
                                         value
                                     );
                                 }
-                                clearAnnotationTippys();
-                                setAnnotationTippys();
                             }
                             ed.fire("Change");
+                            clearAnnotationTippys();
+                            setAnnotationTippys();
                             formApi.hide();
                         },
                     },
@@ -309,10 +338,10 @@ window.initFunction = function (initContent) {
                                 root.removeAttribute("data-tippy-content");
                                 root.removeAttribute("style");
                                 ed.formatter.remove("annotation", null, root);
-                                clearAnnotationTippys();
-                                setAnnotationTippys();
                             }
                             ed.fire("Change");
+                            clearAnnotationTippys();
+                            setAnnotationTippys();
                             formApi.hide();
                         },
                     },
@@ -368,6 +397,7 @@ window.initFunction = function (initContent) {
                             );
                             if (root) {
                                 const temp = root.getAttribute("name");
+                                root.removeAttribute("data-tippy-content");
                                 root.removeAttribute("name");
                                 root.removeAttribute("type");
                                 root.removeAttribute("style");
@@ -385,6 +415,8 @@ window.initFunction = function (initContent) {
                                 // callModel(...)
                             }
                             ed.fire("Change");
+                            clearLabeltargetTippys();
+                            setLabeltargetTippys();
                             formApi.hide();
                         },
                     },
@@ -414,7 +446,11 @@ window.initFunction = function (initContent) {
                                     document.querySelector(
                                         "iframe"
                                     ).contentDocument;
-                                if (!root && doc.querySelectorAll(`a[name="${value}"]`).length == 0) {
+                                if (
+                                    !root &&
+                                    doc.querySelectorAll(`a[name="${value}"]`)
+                                        .length == 0
+                                ) {
                                     for (k in ed.formatter.get()) {
                                         ed.formatter.remove(k);
                                     }
@@ -427,6 +463,8 @@ window.initFunction = function (initContent) {
                                 }
                             }
                             ed.fire("Change");
+                            clearLabeltargetTippys();
+                            setLabeltargetTippys();
                             window.labelTypeVar = null;
                             formApi.hide();
                         },
