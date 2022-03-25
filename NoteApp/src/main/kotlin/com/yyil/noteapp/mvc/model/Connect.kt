@@ -226,6 +226,7 @@ object Connect {
         while (rs.next()) {
             re = NoteContentEntity()
             re.noteContentId = rs.getInt("NOTE_CONTENT_ID")
+            re.category = rs.getString("CATEGORY")
             re.title = rs.getString("TITLE")
             eList.add(re)
         }

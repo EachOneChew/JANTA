@@ -100,7 +100,7 @@ class Model {
 
         var noteList = FXCollections.observableArrayList<Note>()
 
-        var noteEntityList = Connect.findNoteTitleList(Connect.getConnection(), NoteContentEntity())
+        var noteEntityList = Connect.findNoteFullList(Connect.getConnection(), NoteContentEntity())
 
         if (noteEntityList != null) {
             for (entity in noteEntityList) {
@@ -119,10 +119,8 @@ class Model {
                 if (entity.category != null) {
                     println("did this work?")
 
-                    var nmap = entity.category!!.split(",").associate {
-                        val (left, right) = it.split("=")
-                        left to right
-                    }
+                    var nmap = entity.category!!.split(",")
+                        .map { it.split("=") }.associate { it.first() to it.last() }
 
                     println(nmap)
                     note.labels = nmap as MutableMap<String, String>
@@ -154,18 +152,21 @@ class Model {
         }
         tinyMCE.forceUpdate()
 
-        val mapAsString = StringBuilder()
-        for (key in label.keys) {
-            mapAsString.append(key + "=" + label[key] + ",")
-        }
+        var mapAsString : String? = null
+
         if (label.keys.isNotEmpty()) {
-            mapAsString.setLength(mapAsString.length - 1)
+            val nString = StringBuilder()
+            for (key in label.keys) {
+                nString.append(key + "=" + label[key] + ",")
+            }
+            nString.setLength(nString.length - 1)
+            mapAsString = nString.toString()
         }
 
         println("here")
-        println(mapAsString.toString())
+        println(mapAsString)
 
-        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content, category = mapAsString.toString())
+        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content, category = mapAsString)
         Connect.update(Connect.getConnection(), entity)
     }
 
