@@ -100,7 +100,7 @@ class Model {
 
         var noteList = FXCollections.observableArrayList<Note>()
 
-        var noteEntityList = Connect.findNoteFullList(Connect.getConnection(), NoteContentEntity())
+        var noteEntityList = Connect.findNoteTitleList(Connect.getConnection(), NoteContentEntity())
 
         if (noteEntityList != null) {
             for (entity in noteEntityList) {
@@ -122,8 +122,10 @@ class Model {
                     var nmap = entity.category!!.split(",")
                         .map { it.split("=") }.associate { it.first() to it.last() }
 
-                    println(nmap)
                     note.labels = nmap as MutableMap<String, String>
+                    note.labels.remove("")
+                    println(entity.category)
+                    println(note.labels)
                 }
                 else {
                     println("it did not work")
@@ -133,6 +135,7 @@ class Model {
                 //println("Adding from DB ------------------ ${note.id}, ${note.title}")
             }
         }
+        label = mutableMapOf()
         return noteList
     }
 
