@@ -3,12 +3,15 @@ package com.yyil.noteapp.mvc.model
 import com.yyil.noteapp.TinyMCEInterface
 import com.yyil.noteapp.entity.NoteContentEntity
 import javafx.collections.FXCollections
+import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
 
 class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val notes = retrieveNotes()
+    var label = mapOf<String, String>()
+    val listLabel: ObservableList<String> = observableArrayList()
 
     val lightTheme = "oxide"
     val lightContent = "default"
@@ -29,7 +32,14 @@ class Model {
                 //Save note content when change index
                 if (currentIndex != null) {
                     println("Current Idx $currentIndex; newIdx $newIndex")
+                    tinyMCE.forceUpdate()
                     saveNoteContent()
+
+                    label = notes[newIndex].labels
+                    listLabel.clear()
+                    for (key in label.keys) {
+                        listLabel.add(key + " " + label[key])
+                    }
                 }
                 //Load note content from DB for the selected note
                 var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
@@ -54,16 +64,16 @@ class Model {
      */
     fun handleModelCall(target: String, type: String, title: String) {
         when (target) {
-//            "label" -> if (currentIndex != null) {
-//                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
-//                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
-//                }
-//                else {
-//                    val nmap = mutableMapOf<String, String>()
-//                    nmap[arg[1]] = arg[2]
-//                    notes[currentIndex!!].labels[arg[0]] = nmap
-//                }
-//            }
+            "addLabel" ->
+                if (currentIndex != null) {
+                    notes[currentIndex!!].labels[title] = type
+                    listLabel.add("$title $type")
+                }
+            "removeLabel" ->
+                if (currentIndex != null) {
+                    notes[currentIndex!!].labels.remove(title)
+                    listLabel.remove("$title $type")
+                }
         }
     }
 

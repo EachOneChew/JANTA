@@ -3,10 +3,9 @@ package com.yyil.noteapp.mvc.model
 class Note {
     var id = -1
     var title = ""
-    //var content = ""
 
-    // type -> name -> id
-    var labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()
+    // name -> type
+    var labels: MutableMap<String, String> = mutableMapOf()
 
     constructor()
 
@@ -18,16 +17,10 @@ class Note {
     constructor(
         id: Int,
         title: String,
-        labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()
+        labels: MutableMap<String, String> = mutableMapOf()
     ) {
         this.id = id
         this.title = title
         this.labels = labels
     }
-
-//    fun noteEntity(): NoteContentEntity {
-//        return NoteContentEntity(
-//            noteContent = content, title = title
-//        )
-//    }
 }

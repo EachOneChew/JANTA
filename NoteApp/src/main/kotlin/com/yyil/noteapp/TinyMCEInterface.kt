@@ -82,7 +82,7 @@ class TinyMCEInterface(
     private var initOptionsObj: JSObject? = null
 
     init {
-        webView.isContextMenuEnabled = false;
+        webView.isContextMenuEnabled = false
 
         webEngine.load(url)
 
@@ -125,7 +125,7 @@ class TinyMCEInterface(
         }
 
         fun callModel(target: String, type: String, title: String) {
-            println("$target $type $title")
+            //println("$target $type $title")
             handleModelCall(target, type, title)
         }
 
