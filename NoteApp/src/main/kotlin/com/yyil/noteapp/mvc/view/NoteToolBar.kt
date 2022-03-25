@@ -36,8 +36,6 @@ class NoteToolBar : View {
         vBox.spacing = ComponentConstant.TOOLBAR_SPACING
 
         toolBar.orientation = Orientation.VERTICAL
-        toolBar.prefWidth = ComponentConstant.TOOLBAR_WIDTH
-        toolBar.maxWidth = ComponentConstant.TOOLBAR_WIDTH
         toolBar.items.add(vBox)
 
         addNoteDialog.graphic = null

@@ -9,7 +9,6 @@ object ComponentConstant {
     const val STAGE_MIN_WIDTH = 200.0
     const val BUTTON_ICON_WIDTH = 20.0
     const val BUTTON_ICON_HEIGHT = 20.0
-    const val TOOLBAR_WIDTH = 50.0
     const val TOOLBAR_SPACING = 10.0
     const val TEST_SCROLL_PANE_HEIGHT = 100.0
     const val LIST_CELL_HEIGHT = 38.0
@@ -22,5 +21,4 @@ object ComponentConstant {
     const val THEME_ICON_PATH = "icons/theme.svg"
     const val TITLE_BAR_ICON_PATH = "icons/note.svg"
     const val LABEL_ICON_PATH = "icons/label.svg"
-    const val CLEAR_ICON_PATH = "icons/clear.svg"
 }

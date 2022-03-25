@@ -23,18 +23,30 @@
     -fx-background-color: #e0e0e0;
  }
 
- #cell-label {
-    -fx-text-fill: black;
- }
-
-.menu-button {
-    -fx-background-color: transparent;
+#cell-label {
+-fx-text-fill: black;
 }
 
-.menu-button > .arrow-button {
-    -fx-padding: 0;
+.button {
+    -fx-background-color: #c4c4c4;
 }
 
-.menu-button > .arrow-button > .arrow {
-    -fx-padding: 0;
+.button:pressed {
+    -fx-background-color: #a1a1a1;
+}
+
+.toggle-button {
+    -fx-background-color: #c4c4c4;
+}
+
+.toggle-button:selected:focused, .toggle-button:selected {
+    -fx-background-color: #a1a1a1;
+}
+
+
+.tool-bar {
+    -fx-background-color: #2b2b2b;
+    -fx-min-width: 50.0;
+    -fx-max-width: 50.0;
+    -fx-pref-width: 50.0;
 }

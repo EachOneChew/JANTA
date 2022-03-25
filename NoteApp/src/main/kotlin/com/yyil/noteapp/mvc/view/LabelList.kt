@@ -24,7 +24,7 @@ class LabelList : View {
     private val labelListScrollPane = ScrollPane(labelList)
 
     init {
-        initButtons()
+        //initButtons()
 
         searchBar.promptText = "Search..."
 
@@ -47,9 +47,9 @@ class LabelList : View {
         base.isManaged = false
     }
 
-    private fun initButtons() {
-        clearButton.graphic = BufferedImageTranscoder.transcodeToImageView(
-            NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString()
-        )
-    }
+//    private fun initButtons() {
+//        clearButton.graphic = BufferedImageTranscoder.transcodeToImageView(
+//            NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString()
+//        )
+//    }
 }
