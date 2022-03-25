@@ -116,6 +116,17 @@ class Model {
                 } else {
                     note.title = ""
                 }
+                if (entity.category != null) {
+                    var nmap = entity.category!!.split(",").associate {
+                        val (left, right) = it.split("=")
+                        left to right
+                    }
+
+                    note.labels = nmap as MutableMap<String, String>
+                }
+                else {
+                    note.labels = mutableMapOf()
+                }
                 noteList.add(note)
                 println("Adding from DB ------------------ ${note.id}, ${note.title}")
             }
@@ -138,7 +149,14 @@ class Model {
             return
         }
         tinyMCE.forceUpdate()
-        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
+
+        val mapAsString = StringBuilder()
+        for (key in label.keys) {
+            mapAsString.append(key + "=" + label[key] + ", ")
+        }
+        mapAsString.delete(mapAsString.length, mapAsString.length).append("")
+
+        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content, category = mapAsString.toString())
         Connect.update(Connect.getConnection(), entity)
     }
 
