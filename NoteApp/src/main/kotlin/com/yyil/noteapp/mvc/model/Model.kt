@@ -10,7 +10,7 @@ class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val notes = retrieveNotes()
-    var label = mapOf<String, String>()
+    var label = mutableMapOf<String, String>()
     val listLabel: ObservableList<String> = observableArrayList()
 
     val lightTheme = "oxide"
@@ -25,6 +25,12 @@ class Model {
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
 
+            label = notes[newIndex].labels
+            listLabel.clear()
+            for (key in label.keys) {
+                listLabel.add(key)
+            }
+
             if (currentIndex != newIndex) {
 
                 println("------------${notes[newIndex].title}")
@@ -35,11 +41,6 @@ class Model {
                     tinyMCE.forceUpdate()
                     saveNoteContent()
 
-                    label = notes[newIndex].labels
-                    listLabel.clear()
-                    for (key in label.keys) {
-                        listLabel.add(key + " " + label[key])
-                    }
                 }
                 //Load note content from DB for the selected note
                 var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
@@ -73,11 +74,13 @@ class Model {
         when (target) {
             "addLabel" ->
                 if (currentIndex != null) {
+                    label[title] = type
                     notes[currentIndex!!].labels[title] = type
                     listLabel.add("$title")
                 }
             "removeLabel" ->
                 if (currentIndex != null) {
+                    label.remove(title)
                     notes[currentIndex!!].labels.remove(title)
                     listLabel.remove("$title")
                 }
@@ -157,9 +160,9 @@ class Model {
 
         var mapAsString : String? = null
 
-        if (label.keys.isNotEmpty()) {
+        if (notes[currentIndex!!].labels.keys.isNotEmpty()) {
             val nString = StringBuilder()
-            for (key in label.keys) {
+            for (key in notes[currentIndex!!].labels.keys) {
                 nString.append(key + "=" + label[key] + ",")
             }
             nString.setLength(nString.length - 1)
