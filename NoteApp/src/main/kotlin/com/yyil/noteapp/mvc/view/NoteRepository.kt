@@ -20,6 +20,7 @@ class NoteRepository : View {
 
         renameDialog.graphic = null
         renameDialog.headerText = "Enter new note title:"
+        renameDialog.title = ""
 
         base.children.add(noteList)
         base.fillHeightProperty().set(true)
