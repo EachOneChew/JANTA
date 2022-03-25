@@ -12,11 +12,15 @@ import com.yyil.noteapp.mvc.view.NoteArea
 import com.yyil.noteapp.mvc.view.NoteRepository
 import com.yyil.noteapp.mvc.view.NoteToolBar
 import com.yyil.noteapp.settings.WindowSettings
+import com.yyil.noteapp.svg.BufferedImageTranscoder
 import javafx.application.Application
+import javafx.embed.swing.SwingFXUtils
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.scene.layout.HBox
 import javafx.stage.Stage
+import org.apache.batik.transcoder.TranscoderInput
+
 
 class NoteApplication : Application() {
     val model = Model()
@@ -64,7 +68,7 @@ class NoteApplication : Application() {
         stage.scene = scene
         stage.title = WindowSettings.WINDOW_TITLE
         stage.icons.add(
-            Image(
+            BufferedImageTranscoder.transcodeToImage(
                 NoteApplication::class.java.getResource(ComponentConstant.TITLE_BAR_ICON_PATH).toString()
             )
         )

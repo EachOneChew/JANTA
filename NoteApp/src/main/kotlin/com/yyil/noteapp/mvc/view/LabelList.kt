@@ -2,6 +2,7 @@ package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
+import com.yyil.noteapp.svg.BufferedImageTranscoder
 import javafx.scene.control.Button
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
@@ -47,13 +48,8 @@ class LabelList : View {
     }
 
     private fun initButtons() {
-        clearButton.graphic = ImageView(
-            Image(
-                NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString(),
-                ComponentConstant.BUTTON_ICON_WIDTH,
-                ComponentConstant.BUTTON_ICON_HEIGHT,
-                true, false
-            )
+        clearButton.graphic = BufferedImageTranscoder.transcodeToImageView(
+            NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString()
         )
     }
 }
