@@ -28,7 +28,7 @@ class Model {
             label = notes[newIndex].labels
             listLabel.clear()
             for (key in label.keys) {
-                listLabel.add(key)
+                listLabel.add("${label[key]}: $key")
             }
 
             if (currentIndex != newIndex) {
