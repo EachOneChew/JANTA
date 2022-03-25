@@ -117,18 +117,22 @@ class Model {
                     note.title = ""
                 }
                 if (entity.category != null) {
+                    println("did this work?")
+
                     var nmap = entity.category!!.split(",").associate {
                         val (left, right) = it.split("=")
                         left to right
                     }
 
+                    println(nmap)
                     note.labels = nmap as MutableMap<String, String>
                 }
                 else {
+                    println("it did not work")
                     note.labels = mutableMapOf()
                 }
                 noteList.add(note)
-                println("Adding from DB ------------------ ${note.id}, ${note.title}")
+                //println("Adding from DB ------------------ ${note.id}, ${note.title}")
             }
         }
         return noteList
@@ -152,9 +156,14 @@ class Model {
 
         val mapAsString = StringBuilder()
         for (key in label.keys) {
-            mapAsString.append(key + "=" + label[key] + ", ")
+            mapAsString.append(key + "=" + label[key] + ",")
         }
-        mapAsString.delete(mapAsString.length, mapAsString.length).append("")
+        if (label.keys.isNotEmpty()) {
+            mapAsString.setLength(mapAsString.length - 1)
+        }
+
+        println("here")
+        println(mapAsString.toString())
 
         var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content, category = mapAsString.toString())
         Connect.update(Connect.getConnection(), entity)
