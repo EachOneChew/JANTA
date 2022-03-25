@@ -58,9 +58,11 @@ class Model {
         }
     }
 
-    fun handleLabelNav(i: Int) {
-        val title = listLabel[i]
-        tinyMCE.navLabel(title)
+    fun handleLabelNav(newIndex: Int) {
+        if (newIndex < notes.size && newIndex >= 0) {
+            val title = listLabel[newIndex]
+            tinyMCE.navLabel(title)
+        }
     }
 
     /**

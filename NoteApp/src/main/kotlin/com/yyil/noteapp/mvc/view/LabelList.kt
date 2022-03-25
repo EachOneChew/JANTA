@@ -16,23 +16,15 @@ class LabelList : View {
     override val base = VBox()
 
     val searchBar = TextField()
-    val clearButton = Button()
-    private val searchField = HBox(searchBar, clearButton)
+    private val searchField = HBox(searchBar)
 
     val labelList = ListView<String>()
     private val labelListScrollPane = ScrollPane(labelList)
 
     init {
-        initButtons()
+        searchBar.style = "-fx-background-radius: 0"
 
         searchBar.promptText = "Search..."
-
-        /*labelList.items.addAll(
-            "Label 1",
-            "Label 2",
-            "Label 3"
-        )*/
-
 
         base.children.addAll(searchField, labelList)
 
@@ -44,16 +36,5 @@ class LabelList : View {
 
         base.isVisible = false
         base.isManaged = false
-    }
-
-    private fun initButtons() {
-        clearButton.graphic = ImageView(
-            Image(
-                NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString(),
-                ComponentConstant.BUTTON_ICON_WIDTH,
-                ComponentConstant.BUTTON_ICON_HEIGHT,
-                true, false
-            )
-        )
     }
 }

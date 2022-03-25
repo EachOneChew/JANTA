@@ -16,8 +16,5 @@ class LabelListController(
         }
 
         labelList.labelList.items = model.listLabel
-        labelList.clearButton.onMouseClicked = EventHandler {
-            labelList.searchBar.text = ""
-        }
     }
 }
