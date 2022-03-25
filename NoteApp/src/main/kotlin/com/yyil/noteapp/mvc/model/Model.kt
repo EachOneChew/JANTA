@@ -58,6 +58,11 @@ class Model {
         }
     }
 
+    fun handleLabelNav(i: Int) {
+        val title = listLabel[i]
+        tinyMCE.navLabel(title)
+    }
+
     /**
      * Example for Logan on how to receive event from interface
      * Label args example: ["definition", "Theorem 3.3.1"] a.k.a. [TYPE, TITLE]
@@ -67,12 +72,12 @@ class Model {
             "addLabel" ->
                 if (currentIndex != null) {
                     notes[currentIndex!!].labels[title] = type
-                    listLabel.add("$title $type")
+                    listLabel.add("$title")
                 }
             "removeLabel" ->
                 if (currentIndex != null) {
                     notes[currentIndex!!].labels.remove(title)
-                    listLabel.remove("$title $type")
+                    listLabel.remove("$title")
                 }
         }
     }
@@ -144,5 +149,29 @@ class Model {
     fun addNote(title: String) {
         var id = Connect.create(Connect.getConnection(), NoteContentEntity(title = title, noteContent = ""))
         notes.add(Note(id, title))
+    }
+
+    fun insertAnnotation(annotation: String, selection: String): String {
+        val openTag = "<span title=\"$annotation\">"
+        val closeTag = "</span>"
+        var result = selection
+            .replace(">(?=[^<])".toRegex(), ">$openTag")
+            .replace("(?<=[^>])<".toRegex(), "$closeTag<")
+
+        if (selection[0] != '<') {
+            result = "$openTag$result"
+        }
+
+        if (selection[selection.length - 1] != '>') {
+            result = "$result$closeTag"
+        }
+
+        return result
+    }
+
+    fun removeAnnotation(selection: String): String {
+        return selection
+            .replace("(<span [^>]+>)".toRegex(), "")
+            .replace("(</span>)".toRegex(), "")
     }
 }

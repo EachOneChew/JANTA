@@ -106,7 +106,7 @@ window.initFunction = function (initContent) {
                     "data-tippy-content": "%value",
                 },
                 styles: {
-                    "background-color": "#FFFF00",
+                    "background-color": "#3CB371",
                 },
                 exact: true,
                 merge_siblings: false,
@@ -119,7 +119,7 @@ window.initFunction = function (initContent) {
                     type: "%value2",
                 },
                 styles: {
-                    "background-color": "#FF8C00",
+                    "background-color": "#FF6A00",
                 },
                 exact: true,
                 merge_siblings: false,
@@ -131,7 +131,7 @@ window.initFunction = function (initContent) {
                     "data-alt": "%value",
                 },
                 styles: {
-                    "background-color": "#7FFFD4",
+                    "background-color": "#5F9EA0",
                 },
                 exact: true,
                 merge_siblings: false,
@@ -190,8 +190,8 @@ window.initFunction = function (initContent) {
                     {
                         type: "htmlpanel",
                         html: `
-                            <p>Selections may be annotated with a short text. The <span style="background-color: #FFFF00">annotation</span> will then be displayed when the user hovers over the affected selection.</p>
-                            <p>Deletion and editing of <span style="background-color: #FFFF00">annotations</span> is done through the context form triggered by moving the caret into their range.</p>
+                            <p>Selections may be annotated with a short text. The <span style="background-color: #3CB371">annotation</span> will then be displayed when the user hovers over the affected selection.</p>
+                            <p>Deletion and editing of <span style="background-color: #3CB371">annotations</span> is done through the context form triggered by moving the caret into their range.</p>
                         `,
                     },
                 ],
@@ -203,12 +203,12 @@ window.initFunction = function (initContent) {
                     {
                         type: "htmlpanel",
                         html: `
-                            <p>Within a note, selections may be designated label <span style="background-color: #FF8C00">targets</span> and label <span style="background-color: #7FFFD4">references</span>. Label <span style="background-color: #7FFFD4">references</span> point to label <span style="background-color: #FF8C00">targets</span>.</p>
-                            <p>Note that <span style="background-color: #7FFFD4">references</span> are not allowed to point to <span style="background-color: #FF8C00">targets</span> that do not exist. <span style="background-color: #FF8C00">Target</span> uniqueness is enforced by the editor.</p>
-                            <p>Label <span style="background-color: #FF8C00">targets</span> are given a type, then a title by the user on creation through two successive context forms. <span style="background-color: #7FFFD4">references</span> are pointed to <span style="background-color: #FF8C00">targets</span> using titles.</p>
-                            <p>To see the title of a <span style="background-color: #FF8C00">target</span>, hover over its selection.</p>
+                            <p>Within a note, selections may be designated label <span style="background-color: #FF6A00">targets</span> and label <span style="background-color: #5F9EA0">references</span>. Label <span style="background-color: #5F9EA0">references</span> point to label <span style="background-color: #FF6A00">targets</span>.</p>
+                            <p>Note that <span style="background-color: #5F9EA0">references</span> are not allowed to point to <span style="background-color: #FF6A00">targets</span> that do not exist. <span style="background-color: #FF6A00">Target</span> uniqueness is enforced by the editor.</p>
+                            <p>Label <span style="background-color: #FF6A00">targets</span> are given a type, then a title by the user on creation through two successive context forms. <span style="background-color: #5F9EA0">references</span> are pointed to <span style="background-color: #FF6A00">targets</span> using titles.</p>
+                            <p>To see the title of a <span style="background-color: #FF6A00">target</span>, hover over its selection.</p>
                             <p>There is a tab in the sidebar which allows users to aggregate labels within a note by type.</p>
-                            <p>Deleting a <span style="background-color: #FF8C00">target</span> will delete all <span style="background-color: #7FFFD4">references</span> pointing to it. Deleting a <span style="background-color: #7FFFD4">reference</span> will not affect the <span style="background-color: #FF8C00">target</span>.</p>
+                            <p>Deleting a <span style="background-color: #FF6A00">target</span> will delete all <span style="background-color: #5F9EA0">references</span> pointing to it. Deleting a <span style="background-color: #5F9EA0">reference</span> will not affect the <span style="background-color: #FF6A00">target</span>.</p>
                             <p>Deletion and editing of labels is done through the context form triggered by moving the caret into their range.</p>
                         `,
                     },
@@ -260,6 +260,18 @@ window.initFunction = function (initContent) {
 
             ed.on("Change SetContent", function (_) {
                 bridge.setInterfaceContent(ed.getContent());
+            });
+
+            ed.addShortcut("ctrl+p", "Label annotate", function () {
+                openForm("annotate-form");
+            });
+
+            ed.addShortcut("ctrl+l", "Label target", function () {
+                openForm("labeltarget-form");
+            });
+
+            ed.addShortcut("ctrl+o", "Label reference", function () {
+                openForm("labelref-form");
             });
 
             ed.ui.registry.addButton("addAnnotationButton", {
@@ -358,7 +370,11 @@ window.initFunction = function (initContent) {
             ed.ui.registry.addContextForm("labeltarget-form", {
                 label: "Label target",
                 initValue: function () {
-                    return "";
+                    var root = getRoot(
+                        ed.selection.getNode(),
+                        "labeltarget_class"
+                    );
+                    return root ? root.getAttribute("type") : "";
                 },
                 position: "selection",
                 predicate: calcLabeltargetPredicate,

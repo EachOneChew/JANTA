@@ -14,9 +14,9 @@ import javafx.scene.layout.HBox
 class NoteToolBar : View {
 
     val noteListButton = ToggleButton()
-    val saveButton = Button()
-    val addButton = Button()
     val labelButton = ToggleButton()
+    val addButton = Button()
+    val saveButton = Button()
     val themeButton = Button()
 
     val toolBar = ToolBar()
@@ -28,7 +28,7 @@ class NoteToolBar : View {
     init {
         initButtons()
 
-        toolBar.items.addAll(noteListButton, saveButton, addButton, labelButton, themeButton)
+        toolBar.items.addAll(noteListButton, labelButton, addButton, saveButton, themeButton)
 
         toolBar.orientation = Orientation.VERTICAL
 
@@ -48,33 +48,7 @@ class NoteToolBar : View {
                 true, false
             )
         )
-
-        addButton.graphic = ImageView(
-            Image(
-                NoteApplication::class.java.getResource(ComponentConstant.ADD_ICON_PATH).toString(),
-                ComponentConstant.BUTTON_ICON_WIDTH,
-                ComponentConstant.BUTTON_ICON_HEIGHT,
-                true, false
-            )
-        )
-
-        saveButton.graphic = ImageView(
-            Image(
-                NoteApplication::class.java.getResource(ComponentConstant.SAVE_ICON_PATH).toString(),
-                ComponentConstant.BUTTON_ICON_WIDTH,
-                ComponentConstant.BUTTON_ICON_HEIGHT,
-                true, false
-            )
-        )
-
-        themeButton.graphic = ImageView(
-            Image(
-                NoteApplication::class.java.getResource(ComponentConstant.THEME_ICON_PATH).toString(),
-                ComponentConstant.BUTTON_ICON_WIDTH,
-                ComponentConstant.BUTTON_ICON_HEIGHT,
-                true, false
-            )
-        )
+        noteListButton.style = "-fx-background-radius: 0"
 
         labelButton.graphic = ImageView(
             Image(
@@ -84,6 +58,37 @@ class NoteToolBar : View {
                 true, false
             )
         )
+        labelButton.style = "-fx-background-radius: 0"
+
+        addButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.ADD_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+        addButton.style = "-fx-background-radius: 0"
+
+        saveButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.SAVE_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+        saveButton.style = "-fx-background-radius: 0"
+
+        themeButton.graphic = ImageView(
+            Image(
+                NoteApplication::class.java.getResource(ComponentConstant.THEME_ICON_PATH).toString(),
+                ComponentConstant.BUTTON_ICON_WIDTH,
+                ComponentConstant.BUTTON_ICON_HEIGHT,
+                true, false
+            )
+        )
+        themeButton.style = "-fx-background-radius: 0"
     }
 
 }
