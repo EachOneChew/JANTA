@@ -2,12 +2,15 @@ package com.yyil.noteapp.mvc.model
 
 import com.yyil.noteapp.TinyMCEInterface
 import javafx.collections.FXCollections
+import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
 
 class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val notes = retrieveNotes()
+    var label = mapOf<String, String>()
+    val listLabel: ObservableList<String> = observableArrayList()
 
     val lightTheme = "oxide"
     val lightContent = "default"
@@ -24,6 +27,12 @@ class Model {
                 if (currentIndex != null) {
                     tinyMCE.forceUpdate()
                     notes[currentIndex!!].content = tinyMCE.content
+
+                    label = notes[newIndex].labels
+                    listLabel.clear()
+                    for (key in label.keys) {
+                        listLabel.add(key + " " + label[key])
+                    }
                 }
                 tinyMCE.content = notes[newIndex].content
                 currentIndex = newIndex
@@ -37,16 +46,16 @@ class Model {
      */
     fun handleModelCall(target: String, type: String, title: String) {
         when (target) {
-//            "label" -> if (currentIndex != null) {
-//                if (notes[currentIndex!!].labels.containsKey<String>(arg[0])){
-//                    notes[currentIndex!!].labels[arg[0]]?.put(arg[1], arg[2]) // Will overwrite if the name already exists
-//                }
-//                else {
-//                    val nmap = mutableMapOf<String, String>()
-//                    nmap[arg[1]] = arg[2]
-//                    notes[currentIndex!!].labels[arg[0]] = nmap
-//                }
-//            }
+            "addLabel" ->
+                if (currentIndex != null) {
+                    notes[currentIndex!!].labels[title] = type
+                    listLabel.add("$title $type")
+                }
+            "removeLabel" ->
+                if (currentIndex != null) {
+                    notes[currentIndex!!].labels.remove(title)
+                    listLabel.remove("$title $type")
+                }
         }
     }
 
@@ -56,18 +65,11 @@ class Model {
     }
 
     fun retrieveNotes(): ObservableList<Note> {
-        return FXCollections.observableArrayList(
-            Note(0, "Note 1", "NOTE 1 CONTENT~", mutableMapOf("hello" to mutableMapOf("hi" to "sup"))),
+        return observableArrayList(
+            Note(0, "Note 1", "NOTE 1 CONTENT~"),
             Note(1, "Note 2", "note 2 content."),
             Note(2, "Note 3", "This is Note 3--")
         )
-    }
-
-    fun retrieveLabels(): MutableSet<String> {
-        if (currentIndex != null) {
-            return notes[currentIndex!!].labels.keys
-        }
-        return mutableSetOf()
     }
 
     fun deleteNote(note: Note) {
