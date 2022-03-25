@@ -19,8 +19,6 @@ class Model {
     var currentTheme = lightTheme
     var currentIndex: Int? = null
 
-    val connect = Connect.getConnection()
-
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
             if (currentIndex != newIndex) {
@@ -31,7 +29,7 @@ class Model {
                     notes[currentIndex!!].content = tinyMCE.content
                 }
                 */
-                var entity = Connect.findNoteById(connect, notes[newIndex].id)
+                var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
                 if (entity != null) {
                     tinyMCE.content = entity.noteContent!!
                 }else{
@@ -84,7 +82,7 @@ class Model {
         var noteList = FXCollections.observableArrayList<Note>()
 
         for (note in noteEntityList){
-            var id = Connect.create(connect, note)
+            var id = Connect.create(Connect.getConnection(), note)
             if (note.title != null) {
                 noteList.add(Note(id, note.title!!))
             }else{
@@ -103,7 +101,7 @@ class Model {
 //        }
 
         notes.remove(note)
-        if(Connect.deleteNoteById(connect, note.id) == 0){
+        if(Connect.deleteNoteById(Connect.getConnection(), note.id) == 0){
             println("Note not found in DB")
         }
     }
@@ -114,12 +112,12 @@ class Model {
             return
         }
         var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
-        Connect.update(connect, entity)
+        Connect.update(Connect.getConnection(), entity)
     }
 
     fun updateNoteTitle(note: Note, title: String){
         note.title = title
         var entity = NoteContentEntity(noteContentId = note.id, title = title)
-        Connect.update(connect, entity)
+        Connect.update(Connect.getConnection(), entity)
     }
 }
