@@ -263,7 +263,7 @@ data class NoteContentEntity(
     }
 
     fun getTiTleStr(): String {
-        return "NOTE_CONTENT_ID, TITLE"
+        return "NOTE_CONTENT_ID, TITLE, CATEGORY"
     }
 }
 

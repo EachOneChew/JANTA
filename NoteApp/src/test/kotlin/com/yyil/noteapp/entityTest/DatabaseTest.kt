@@ -112,8 +112,8 @@ internal class DatabaseTest {
                 println(item)
             }
         }
-//        Connect.reset(conn, NoteContentEntity())
-//        Connect.reset(conn, SettingEntity())
+        Connect.reset(conn, NoteContentEntity())
+        Connect.reset(conn, SettingEntity())
         Connect.close(conn)
     }
 }

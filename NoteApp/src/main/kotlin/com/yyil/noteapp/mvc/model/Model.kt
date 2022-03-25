@@ -10,7 +10,7 @@ class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
 
     val notes = retrieveNotes()
-    var label = mapOf<String, String>()
+    var label = mutableMapOf<String, String>()
     val listLabel: ObservableList<String> = observableArrayList()
 
     val lightTheme = "oxide"
@@ -25,6 +25,12 @@ class Model {
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
 
+            label = notes[newIndex].labels
+            listLabel.clear()
+            for (key in label.keys) {
+                listLabel.add("${label[key]}: $key")
+            }
+
             if (currentIndex != newIndex) {
 
                 println("------------${notes[newIndex].title}")
@@ -35,11 +41,6 @@ class Model {
                     tinyMCE.forceUpdate()
                     saveNoteContent()
 
-                    label = notes[newIndex].labels
-                    listLabel.clear()
-                    for (key in label.keys) {
-                        listLabel.add(key + " " + label[key])
-                    }
                 }
                 //Load note content from DB for the selected note
                 var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
@@ -73,11 +74,13 @@ class Model {
         when (target) {
             "addLabel" ->
                 if (currentIndex != null) {
+                    label[title] = type
                     notes[currentIndex!!].labels[title] = type
                     listLabel.add("$type: $title")
                 }
             "removeLabel" ->
                 if (currentIndex != null) {
+                    label.remove(title)
                     notes[currentIndex!!].labels.remove(title)
                     listLabel.remove("$type: $title")
                 }
@@ -116,10 +119,26 @@ class Model {
                 } else {
                     note.title = ""
                 }
+                if (entity.category != null) {
+                    println("did this work?")
+
+                    var nmap = entity.category!!.split(",")
+                        .map { it.split("=") }.associate { it.first() to it.last() }
+
+                    note.labels = nmap as MutableMap<String, String>
+                    note.labels.remove("")
+                    println(entity.category)
+                    println(note.labels)
+                }
+                else {
+                    println("it did not work")
+                    note.labels = mutableMapOf()
+                }
                 noteList.add(note)
-                println("Adding from DB ------------------ ${note.id}, ${note.title}")
+                //println("Adding from DB ------------------ ${note.id}, ${note.title}")
             }
         }
+        label = mutableMapOf()
         return noteList
     }
 
@@ -138,7 +157,22 @@ class Model {
             return
         }
         tinyMCE.forceUpdate()
-        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
+
+        var mapAsString : String? = null
+
+        if (notes[currentIndex!!].labels.keys.isNotEmpty()) {
+            val nString = StringBuilder()
+            for (key in notes[currentIndex!!].labels.keys) {
+                nString.append(key + "=" + label[key] + ",")
+            }
+            nString.setLength(nString.length - 1)
+            mapAsString = nString.toString()
+        }
+
+        println("here")
+        println(mapAsString)
+
+        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content, category = mapAsString)
         Connect.update(Connect.getConnection(), entity)
     }
 
