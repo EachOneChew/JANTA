@@ -23,15 +23,17 @@ class NoteEditMenuController(
         noteEditMenu.deleteOption.onAction = EventHandler {
             println("Deleted note ${noteEditMenu.noteCell.note.title};" +
                     " ID: ${noteEditMenu.noteCell.note.id}")
-            model.notes.remove(noteEditMenu.noteCell.note)
+            model.deleteNote(noteEditMenu.noteCell.note)
         }
 
         noteEditMenu.renameOption.onAction = EventHandler {
             println("Rename note ${noteEditMenu.noteCell.note.title};" +
                     " ID: ${noteEditMenu.noteCell.note.id}")
+
             noteRepository.renameDialog.showAndWait()
-            noteEditMenu.noteCell.note.title = noteRepository.renameDialog.editor.text
+            model.updateNoteTitle(noteEditMenu.noteCell.note, noteRepository.renameDialog.editor.text)
             noteRepository.noteList.refresh()
+
             println(" To ${noteEditMenu.noteCell.note.title}")
         }
     }

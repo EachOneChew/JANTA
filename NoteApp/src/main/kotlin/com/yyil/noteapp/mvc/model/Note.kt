@@ -5,26 +5,31 @@ import com.yyil.noteapp.entity.NoteContentEntity
 class Note {
     var id = -1
     var title = ""
-    var content = ""
+    //var content = ""
 
     // type -> name -> id
     var labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()
 
     constructor()
 
-    constructor(
-        title: String, content: String,
-        labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()) {
+    constructor(id: Int, title: String){
+        this.id = id
         this.title = title
-        this.content = content
+    }
+
+    constructor(
+        id: Int,
+        title: String,
+        labels: MutableMap<String, MutableMap<String, String>> = mutableMapOf()
+    ) {
+        this.id = id
+        this.title = title
         this.labels = labels
     }
 
-    fun createNoteContentEntity(): Int {
-        var entity = NoteContentEntity(
-            noteContent = content, title = title
-        )
-
-        return -1
-    }
+//    fun noteEntity(): NoteContentEntity {
+//        return NoteContentEntity(
+//            noteContent = content, title = title
+//        )
+//    }
 }

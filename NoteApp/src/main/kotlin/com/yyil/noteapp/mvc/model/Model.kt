@@ -4,7 +4,6 @@ import com.yyil.noteapp.TinyMCEInterface
 import com.yyil.noteapp.entity.NoteContentEntity
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
-import java.time.LocalDateTime
 
 class Model {
     val tinyMCE = TinyMCEInterface("", ::handleModelCall)
@@ -21,7 +20,6 @@ class Model {
     var currentIndex: Int? = null
 
     val connect = Connect.getConnection()
-    var success = false
 
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
@@ -33,7 +31,13 @@ class Model {
                     notes[currentIndex!!].content = tinyMCE.content
                 }
                 */
-                tinyMCE.content = notes[newIndex].content
+                var entity = Connect.findNoteById(connect, notes[newIndex].id)
+                if (entity != null) {
+                    tinyMCE.content = entity.noteContent!!
+                }else{
+                    tinyMCE.content = ""
+                    println("No content for ${notes[newIndex].title}")
+                }
                 currentIndex = newIndex
             }
         }
@@ -63,21 +67,6 @@ class Model {
         currentTheme = theme
     }
 
-    fun retrieveNotes(): ObservableList<Note> {
-
-        var note1 = Note("Note 1", "NOTE 1 CONTENT~")
-        var note2 = Note("Note 2", "note 2 content.")
-        var note3 = Note("Note 3", "This is Note 3--")
-        //success = Connect.create(connect, note1.createNoteContentEntity())
-        //println("Create Note success: $success")
-
-        return FXCollections.observableArrayList(
-            note1,
-            note2,
-            note3
-        )
-    }
-/*
     fun retrieveLabels(): MutableSet<String> {
         if (currentIndex != null) {
             return notes[currentIndex!!].labels.keys
@@ -85,14 +74,52 @@ class Model {
         return mutableSetOf()
     }
 
- */
+    fun retrieveNotes(): ObservableList<Note> {
 
-    fun deleteNote(id: Int) {
-        for (note in notes) {
-            if (note.id == id) {
-                notes.remove(note)
-                break
+        var noteEntityList = FXCollections.observableArrayList(
+            NoteContentEntity(title = "Note 1", noteContent = "NOTE 1 CONTENT~"),
+            NoteContentEntity(title = "Note 2", noteContent = "note 2 content."),
+            NoteContentEntity(title = "Note 3", noteContent = "This is Note 3--")
+        )
+        var noteList = FXCollections.observableArrayList<Note>()
+
+        for (note in noteEntityList){
+            var id = Connect.create(connect, note)
+            if (note.title != null) {
+                noteList.add(Note(id, note.title!!))
+            }else{
+                noteList.add(Note(id, ""))
             }
         }
+        return noteList
+    }
+
+    fun deleteNote(note: Note) {
+//        for (note in notes) {
+//            if (note.id == id) {
+//                notes.remove(note)
+//                break
+//            }
+//        }
+
+        notes.remove(note)
+        if(Connect.deleteNoteById(connect, note.id) == 0){
+            println("Note not found in DB")
+        }
+    }
+
+    fun updateNoteContent(){
+        if(currentIndex == null || currentIndex!! < 0){
+            println("No note is selected")
+            return
+        }
+        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
+        Connect.update(connect, entity)
+    }
+
+    fun updateNoteTitle(note: Note, title: String){
+        note.title = title
+        var entity = NoteContentEntity(noteContentId = note.id, title = title)
+        Connect.update(connect, entity)
     }
 }
