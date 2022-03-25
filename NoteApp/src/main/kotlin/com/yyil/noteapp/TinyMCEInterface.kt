@@ -100,8 +100,16 @@ class TinyMCEInterface(
         editorObj?.call("fire", "Change")
     }
 
+    fun navLabel(target: String) {
+        webEngine.executeScript("window.goToTarget('$target')");
+    }
+
     fun initEditor(initContent: String) {
         webEngine.executeScript("window.initFunction('$initContent')")
+    }
+
+    fun destroyEditor() {
+        webEngine.executeScript("window.destroyFunction()")
     }
 
     /**

@@ -16,7 +16,7 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
     var testCallModel: String = ""
 
     override fun start(stage: Stage?) {
-        tinyMCE = TinyMCEInterface("", fun(_: String) {
+        tinyMCE = TinyMCEInterface("", fun(_: String, _: String, _: String) {
             testCallModel = "CALLED"
         })
     }

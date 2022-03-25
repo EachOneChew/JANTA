@@ -9,9 +9,12 @@ class LabelListController(
     labelList: LabelList
 ) {
     init {
-        labelList.labelList.items = model.listLabel
-        labelList.clearButton.onMouseClicked = EventHandler {
-            labelList.searchBar.text = ""
+        labelList.labelList.onMouseClicked = EventHandler {
+            val i = labelList.labelList.selectionModel.selectedIndex
+            println("clicked with index $i")
+            model.handleLabelNav(i)
         }
+
+        labelList.labelList.items = model.listLabel
     }
 }

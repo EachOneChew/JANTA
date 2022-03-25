@@ -15,7 +15,6 @@ class NoteRepositoryController(
         noteRepository.noteList.onMouseClicked = EventHandler {
             val i = noteRepository.noteList.selectionModel.selectedIndex
             model.handleNoteSelect(i)
-            println("Selected note index $i")
         }
 
         noteRepository.noteList.items = model.notes

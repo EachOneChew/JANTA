@@ -2,7 +2,6 @@ package com.yyil.noteapp.mvc.view
 
 import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
-import com.yyil.noteapp.svg.BufferedImageTranscoder
 import javafx.scene.control.Button
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
@@ -17,23 +16,15 @@ class LabelList : View {
     override val base = VBox()
 
     val searchBar = TextField()
-    val clearButton = Button()
-    private val searchField = HBox(searchBar, clearButton)
+    private val searchField = HBox(searchBar)
 
     val labelList = ListView<String>()
     private val labelListScrollPane = ScrollPane(labelList)
 
     init {
-        //initButtons()
+        searchBar.style = "-fx-background-radius: 0"
 
         searchBar.promptText = "Search..."
-
-        /*labelList.items.addAll(
-            "Label 1",
-            "Label 2",
-            "Label 3"
-        )*/
-
 
         base.children.addAll(searchField, labelList)
 
@@ -46,10 +37,4 @@ class LabelList : View {
         base.isVisible = false
         base.isManaged = false
     }
-
-//    private fun initButtons() {
-//        clearButton.graphic = BufferedImageTranscoder.transcodeToImageView(
-//            NoteApplication::class.java.getResource(ComponentConstant.CLEAR_ICON_PATH).toString()
-//        )
-//    }
 }
