@@ -9,12 +9,10 @@ import javafx.scene.control.Button
 import javafx.scene.control.TextInputDialog
 import javafx.scene.control.ToggleButton
 import javafx.scene.control.ToolBar
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 
-class NoteToolBar : View {
+class NoteToolBar: View {
 
     val noteListButton = ToggleButton()
     val saveButton = Button()
