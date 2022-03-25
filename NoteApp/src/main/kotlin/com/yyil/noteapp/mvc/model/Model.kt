@@ -61,7 +61,7 @@ class Model {
 
     fun handleLabelNav(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
-            val title = listLabel[newIndex]
+            val title = listLabel[newIndex].split(": ")[1]
             tinyMCE.navLabel(title)
         }
     }
@@ -76,13 +76,13 @@ class Model {
                 if (currentIndex != null) {
                     label[title] = type
                     notes[currentIndex!!].labels[title] = type
-                    listLabel.add("$title")
+                    listLabel.add("$type: $title")
                 }
             "removeLabel" ->
                 if (currentIndex != null) {
                     label.remove(title)
                     notes[currentIndex!!].labels.remove(title)
-                    listLabel.remove("$title")
+                    listLabel.remove("$type: $title")
                 }
         }
     }
