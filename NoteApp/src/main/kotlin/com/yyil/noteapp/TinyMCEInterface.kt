@@ -7,7 +7,6 @@ import javafx.concurrent.Worker
 import javafx.scene.web.WebEngine
 import javafx.scene.web.WebView
 import netscape.javascript.JSObject
-import kotlin.reflect.KFunction2
 
 /**
  * DO NOT MOVE THIS FILE UNDER ANY CIRCUMSTANCE

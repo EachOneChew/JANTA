@@ -12,12 +12,13 @@ class NoteRepository : View {
     val noteList = ListView<Note>()
     private val listScroll = ScrollPane(noteList)
 
-    val renameDialog = TextInputDialog("New name...")
+    val renameDialog = TextInputDialog()
 
     init {
         listScroll.fitToWidthProperty().set(true)
         listScroll.fitToHeightProperty().set(true)
 
+        renameDialog.graphic = null
         renameDialog.headerText = "Enter new note title:"
 
         base.children.add(noteList)

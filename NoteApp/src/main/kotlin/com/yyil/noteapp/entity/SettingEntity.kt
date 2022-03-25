@@ -1,7 +1,5 @@
 package com.yyil.noteapp.entity
 
-import java.sql.Timestamp
-
 /**
  * setting_id: Int?
  *      system created id (primary key)
@@ -63,10 +61,10 @@ data class SettingEntity(
             }
             braStr = "CREATOR$braStr"
         }
-        
+
         return braStr
     }
-    
+
     override fun getUpdateStr(): String {
         var braStr: String
         braStr = if (value != null) "VALUE = \"$value\"" else ""
@@ -106,7 +104,7 @@ data class SettingEntity(
         braStr += "DEL_FLAG = \"$delFlag\""
         return braStr
     }
-    
+
     override fun getConStr(): String {
         var braStr: String
         braStr = if (value != null) "VALUE = \"$value\"" else ""
@@ -146,10 +144,10 @@ data class SettingEntity(
             }
             braStr = "SETTING_ID = \"$settingId\" $braStr "
         }
-        
+
         return braStr
     }
-    
+
     override fun getInsertStr(): String {
         var braStr: String
         braStr = if (value != null) "\"$value\"" else ""
@@ -183,32 +181,34 @@ data class SettingEntity(
             }
             braStr = "\"$creator\"" + braStr
         }
-        
+
         return braStr
     }
-    
+
     override fun getId(): Int? {
         return settingId
     }
-    
+
     override fun getIdColumn(): String {
         return "SETTING_ID"
     }
-    
+
     override fun getFullColumn(): String {
         return "SETTING_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, NAME, VALUE"
     }
-    
+
     override fun getDbName(): String {
         return "\"MAIN\".\"NOTE_SETTING\""
     }
-    
+
     override fun updateTime(updateTime: String?) {
         this.updateTime = updateTime
     }
-    
+
     fun print() {
-        println("settingId: $settingId\ncreateTime: $createTime\nupdater: $updater\nupdateTime: $updateTime" +
-                "\nname: $name\nvalue:$value\n delFlag: $delFlag")
+        println(
+            "settingId: $settingId\ncreateTime: $createTime\nupdater: $updater\nupdateTime: $updateTime" +
+                    "\nname: $name\nvalue:$value\n delFlag: $delFlag"
+        )
     }
 }

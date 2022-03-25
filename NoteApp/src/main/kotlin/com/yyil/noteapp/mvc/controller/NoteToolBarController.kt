@@ -40,6 +40,16 @@ class NoteToolBarController(
         }
         noteToolBar.labelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, labelListHandler)
 
+        noteToolBar.saveButton.onAction = EventHandler {
+            model.saveNoteContent()
+        }
+
+        noteToolBar.addButton.onAction = EventHandler {
+            noteToolBar.addNoteDialog.showAndWait().ifPresent {
+                model.addNote(it)
+            }
+            noteRepository.noteList.refresh()
+        }
     }
 
     fun handleSwitchTheme(scene: Scene, noteToolBar: NoteToolBar, defaultStyle: String, darkModeStyle: String) {

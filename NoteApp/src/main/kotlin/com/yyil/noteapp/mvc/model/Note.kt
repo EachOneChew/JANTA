@@ -1,7 +1,5 @@
 package com.yyil.noteapp.mvc.model
 
-import com.yyil.noteapp.entity.NoteContentEntity
-
 class Note {
     var id = -1
     var title = ""
@@ -12,7 +10,7 @@ class Note {
 
     constructor()
 
-    constructor(id: Int, title: String){
+    constructor(id: Int, title: String) {
         this.id = id
         this.title = title
     }

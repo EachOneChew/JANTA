@@ -16,12 +16,12 @@ object Connect {
 //    var serverip = "5236"
 //    //instanceName=SQLExpress;
 //    var url = "jdbc:dm://IP:$serverip;databaseName=$dbName"
-    
+
     //    var driver = "dm.jdbc.driver.DmDriver"
 //    var databaseUserName = "SYSDBA"
 //    var databasePassword = "1234567890"
     var conn: Connection? = null
-    
+
     /**
      * Get a Connection to the database at url
      */
@@ -35,11 +35,11 @@ object Connect {
         }
         return conn
     }
-    
+
     private fun getStmt(conn: Connection?): Statement? {
         return conn!!.createStatement()
     }
-    
+
     /**
      * Insert a new noteContent into the db
      * Params: en - SQLEntity
@@ -55,6 +55,7 @@ object Connect {
         val valueStr = en.getInsertStr()
         val dbName = en.getDbName()
         val sql = "INSERT INTO $dbName ($barStr) VALUES($valueStr)"
+        println(sql)
         val check = getStmt(conn)!!.executeUpdate(sql)
         if (check == 0) {
             return 0
@@ -63,7 +64,7 @@ object Connect {
         println(rs)
         return rs!!.getInt("NEWID")
     }
-    
+
     /**
      * Update a noteContent by referring its primary key.
      * NOTE: HAVE TO assign en's id as it is the primary key, other fields will be considered as "changed".
@@ -79,13 +80,21 @@ object Connect {
         en.updateTime(Timestamp(System.currentTimeMillis()).toString())
         val setStr = en.getUpdateStr()
         val dbName = en.getDbName()
+        val id = en.getId()
+        val colName = en.getIdColumn()
         var sql = "UPDATE $dbName SET $setStr "
-        sql += if (condStr != "") " WHERE $condStr" else ""
+        if (id != null) {
+            sql += " WHERE $colName = $id "
+        } else if (condStr !== null) {
+            sql += " WHERE $colName = $id "
+        } else {
+            sql += " WHERE 1 = 1 "
+        }
         sql += " AND DEL_FLAG =  \"0\""
         println(sql)
         return getStmt(conn)!!.executeUpdate(sql)
     }
-    
+
     /**
      * LOGICALLY delete the content where the fields are EXACTLY SAME as nc.
      * NOTE: WHEN en's id != null: will delete at most 1 row of result;
@@ -98,11 +107,10 @@ object Connect {
      *                 (2) 0 for SQL statements that return nothing
      */
     fun delete(conn: Connection?, en: SQLEntity): Int {
-        val condition = en.getConStr()
         en.setDel()
-        return update(conn, en, condStr = condition)
+        return update(conn, en)
     }
-    
+
     /**
      * LOGICALLY delete the note content with note's id = id.
      * Params:
@@ -114,8 +122,8 @@ object Connect {
     fun deleteNoteById(conn: Connection?, id: Int): Int {
         return delete(conn, en = NoteContentEntity(noteContentId = id))
     }
-    
-    
+
+
     /**
      * Delete every content from the dbName in conn
      */
@@ -123,7 +131,7 @@ object Connect {
         val sql = "DELETE FROM $dbName"
         getStmt(conn)!!.execute(sql)
     }
-    
+
     /**
      * Delete every content from the table that en is in conn
      */
@@ -132,7 +140,7 @@ object Connect {
         val sql = "DELETE FROM $dbName"
         getStmt(conn)!!.execute(sql)
     }
-    
+
     /**
      * Find and return the ResultSet where the fields are EXACTLY SAME as en.
      * Params:
@@ -155,7 +163,7 @@ object Connect {
         println("sql: $sql")
         return getStmt(conn)!!.executeQuery(sql)
     }
-    
+
     /**
      * Find and return A MutableList<NoteContentEntity> where the fields are EXACTLY SAME as en.
      * Params:
@@ -190,8 +198,8 @@ object Connect {
         }
         return eList
     }
-    
-    
+
+
     /**
      * Find and return A MutableList<NoteContentEntity> where the fields are EXACTLY SAME as en.
      * Params:
@@ -214,7 +222,7 @@ object Connect {
         var condition = en.getConStr()
         condition = if (condition.isEmpty()) "" else "$condition AND "
         val sql = "SELECT " + en.getTiTleStr() + " FROM $dbName WHERE $condition DEL_FLAG = 0 ORDER BY $orders"
-        val rs: ResultSet =  getStmt(conn)!!.executeQuery(sql)
+        val rs: ResultSet = getStmt(conn)!!.executeQuery(sql)
         while (rs.next()) {
             re = NoteContentEntity()
             re.noteContentId = rs.getInt("NOTE_CONTENT_ID")
@@ -223,7 +231,7 @@ object Connect {
         }
         return eList
     }
-    
+
     /**
      * Find and return the NoteContentEntity with id in the db.
      * Params: id - Int
@@ -240,7 +248,7 @@ object Connect {
         }
         return null
     }
-    
+
     /**
      * Find and return A MutableList<SettingEntity> where the fields are EXACTLY SAME as en.
      * Params:
@@ -273,7 +281,7 @@ object Connect {
         }
         return eList
     }
-    
+
     /**
      * Find and return the SettingEntity with id in the db.
      * Params: id - Int
@@ -289,7 +297,7 @@ object Connect {
         }
         return null
     }
-    
+
     /**
      * Find and return the SettingEntity with name in the db.
      * Params: name: String
@@ -305,7 +313,7 @@ object Connect {
         }
         return null
     }
-    
+
     /**
      * Find and return all results where from the table with the name in the dbName.
      * Params:
@@ -322,7 +330,7 @@ object Connect {
 //		println("SQL in find by dbName: $sql")
         return getStmt(conn)!!.executeQuery(sql)
     }
-    
+
     /**
      * Close the Connection conn
      */

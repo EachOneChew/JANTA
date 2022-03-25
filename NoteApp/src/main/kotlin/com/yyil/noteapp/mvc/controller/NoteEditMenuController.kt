@@ -13,25 +13,30 @@ class NoteEditMenuController(
     init {
 
         noteEditMenu.noteCell.emptyProperty().addListener { _, _, isEmpty ->
-            if(isEmpty){
+            if (isEmpty) {
                 noteEditMenu.noteCell.contextMenu = null
-            }else{
+            } else {
                 noteEditMenu.noteCell.contextMenu = noteEditMenu
             }
         }
 
         noteEditMenu.deleteOption.onAction = EventHandler {
-            println("Deleted note ${noteEditMenu.noteCell.note.title};" +
-                    " ID: ${noteEditMenu.noteCell.note.id}")
+            println(
+                "Deleted note ${noteEditMenu.noteCell.note.title};" +
+                        " ID: ${noteEditMenu.noteCell.note.id}"
+            )
             model.deleteNote(noteEditMenu.noteCell.note)
         }
 
         noteEditMenu.renameOption.onAction = EventHandler {
-            println("Rename note ${noteEditMenu.noteCell.note.title};" +
-                    " ID: ${noteEditMenu.noteCell.note.id}")
+            println(
+                "Rename note ${noteEditMenu.noteCell.note.title};" +
+                        " ID: ${noteEditMenu.noteCell.note.id}"
+            )
 
-            noteRepository.renameDialog.showAndWait()
-            model.updateNoteTitle(noteEditMenu.noteCell.note, noteRepository.renameDialog.editor.text)
+            noteRepository.renameDialog.showAndWait().ifPresent {
+                model.updateNoteTitle(noteEditMenu.noteCell.note, it)
+            }
             noteRepository.noteList.refresh()
 
             println(" To ${noteEditMenu.noteCell.note.title}")

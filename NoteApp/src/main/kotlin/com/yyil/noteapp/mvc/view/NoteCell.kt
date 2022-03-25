@@ -1,12 +1,11 @@
 package com.yyil.noteapp.mvc.view
 
-import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
 import com.yyil.noteapp.mvc.model.Note
 import javafx.geometry.Pos
-import javafx.scene.control.*
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
+import javafx.scene.control.Label
+import javafx.scene.control.ListCell
+import javafx.scene.control.ListView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.Priority

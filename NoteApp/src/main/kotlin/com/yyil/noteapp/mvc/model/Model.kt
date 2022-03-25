@@ -24,15 +24,19 @@ class Model {
             if (currentIndex != newIndex) {
                 /*
                 if (currentIndex != null) {
-                    tinyMCE.forceUpdate()
                     println("Current Idx $currentIndex; newIdx $newIndex")
-                    notes[currentIndex!!].content = tinyMCE.content
+                    saveNoteContent()
                 }
                 */
+
                 var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
-                if (entity != null) {
+                if (entity == null) {
+                    System.err.println("Note not found: ${notes[newIndex].id}")
+                    return
+                }
+                if (entity!!.noteContent != null) {
                     tinyMCE.content = entity.noteContent!!
-                }else{
+                } else {
                     tinyMCE.content = ""
                     println("No content for ${notes[newIndex].title}")
                 }
@@ -74,50 +78,56 @@ class Model {
 
     fun retrieveNotes(): ObservableList<Note> {
 
-        var noteEntityList = FXCollections.observableArrayList(
-            NoteContentEntity(title = "Note 1", noteContent = "NOTE 1 CONTENT~"),
-            NoteContentEntity(title = "Note 2", noteContent = "note 2 content."),
-            NoteContentEntity(title = "Note 3", noteContent = "This is Note 3--")
-        )
         var noteList = FXCollections.observableArrayList<Note>()
 
-        for (note in noteEntityList){
-            var id = Connect.create(Connect.getConnection(), note)
-            if (note.title != null) {
-                noteList.add(Note(id, note.title!!))
-            }else{
-                noteList.add(Note(id, ""))
+        var noteEntityList = Connect.findNoteTitleList(Connect.getConnection(), NoteContentEntity())
+
+        if (noteEntityList != null) {
+            for (entity in noteEntityList) {
+                var id = entity.noteContentId
+                if (id == null) {
+                    System.err.println("Note ID is null, note title: ${entity.title}")
+                    continue
+                }
+                var note = Note()
+                note.id = id
+                if (entity.title != null) {
+                    note.title = entity.title!!
+                } else {
+                    note.title = ""
+                }
+                noteList.add(note)
+                println("Adding from DB ------------------ ${note.id}, ${note.title}")
             }
         }
         return noteList
     }
 
     fun deleteNote(note: Note) {
-//        for (note in notes) {
-//            if (note.id == id) {
-//                notes.remove(note)
-//                break
-//            }
-//        }
-
         notes.remove(note)
-        if(Connect.deleteNoteById(Connect.getConnection(), note.id) == 0){
-            println("Note not found in DB")
+        if (Connect.deleteNoteById(Connect.getConnection(), note.id) == 0) {
+            System.err.println("Note not found in DB")
         }
     }
 
-    fun updateNoteContent(){
-        if(currentIndex == null || currentIndex!! < 0){
-            println("No note is selected")
+    fun saveNoteContent() {
+        if (currentIndex == null || currentIndex!! < 0) {
+            System.err.println("No note is selected")
             return
         }
+        tinyMCE.forceUpdate()
         var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
         Connect.update(Connect.getConnection(), entity)
     }
 
-    fun updateNoteTitle(note: Note, title: String){
+    fun updateNoteTitle(note: Note, title: String) {
         note.title = title
         var entity = NoteContentEntity(noteContentId = note.id, title = title)
         Connect.update(Connect.getConnection(), entity)
+    }
+
+    fun addNote(title: String) {
+        var id = Connect.create(Connect.getConnection(), NoteContentEntity(title = title, noteContent = ""))
+        notes.add(Note(id, title))
     }
 }

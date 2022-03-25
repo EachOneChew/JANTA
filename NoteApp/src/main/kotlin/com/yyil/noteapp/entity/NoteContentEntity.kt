@@ -1,7 +1,5 @@
 package com.yyil.noteapp.entity
 
-import java.sql.Timestamp
-
 /**
  * note_content_id: Int?
  *      system created id (primary key)
@@ -76,13 +74,13 @@ data class NoteContentEntity(
             }
             braStr = "CREATOR$braStr"
         }
-        
+
         return braStr
     }
-    
+
     override fun getUpdateStr(): String {
         var braStr: String
-        braStr = if (title != null) "TITLE = \"$title\"" else ""
+        braStr = if (title != null) "TITLE = '$title'" else ""
         if (category != null) {
             if (braStr != "") {
                 braStr = ", $braStr"
@@ -93,7 +91,7 @@ data class NoteContentEntity(
             if (braStr != "") {
                 braStr = ", $braStr"
             }
-            braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
+            braStr = "NOTE_CONTENT = '$noteContent'$braStr"
         }
         if (repositoryPath != null) {
             if (braStr != "") {
@@ -131,7 +129,7 @@ data class NoteContentEntity(
         braStr += "DEL_FLAG = \"$delFlag\""
         return braStr
     }
-    
+
     override fun getConStr(): String {
         var braStr: String
         braStr = if (title != null) "TITLE = \"$title\"" else ""
@@ -145,7 +143,7 @@ data class NoteContentEntity(
             if (braStr != "") {
                 braStr = " AND $braStr"
             }
-            braStr = "NOTE_CONTENT = \"$noteContent\"$braStr"
+            braStr = "NOTE_CONTENT = '$noteContent'$braStr"
         }
         if (repositoryPath != null) {
             if (braStr != "") {
@@ -183,13 +181,13 @@ data class NoteContentEntity(
             }
             braStr = "NOTE_CONTENT_ID = \"$noteContentId\" $braStr "
         }
-        
+
         return braStr
     }
-    
+
     override fun getInsertStr(): String {
         var braStr: String
-        braStr = if (title != null) "\"$title\"" else ""
+        braStr = if (title != null) "'$title'" else ""
         if (category != null) {
             if (braStr != "") {
                 braStr = ", $braStr"
@@ -200,7 +198,7 @@ data class NoteContentEntity(
             if (braStr != "") {
                 braStr = ", $braStr"
             }
-            braStr = "\"$noteContent\"" + braStr
+            braStr = "'$noteContent'$braStr"
         }
         if (repositoryPath != null) {
             if (braStr != "") {
@@ -232,37 +230,39 @@ data class NoteContentEntity(
             }
             braStr = "\"$creator\"" + braStr
         }
-        
+
         return braStr
     }
-    
+
     override fun getId(): Int? {
         return noteContentId
     }
-    
+
     override fun getIdColumn(): String {
         return "NOTE_CONTENT_ID"
     }
-    
+
     override fun getFullColumn(): String {
         return "NOTE_CONTENT_ID, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, REPOSITORY_PATH, NOTE_CONTENT, CATEGORY, TITLE"
     }
-    
+
     override fun getDbName(): String {
         return "\"MAIN\".\"NOTE_CONTENT\""
     }
-    
+
     override fun updateTime(updateTime: String?) {
         this.updateTime = updateTime
     }
-    
+
     fun print() {
-        println("noteContentId: $noteContentId\nnoteContent: $noteContent\ncreateTime: $createTime\n" +
-                "updater: $updater\nupdateTime: $updateTime\nrepositoryPath: $repositoryPath\nnoteContent:$noteContent" +
-                "category: $category\ntitle: $title\ndelFlag: $delFlag")
+        println(
+            "noteContentId: $noteContentId\nnoteContent: $noteContent\ncreateTime: $createTime\n" +
+                    "updater: $updater\nupdateTime: $updateTime\nrepositoryPath: $repositoryPath\nnoteContent:$noteContent" +
+                    "category: $category\ntitle: $title\ndelFlag: $delFlag"
+        )
     }
-    
-    fun getTiTleStr():String {
+
+    fun getTiTleStr(): String {
         return "NOTE_CONTENT_ID, TITLE"
     }
 }
