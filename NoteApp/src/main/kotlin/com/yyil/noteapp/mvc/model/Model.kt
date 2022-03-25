@@ -1,6 +1,7 @@
 package com.yyil.noteapp.mvc.model
 
 import com.yyil.noteapp.TinyMCEInterface
+import com.yyil.noteapp.entity.NoteContentEntity
 import javafx.collections.FXCollections
 import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
@@ -23,10 +24,16 @@ class Model {
 
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
+
             if (currentIndex != newIndex) {
+
+                println("------------${notes[newIndex].title}")
+
+                //Save note content when change index
                 if (currentIndex != null) {
+                    println("Current Idx $currentIndex; newIdx $newIndex")
                     tinyMCE.forceUpdate()
-                    notes[currentIndex!!].content = tinyMCE.content
+                    saveNoteContent()
 
                     label = notes[newIndex].labels
                     listLabel.clear()
@@ -34,7 +41,18 @@ class Model {
                         listLabel.add(key + " " + label[key])
                     }
                 }
-                tinyMCE.content = notes[newIndex].content
+                //Load note content from DB for the selected note
+                var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
+                if (entity == null) {
+                    System.err.println("Note not found: ${notes[newIndex].id}")
+                    return
+                }
+                if (entity!!.noteContent != null) {
+                    tinyMCE.content = entity.noteContent!!
+                } else {
+                    tinyMCE.content = ""
+                    println("No content for ${notes[newIndex].title}")
+                }
                 currentIndex = newIndex
             }
         }
@@ -64,15 +82,67 @@ class Model {
         currentTheme = theme
     }
 
+    fun retrieveLabels(): MutableSet<String> {
+        if (currentIndex != null) {
+            return notes[currentIndex!!].labels.keys
+        }
+        return mutableSetOf()
+    }
+
     fun retrieveNotes(): ObservableList<Note> {
-        return observableArrayList(
-            Note(0, "Note 1", "NOTE 1 CONTENT~"),
-            Note(1, "Note 2", "note 2 content."),
-            Note(2, "Note 3", "This is Note 3--")
-        )
+
+        var noteList = FXCollections.observableArrayList<Note>()
+
+        var noteEntityList = Connect.findNoteTitleList(Connect.getConnection(), NoteContentEntity())
+
+        if (noteEntityList != null) {
+            for (entity in noteEntityList) {
+                var id = entity.noteContentId
+                if (id == null) {
+                    System.err.println("Note ID is null, note title: ${entity.title}")
+                    continue
+                }
+                var note = Note()
+                note.id = id
+                if (entity.title != null) {
+                    note.title = entity.title!!
+                } else {
+                    note.title = ""
+                }
+                noteList.add(note)
+                println("Adding from DB ------------------ ${note.id}, ${note.title}")
+            }
+        }
+        return noteList
     }
 
     fun deleteNote(note: Note) {
         notes.remove(note)
+        if (Connect.deleteNoteById(Connect.getConnection(), note.id) == 0) {
+            System.err.println("Note not found in DB")
+        }
+        tinyMCE.content = ""
+        currentIndex = null
+    }
+
+    fun saveNoteContent() {
+        if (currentIndex == null || currentIndex!! < 0) {
+            System.err.println("No note is selected")
+            return
+        }
+        tinyMCE.forceUpdate()
+        var entity = NoteContentEntity(noteContentId = notes[currentIndex!!].id, noteContent = tinyMCE.content)
+        Connect.update(Connect.getConnection(), entity)
+    }
+
+    fun updateNoteTitle(note: Note, title: String) {
+        note.title = title
+        var entity = NoteContentEntity(noteContentId = note.id, title = title)
+        Connect.update(Connect.getConnection(), entity)
+    }
+
+    fun addNote(title: String) {
+        var id = Connect.create(Connect.getConnection(), NoteContentEntity(title = title, noteContent = ""))
+        notes.add(Note(id, title))
     }
 }

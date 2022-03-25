@@ -1,15 +1,26 @@
 package com.yyil.noteapp.mvc.model
 
-class Note(val index: Int, var title: String) {
-    var content = ""
+class Note {
+    var id = -1
+    var title = ""
 
     // name -> type
     var labels: MutableMap<String, String> = mutableMapOf()
 
+    constructor()
+
+    constructor(id: Int, title: String) {
+        this.id = id
+        this.title = title
+    }
+
     constructor(
-        index: Int, title: String, content: String,
-        labels: MutableMap<String, String> = mutableMapOf()) : this(index, title) {
-        this.content = content
+        id: Int,
+        title: String,
+        labels: MutableMap<String, String> = mutableMapOf()
+    ) {
+        this.id = id
+        this.title = title
         this.labels = labels
     }
 }

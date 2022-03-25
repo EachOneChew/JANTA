@@ -5,6 +5,7 @@ import com.yyil.noteapp.mvc.controller.LabelListController
 import com.yyil.noteapp.mvc.controller.NoteAreaController
 import com.yyil.noteapp.mvc.controller.NoteRepositoryController
 import com.yyil.noteapp.mvc.controller.NoteToolBarController
+import com.yyil.noteapp.mvc.model.Connect
 import com.yyil.noteapp.mvc.model.Model
 import com.yyil.noteapp.mvc.view.LabelList
 import com.yyil.noteapp.mvc.view.NoteArea
@@ -68,5 +69,10 @@ class NoteApplication : Application() {
             )
         )
         stage.show()
+    }
+
+    override fun stop() {
+        super.stop()
+        Connect.close(Connect.getConnection())
     }
 }

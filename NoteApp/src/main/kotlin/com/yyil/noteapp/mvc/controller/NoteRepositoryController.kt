@@ -2,6 +2,8 @@ package com.yyil.noteapp.mvc.controller
 
 import com.yyil.noteapp.mvc.model.Model
 import com.yyil.noteapp.mvc.view.NoteCell
+import com.yyil.noteapp.mvc.view.NoteEditMenu
+import com.yyil.noteapp.mvc.view.NotePlaceHolderCell
 import com.yyil.noteapp.mvc.view.NoteRepository
 import javafx.event.EventHandler
 
@@ -13,14 +15,22 @@ class NoteRepositoryController(
         noteRepository.noteList.onMouseClicked = EventHandler {
             val i = noteRepository.noteList.selectionModel.selectedIndex
             model.handleNoteSelect(i)
+            println("Selected note index $i")
         }
 
-        noteRepository.noteList.items.addAll(model.notes)
+        noteRepository.noteList.items = model.notes
+
+        noteRepository.noteList.placeholder = NotePlaceHolderCell()
 
         noteRepository.noteList.setCellFactory {
-            val noteCell = NoteCell()
-            noteCell.controller = NoteCellController(model, noteCell)
+
+            var noteCell = NoteCell()
+
+            var noteEditMenu = NoteEditMenu(noteCell)
+            NoteEditMenuController(model, noteEditMenu, noteRepository)
+
             noteCell
         }
     }
 }
+

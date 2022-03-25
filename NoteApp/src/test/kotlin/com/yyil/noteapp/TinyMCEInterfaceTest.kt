@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testfx.framework.junit5.ApplicationTest
 
-internal class TinyMCEInterfaceTest: ApplicationTest() {
+internal class TinyMCEInterfaceTest : ApplicationTest() {
     var tinyMCE: TinyMCEInterface? = null
 
     val testString: String = "<p>1234567890asdfghjkl</p>"

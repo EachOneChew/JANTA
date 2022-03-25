@@ -4,6 +4,7 @@ import com.yyil.noteapp.NoteApplication
 import com.yyil.noteapp.constant.ComponentConstant
 import javafx.geometry.Orientation
 import javafx.scene.control.Button
+import javafx.scene.control.TextInputDialog
 import javafx.scene.control.ToggleButton
 import javafx.scene.control.ToolBar
 import javafx.scene.image.Image
@@ -20,6 +21,8 @@ class NoteToolBar : View {
 
     val toolBar = ToolBar()
 
+    val addNoteDialog = TextInputDialog()
+
     override val base = HBox()
 
     init {
@@ -28,6 +31,9 @@ class NoteToolBar : View {
         toolBar.items.addAll(noteListButton, saveButton, addButton, labelButton, themeButton)
 
         toolBar.orientation = Orientation.VERTICAL
+
+        addNoteDialog.graphic = null
+        addNoteDialog.headerText = "Enter the title of the note:"
 
         base.children.add(toolBar)
     }
