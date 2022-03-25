@@ -21,14 +21,17 @@ class Model {
 
     fun handleNoteSelect(newIndex: Int) {
         if (newIndex < notes.size && newIndex >= 0) {
+
             if (currentIndex != newIndex) {
-                /*
+
+                println("------------${notes[newIndex].title}")
+
+                //Save note content when change index
                 if (currentIndex != null) {
                     println("Current Idx $currentIndex; newIdx $newIndex")
                     saveNoteContent()
                 }
-                */
-
+                //Load note content from DB for the selected note
                 var entity = Connect.findNoteById(Connect.getConnection(), notes[newIndex].id)
                 if (entity == null) {
                     System.err.println("Note not found: ${notes[newIndex].id}")
@@ -108,6 +111,8 @@ class Model {
         if (Connect.deleteNoteById(Connect.getConnection(), note.id) == 0) {
             System.err.println("Note not found in DB")
         }
+        tinyMCE.content = ""
+        currentIndex = null
     }
 
     fun saveNoteContent() {

@@ -26,6 +26,7 @@ class NoteEditMenuController(
                         " ID: ${noteEditMenu.noteCell.note.id}"
             )
             model.deleteNote(noteEditMenu.noteCell.note)
+            noteRepository.noteList.selectionModel.clearSelection()
         }
 
         noteEditMenu.renameOption.onAction = EventHandler {
