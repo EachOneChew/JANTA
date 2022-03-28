@@ -1,10 +1,10 @@
 # Read Me File : Team 110
 
 # Names:
-Logan Maier
-Yichuan Qiu
-Ivan Shan
-Yixin Li
+- Logan Maier
+- Yichuan Qiu
+- Ivan Shan
+- Yixin Li
 
 # Screenshots
 
