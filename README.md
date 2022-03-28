@@ -10,4 +10,6 @@
 
 # Links to Sprint Release Pages
 
+[Link to Related Page](/Sprint1)
+
 # Ackowledgements
