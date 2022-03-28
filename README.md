@@ -7,6 +7,7 @@
 - Yixin Li
 
 # Screenshots
+![Screenshot_2022-03-28_112959](https://git.uwaterloo.ca/y2679li/cs398-project/-/wikis/uploads/87b255cb45eb7422c161ce2ca4b33889/Screenshot_2022-03-28_112959.png)
 
 # Instructions
 
