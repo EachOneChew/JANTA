@@ -14,6 +14,7 @@
 - [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Requirements)
 - [Analysis-&-Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Analysis-&-Design)
 - [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Implementation)
+- [Testing](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Testing)
 
 # Links to Sprint Release Pages
 
