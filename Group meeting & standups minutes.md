@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 3.13 seconds.
+Conversion time: 2.104 seconds.
 
 
 Using this Markdown file:
@@ -17,82 +17,10 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Thu Mar 10 2022 18:35:31 GMT-0800 (PST)
+* Tue Mar 29 2022 13:23:29 GMT-0700 (PDT)
 * Source doc: Group meeting & standups minutes
 ----->
 
-
-
-# ~~~~TEMPLATE~~~~
-
-
-# Date: ???  Team: 110
-
-**Present:**
-
-Ivan, Logan, Yixin, Yichuan
-
-**Absent:**
-
-**Agenda:**
-
-
-
-* ???
-
-**Notes:**
-
-
-
-* ???
-
-**Individual:**
-
-**Ivan:**
-
-
-
-* **What I did recently**
-    * ???
-* **What I am doing today**
-    * ???
-* **Issues**
-    * ???
-
-**Yixin:**
-
-
-
-* **What I did recently**
-    * ???
-* **What I am doing today**
-    * ???
-* **Issues**
-    * ???
-
-**Logan:**
-
-
-
-* **What I did recently**
-    * ???
-* **What I am doing today**
-    * ???
-* **Issues**
-    * ???
-
-**Yichuan:**
-
-
-
-* **What I did recently**
-    * ???
-* **What I am doing today**
-    * ???
-* **Issues**
-    * ???
-
-**~~~~~~~~~~~~~~~~~**
 
 
 # Date: January 10th Team: 110
@@ -260,7 +188,7 @@ Go through next friday’s design review template or whatever it was called, fin
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -418,7 +346,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -454,7 +382,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -489,7 +417,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -523,7 +451,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -556,7 +484,7 @@ Ivan, Logan, Yixin, Yichuan
 
 
 
-* ???
+* N/A
 
 **TODO:**
 
@@ -584,7 +512,7 @@ Ivan, Logan, Yixin
 
 
 
-* ???
+* N/A
 
 **Individual:**
 
@@ -979,7 +907,7 @@ Ivan, Logan, Yixin, Yichuan
 * **What I am doing today**
     * Create the database on mssql
 * **Issues**
-    * ???
+    * N/A
 
 **Yixin:**
 
@@ -1116,7 +1044,7 @@ Ivan, Logan, Yixin, Yichuan
 * **What I am doing today**
     * Change the parameter of saving and updating to an entity, which I will create shortly
 * **Issues**
-    * ???
+    * N/A
 
 **Yixin:**
 
@@ -1152,3 +1080,317 @@ Ivan, Logan, Yixin, Yichuan
     * Write unit tests for TinyMCEInterface
 * **Issues**
     * COMPLETE AND UTTER SUFFERING DEALING WITH CONCURRENCY BUT ITS ALL GOOD NOW
+
+
+# Date: March 14 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Sprint 3 planning
+
+**Notes:**
+
+
+
+* See issues board
+
+**Individual:**
+
+N/A
+
+
+# Date: March 16 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Work on sprint 3 issues
+
+**Notes:**
+
+
+
+* See issues board
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Save SQL
+* **What I am doing today**
+    * Setting table. Refactor the saving interface.
+* **Issues**
+    * N/A
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Customize ListCell
+    * Add expand button to every Cell
+* **What I am doing today**
+    * Add dropdown on click of ListCell expand button
+* **Issues**
+    * N/A
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Look into labeling a bit
+* **What I am doing today**
+    * Working on labeling and annotation insertion
+    * Getting the css to work for annotation
+* **Issues**
+    * Lots of potential upcoming issues with putting the tags into the html
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Not much progress monday / tuesday, lots of other coursework
+* **What I am doing today**
+    * Prioritize saving integration with SQLite interface
+    * Start on formatter improvements for annotations
+* **Issues**
+    * Nope
+
+
+# Date: March 21 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* Catchup and plan out week before demo
+
+**Notes:**
+
+
+
+* Seem to be on track
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Start the server with Spring boot
+* **What I am doing today**
+    * Combine the server with the current project
+* **Issues**
+    * The application.properties is tough
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Implement label list
+* **What I am doing today**
+    * Work with Ivan to figure out how to add, modify and delete notes in DB
+    * Will work on implementing add, save, delete note
+    * Will pull from master
+* **Issues**
+    * After removing Test Text Sync, the note area doesn’t fit to page
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Got css to work on annotations
+    * Looking into how to save labels and stuff
+* **What I am doing today**
+    * Need to talk with Yichuan later today to see how labels and stuff get passed to save
+    * Need to merge css branch
+* **Issues**
+    * Saving might be hard to combine into the main branch
+    * Need to make css nicer
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Added custom formats for annotations and more setup
+* **What I am doing today**
+    * Moving annotation logic to use more built in TinyMCE features
+* **Issues**
+    * TinyMCE has SO MANY BUGS OH GOD
+
+
+# Date: March 23 Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* N/A
+
+**Notes:**
+
+
+
+* N/A
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * Change the SQL-related functionality
+* **What I am doing today**
+    * Building server
+* **Issues**
+    * Combine the server with the current project
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * Connect the frontend, backend, and DB for add delete modify notes
+* **What I am doing today**
+    * Continue working on the above
+    * Prettify ui
+* **Issues**
+    * After deleting a note, the selection auto focus to the note indexed before or after it, which will generate a null ptr error
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * Made labels to show up in the search bar and map properly from notes
+* **What I am doing today**
+    * Integrating it with everyone else’s stuff
+* **Issues**
+    * Hopefully none, but database integration is scary
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * Countless bugfixes
+* **What I am doing today**
+    * Resolving issues with labels
+* **Issues**
+    * See above
+
+
+# Date: March 25 Team: 110
+
+DEMO
+
+
+
+
+# ~~~~TEMPLATE~~~~
+
+
+# Date: ???  Team: 110
+
+**Present:**
+
+Ivan, Logan, Yixin, Yichuan
+
+**Absent:**
+
+**Agenda:**
+
+
+
+* ???
+
+**Notes:**
+
+
+
+* ???
+
+**Individual:**
+
+**Ivan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Yixin:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Logan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**Yichuan:**
+
+
+
+* **What I did recently**
+    * ???
+* **What I am doing today**
+    * ???
+* **Issues**
+    * ???
+
+**~~~~~~~~~~~~~~~~~**
