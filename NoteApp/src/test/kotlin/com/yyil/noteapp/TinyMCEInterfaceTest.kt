@@ -16,7 +16,7 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
     var testCallModel: String = ""
 
     override fun start(stage: Stage?) {
-        tinyMCE = TinyMCEInterface("", fun(_: String, _: String, _: String) {
+        tinyMCE = TinyMCEInterface(fun(_: String, _: String, _: String) {
             testCallModel = "CALLED"
         })
     }
@@ -52,14 +52,14 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
     @Test
     fun initTwice() {
         interact {
-            tinyMCE!!.initEditor("")
+            tinyMCE!!.initEditor()
         }
         delayOneSecond()
         interact {
             assertEquals(true, tinyMCE!!.isActive)
         }
         interact {
-            tinyMCE!!.initEditor("")
+            tinyMCE!!.initEditor()
         }
         delayOneSecond()
         interact {
@@ -73,7 +73,7 @@ internal class TinyMCEInterfaceTest : ApplicationTest() {
     @Test
     fun initText() {
         interact {
-            tinyMCE!!.initEditor(testString)
+            tinyMCE!!.initEditor()
         }
         delayOneSecond()
         interact {
