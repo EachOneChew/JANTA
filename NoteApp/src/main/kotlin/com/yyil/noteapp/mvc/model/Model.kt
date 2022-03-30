@@ -7,7 +7,7 @@ import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
 
 class Model {
-    val tinyMCE = TinyMCEInterface("", ::handleModelCall)
+    val tinyMCE = TinyMCEInterface(::handleModelCall)
 
     val notes = retrieveNotes()
     var label = mutableMapOf<String, String>()
@@ -88,6 +88,7 @@ class Model {
     }
 
     fun switchTheme(theme: String, content: String) {
+        println("$theme $content")
         tinyMCE.appearance = Pair(theme, content)
         currentTheme = theme
     }

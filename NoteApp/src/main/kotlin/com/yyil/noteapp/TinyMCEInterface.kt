@@ -13,7 +13,6 @@ import netscape.javascript.JSObject
  * FOR SOME GOD FORSAKEN REASON THIS HAS TO BE IN ROOT FOLDER
  */
 class TinyMCEInterface(
-    initContent: String,
     private val handleModelCall: (String, String, String) -> Unit
 ) {
     /**
@@ -65,7 +64,8 @@ class TinyMCEInterface(
 
             forceUpdate()
             val tempContent = content
-            initEditor(tempContent)
+            initEditor()
+            content = tempContent
         }
 
     /**
@@ -91,7 +91,7 @@ class TinyMCEInterface(
                 (webEngine.executeScript("window") as JSObject)
                     .setMember("bridgeObj", bridgeObj)
 
-                initEditor(initContent)
+                initEditor()
             }
         }
     }
@@ -100,12 +100,13 @@ class TinyMCEInterface(
         editorObj?.call("fire", "Change")
     }
 
+    // NOTE TYPESAFE ON JS END ALSO TARGET STRING MUST BE CLEANED UP
     fun navLabel(target: String) {
-        webEngine.executeScript("window.goToTarget('$target')");
+        webEngine.executeScript("window.goToTarget(\"$target\")");
     }
 
-    fun initEditor(initContent: String) {
-        webEngine.executeScript("window.initFunction('$initContent')")
+    fun initEditor() {
+        webEngine.executeScript("window.initFunction()")
     }
 
     fun destroyEditor() {

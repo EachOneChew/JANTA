@@ -69,7 +69,7 @@ window.destroyFunction = function () {
     bridge.setInterfaceContent("");
 };
 
-window.initFunction = function (initContent) {
+window.initFunction = function () {
     window.destroyFunction();
 
     tinymce.init({
@@ -181,6 +181,7 @@ window.initFunction = function (initContent) {
             },
         },
 
+        // ADD CUSTOM SHORTCUTS TO HELP IN THE FUTURE AND MAKE THIS BETTER
         help_tabs: [
             "shortcuts",
             {
@@ -251,8 +252,6 @@ window.initFunction = function (initContent) {
             };
 
             ed.on("init", function () {
-                // triggers SetContent event and updates interface content
-                ed.setContent(initContent);
                 bridge.setObjs(ed);
                 setAnnotationTippys();
                 setLabeltargetTippys();
