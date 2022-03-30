@@ -11,10 +11,11 @@
 3. [Major Project Stages](#maj)
 4. [Sprint Releases](#spr)
 5. [Ackowledgements](#ack)
+5. [Development Process](#dev)
 
 # JANTA: Just Another Note Taking App<a name="int"/>
 
-JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic (thanks to everyone ^_^). Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a WebEngine, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
+JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic (thanks to Yixin ^_^). Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a WebEngine, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
 
 <img src="Images/sc_joined.jpg" width="600"/>
 
@@ -67,7 +68,6 @@ Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-projec
 
 # Major Project Stages<a name="maj"/>
 
-- [Introduction](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Introduction)
 - [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Requirements)
 - [Analysis & Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Analysis-&-Design)
 - [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Implementation)
@@ -83,3 +83,9 @@ Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-projec
 
 - [TinyMCE](https://github.com/tinymce/tinymce)
 - [Stackoverflow](https://stackoverflow.com/)
+
+# Development Process<a name="dev"/>
+
+In the opening weeks of the course, we brainstormed for a rough direction that we wanted to take our app towards, before settling on the idea of JANTA. We interviewed our friends for features they, as students, would like to see implemented in the app, then reviewed their responses to assemble a list of requirements as well as their technical implications. The repository was set up by converting the requirements into issues, with various labels created in order to organize tasks by type and priority. Finally, we came together to plan out the app's architecture, design, and data schema. The relevant documents can be found in [our drive](https://drive.google.com/drive/folders/1ai-ndyGoGxES07YCx32XlK39CXr1TEIi?usp=sharing), as well as our [resources channel](https://discord.gg/aaXfgXjzFT).
+
+The app was then built over the course of three two-week sprints, with us meeting for standups thrice a week. We set goals in terms of feature completion for each sprint, and presented our progress to course staff at the end of each sprint. We regularly met with each other to pair program and review code, and performed many refactors as the codebase grew more complex. See the sprint release pages for more details.
