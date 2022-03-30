@@ -22,19 +22,25 @@ JANTA is a full featured, note taking app targeted towards students taking notes
 
 JANTA's interface should be fairly self explanatory. Regardless, below is a quick all-you-need-to-know.
 
-<img src="Images/sc_expanded.png" width="600"/>
-
 The sidebar buttons, in order:
 
 1. Toggle note list<sup>1</sup>
 2. Save current note<sup>2</sup>
 3. Create new note
-4. Toggle label list
+4. Toggle label list<sup>3</sup>
 5. Toggle theme
 
 <sup>1</sup> Notes can be renamed and deleted by right clicking on them in the note list.
 
-<sup>2</sup> JANTA saves the content in the current note any time the user switches a note. Saving is also triggered by content commits; virtually any action taken in editor including clicking, applying a font, indenting, etc. Thus, the only time where the user should manually save is when they intend to close the app immediately after typing a large amount of text.
+<sup>2</sup> JANTA saves the content in the current note any time you switch notes. Saving is also triggered by content commits; virtually any action taken in editor including clicking, applying a font, indenting, etc. Thus, the only time where you should manually save is when you intend to close the app immediately after typing a large amount of text.
+
+<sup>3</sup> The label list displays the label targets and references within the currently open note.
+
+<img src="Images/sc_expanded.png" width="600"/>
+
+## Annotations and Labels
+
+Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-project/-/wikis/Annotations-and-Labels) for details.
 
 ## Shortcuts
 
@@ -63,7 +69,7 @@ The sidebar buttons, in order:
 
 - [Introduction](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Introduction)
 - [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Requirements)
-- [Analysis-&-Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Analysis-&-Design)
+- [Analysis & Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Analysis-&-Design)
 - [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Implementation)
 - [Testing](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Testing)
 
