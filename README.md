@@ -6,23 +6,23 @@
 
 # Table of Contents
 
-1. [Introduction](#1)
-2. [Instructions](#2)
-3. [Major Project Stages](#3)
-4. [Sprint Releases](#4)
-5. [Ackowledgements](#5)
+1. [Introduction](#int)
+2. [Instructions](#ins)
+3. [Major Project Stages](#maj)
+4. [Sprint Releases](#spr)
+5. [Ackowledgements](#ack)
 
-# JANTA: Just Another Note Taking App<a name="1"/>
+# JANTA: Just Another Note Taking App<a name="int"/>
 
 JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic (thanks to Yixin ^_^). Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a WebEngine, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
 
-<img src="Images/sc_joined.jpg" width="900"/>
+<img src="Images/sc_joined.jpg" width="600"/>
 
-# Instructions<a name="2"/>
+# Instructions<a name="ins"/>
 
 JANTA's interface should be fairly self explanatory. Regardless, below is a quick all-you-need-to-know.
 
-<img src="Images/sc_expanded.png" width="900"/>
+<img src="Images/sc_expanded.png" width="600"/>
 
 The sidebar buttons, in order:
 
@@ -59,7 +59,7 @@ The sidebar buttons, in order:
 | Open help dialog | Alt + 0 |
 | Find | Ctrl + F |
 
-# Major Project Stages<a name="3"/>
+# Major Project Stages<a name="maj"/>
 
 - [Introduction](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Introduction)
 - [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Requirements)
@@ -67,13 +67,13 @@ The sidebar buttons, in order:
 - [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Implementation)
 - [Testing](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Testing)
 
-# Sprint Releases<a name="4"/>
+# Sprint Releases<a name="spr"/>
 
 - [Sprint 1](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprint-1)
 - [Sprint 2](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprint-2)
 - [Sprint 3](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprint-3)
 
-# Ackowledgements<a name="5"/>
+# Ackowledgements<a name="ack"/>
 
 - [TinyMCE](https://github.com/tinymce/tinymce)
 - [Stackoverflow](https://stackoverflow.com/)
