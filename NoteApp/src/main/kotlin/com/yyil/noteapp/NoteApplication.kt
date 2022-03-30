@@ -77,6 +77,7 @@ class NoteApplication : Application() {
 
     override fun stop() {
         super.stop()
+        model.saveNoteContent()
         Connect.close(Connect.getConnection())
     }
 }
