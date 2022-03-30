@@ -30,7 +30,7 @@ The sidebar buttons, in order:
 4. Toggle label list<sup>3</sup>
 5. Toggle theme
 
-<sup>1</sup> Notes can be renamed and deleted by right clicking on them in the note list.
+<sup>1</sup> Notes can be renamed and deleted by right clicking on the corresponding note in the note list.
 
 <sup>2</sup> JANTA saves the content in the current note any time you switch notes. Saving is also triggered by content commits; virtually any action taken in editor including clicking, applying a font, indenting, etc. Thus, the only time where you should manually save is when you intend to close the app immediately after typing a large amount of text.
 
