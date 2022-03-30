@@ -100,7 +100,6 @@ class TinyMCEInterface(
         editorObj?.call("fire", "Change")
     }
 
-    // NOTE TYPESAFE ON JS END ALSO TARGET STRING MUST BE CLEANED UP
     fun navLabel(target: String) {
         webEngine.executeScript("window.goToTarget(\"$target\")");
     }

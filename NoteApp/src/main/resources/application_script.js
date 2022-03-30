@@ -1,3 +1,8 @@
+// ADD CUSTOM SHORTCUTS TO HELP IN THE FUTURE AND MAKE THIS BETTER
+// NAVLABEL IN INTERFACE NOT TYPESAFE ON JS SCRIPT ALSO TARGET STRING MUST BE CLEANED UP
+// ADD POPUPS FOR INVALID LABELS
+// MAKE LABEL UI BETTER OVERALL
+
 window.initOptions = {
     skin: "oxide",
     content_css: "default",
@@ -181,7 +186,6 @@ window.initFunction = function () {
             },
         },
 
-        // ADD CUSTOM SHORTCUTS TO HELP IN THE FUTURE AND MAKE THIS BETTER
         help_tabs: [
             "shortcuts",
             {
