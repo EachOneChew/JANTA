@@ -4,7 +4,7 @@
 
 Yay, no errors, warnings, or alerts!
 
-Conversion time: 2.104 seconds.
+Conversion time: 1.995 seconds.
 
 
 Using this Markdown file:
@@ -17,7 +17,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Tue Mar 29 2022 13:23:29 GMT-0700 (PDT)
+* Tue Mar 29 2022 23:17:10 GMT-0700 (PDT)
 * Source doc: Group meeting & standups minutes
 ----->
 
@@ -499,7 +499,7 @@ Ivan, Logan, Yixin, Yichuan
 
 Ivan, Logan, Yixin
 
-**Absent:** Yichuan (Interview)
+**Absent: **Yichuan (Interview)
 
 **Agenda:**
 
