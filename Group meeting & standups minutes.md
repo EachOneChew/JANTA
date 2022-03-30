@@ -499,7 +499,7 @@ Ivan, Logan, Yixin, Yichuan
 
 Ivan, Logan, Yixin
 
-**Absent: **Yichuan (Interview)
+**Absent:** Yichuan (Interview)
 
 **Agenda:**
 
