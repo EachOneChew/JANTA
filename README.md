@@ -73,14 +73,14 @@ In the opening weeks of the course, we brainstormed for a rough direction that w
 
 The app was then built over the course of three two-week sprints, with us meeting for standups thrice a week. We set goals in terms of feature completion for each sprint, and presented our progress to course staff at the end of each sprint. We regularly met with each other to pair program and review code. For better or for worse, much pre-emptive refactoring was done as the codebase grew more complex. See the sprint release pages for more details.
 
-## Major Project Stages
+## Project Stages
 
 - [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Requirements)
 - [Analysis & Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Analysis-&-Design)
 - [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Implementation)
 - [Testing](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Testing)
 
-## Sprint Releases
+## Sprints
 
 - [Sprint 1](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprint-1)
 - [Sprint 2](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprint-2)
