@@ -23,11 +23,11 @@ JANTA's interface should be fairly self explanatory. Regardless, below is a quic
 
 The sidebar buttons, in order:
 
-1. Toggle note list<sup>1</sup>
-2. Save current note<sup>2</sup>
-3. Create new note
-4. Toggle label list<sup>3</sup>
-5. Toggle theme
+* Toggle note list<sup>1</sup>
+* Save current note<sup>2</sup>
+* Create new note
+* Toggle label list<sup>3</sup>
+* Toggle theme
 
 <sup>1</sup> Notes can be renamed and deleted by right clicking on the corresponding note in the note list.
 
