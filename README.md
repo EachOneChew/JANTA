@@ -39,7 +39,7 @@ The sidebar buttons, in order:
 
 ## Annotations and Labels
 
-Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-project/-/wikis/Annotations-and-Labels) for details.
+Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-project/-/wikis/Instructions/Annotations-and-Labels) for details.
 
 ## Shortcuts
 
