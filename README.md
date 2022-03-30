@@ -13,7 +13,7 @@
 
 # JANTA: Just Another Note Taking App<a name="int"/>
 
-JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic. Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a WebEngine, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
+JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic. Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a `WebEngine`, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
 
 <img src="Images/sc_joined.jpg" width="600"/>
 
