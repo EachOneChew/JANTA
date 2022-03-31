@@ -1,16 +1,3 @@
-# Team 110:
-- Logan Maier
-- Yichuan Qiu
-- Ivan Shan
-- Yixin Li
-
-# Table of Contents
-
-1. [Introduction](#int)
-2. [Instructions](#ins)
-3. [Development Process](#dev)
-4. [Ackowledgements](#ack)
-
 # JANTA: Just Another Note Taking App<a name="int"/>
 
 JANTA is a full featured, note taking app targeted towards students taking notes for various academic curricula. Its features include Rich Text editing, autosave, and an awesome aesthetic. Also included in JANTA is an intuitive annotation and labeling system designed to allow users to structure and navigate notes in a manner uniquely suited to textbook-based content. JANTA is primarily written in Kotlin, but works with HTML under the hood using a `WebEngine`, allowing it to cleanly handle copy & pasting from webpages and other HTML editors.
@@ -39,7 +26,66 @@ The sidebar buttons, in order:
 
 ## Annotations and Labels
 
-Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-project/-/wikis/Instructions/Annotations-and-Labels) for details.
+# Annotations
+
+To add an annotation:
+
+1. Select the text you wish to annotate
+2. Use the button highlighted in the editor toolbar or the shortcut "Ctrl + P" to display the annotation popup
+3. Enter the contents of the annotation
+4. Press "Return" or click the checkmark to add the annotation
+
+To edit an annotation:
+
+1. Click to select anywhere witin the annotated text to display the annotation popup
+2. Edit the contents of the annotation as desired
+4. Press "Return" or click the checkmark to commit the edit
+
+To delete an annotation:
+
+1. Click to select anywhere witin the annotated text to display the annotation popup
+2. Click the cross icon to delete the annotation
+
+<img src="Images/sc_annotate_1.png" width="600"/>
+
+Annotatated text has a green background color, and hovering over it will display the annotation.
+
+<img src="Images/sc_annotate_2.png" width="600"/>
+
+# Labels
+
+Deletion of label targets and references are done through the exact same process as deleting annotations.
+
+To add a label target:
+
+1. Select the text you wish to designate a label target
+2. Use the button highlighted in the editor toolbar or the shortcut "Ctrl + L" to display the label target popup
+3. Enter the type of the label
+4. Press "Return" or click the checkmark to proceed
+
+<img src="Images/sc_label_1.png" width="600"/>
+
+5. Enter the name of the label. Duplicate names are not allowed
+5. Press "Return" or click the checkmark to add the label target
+
+<img src="Images/sc_label_2.png" width="600"/>
+
+Label targets have an orange background color, and hovering over them will display their name. Once added, label targets have their type and name displayed in the label list. The label list can be searched, and clicking on its items will navigate you to the corresponding label target in the note.
+
+<img src="Images/sc_label_3.png" width="600"/>
+
+To add a label reference:
+
+1. Select the text you wish to designate a label reference
+2. Use the button highlighted in the editor toolbar or the shortcut "Ctrl + O" to display the label reference popup
+3. Enter the name of the label target you wish to reference. Referencing a non-existent label target is not allowed
+4. Press "Return" or click the checkmark to add the label reference
+
+<img src="Images/sc_label_4.png" width="600"/>
+
+Label references have a turquoise background color.
+
+<img src="Images/sc_label_5.png" width="600"/>
 
 ## Shortcuts
 
@@ -63,32 +109,3 @@ Refer to the [dedicated wiki page](https://git.uwaterloo.ca/y2679li/cs398-projec
 | Paragraph | Shift + Alt + 7 |
 | Open help dialog | Alt + 0 |
 | Find | Ctrl + F |
-
-# Development Process<a name="dev"/>
-
-In the opening weeks of the course, we brainstormed for a rough direction that we wanted to take our app towards, before settling on the idea of JANTA. We interviewed our friends for features they, as students, would like to see implemented in the app, then reviewed their responses to assemble a list of requirements as well as their technical implications. The repository was set up by converting the requirements into issues, with various labels created in order to organize tasks by type and priority. Finally, we came together to plan out the app's architecture, design, and data schema. The relevant documents can be found in the links below:
-
-- [Google drive](https://drive.google.com/drive/folders/1ai-ndyGoGxES07YCx32XlK39CXr1TEIi?usp=sharing)
-- [Resources channel](https://discord.gg/aaXfgXjzFT)
-
-Refer to the [dedicated wiki page](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Project-Overview) for more details on SDLC and project tracking.
-
-The app was then built over the course of three two-week sprints, with us meeting for standups thrice a week. We set goals in terms of feature completion for each sprint, and presented our progress to course staff at the end of each sprint. We regularly met with each other to pair program and review code. For better or for worse, much pre-emptive refactoring was done as the codebase grew more complex. See the sprint pages in the wiki for more details.
-
-## Project Stages
-
-- [Requirements](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Project-Stages/Requirements)
-- [Analysis & Design](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Project-Stages/Analysis-&-Design)
-- [Implementation](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Project-Stages/Implementation)
-- [Testing](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Project-Stages/Testing)
-
-## Sprints
-
-- [Sprint 1](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprints/Sprint-1)
-- [Sprint 2](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprints/Sprint-2)
-- [Sprint 3](https://gitlab.uwaterloo.ca/y2679li/cs398-project/-/wikis/Sprints/Sprint-3)
-
-# Ackowledgements<a name="ack"/>
-
-- [TinyMCE](https://github.com/tinymce/tinymce)
-- [Stackoverflow](https://stackoverflow.com/)
